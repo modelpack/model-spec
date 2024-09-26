@@ -1,5 +1,7 @@
 github.com/CloudNativeAI/model-spec/specs-go v0.0.0-20240925072522-ca68e666bb02 h1:hldWO7cYXMsfCFjlQ2VcGd9PfQYt79sPN2mSjtHVrdc=
 github.com/CloudNativeAI/model-spec/specs-go v0.0.0-20240925072522-ca68e666bb02/go.mod h1:aqXPi8WPdmWT8sUAQYi7gStLYBhiud0dIT75PskIYpE=
+github.com/CloudNativeAI/model-spec/specs-go v0.0.0-20240926032628-0609fae554bf h1:1j2qpJZo+xhBf6vOLoHHKZI2nivE5ZYahWmJLT9cDBw=
+github.com/CloudNativeAI/model-spec/specs-go v0.0.0-20240926032628-0609fae554bf/go.mod h1:EwOSc4yfUSNObOP6pR7zcmkbvjZtWc/4nytC2TbwZTE=
 github.com/cpuguy83/go-md2man/v2 v2.0.2/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=
 github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=

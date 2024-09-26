@@ -11,7 +11,7 @@ require (
 )
 
 require (
-	github.com/CloudNativeAI/model-spec/specs-go v0.0.0-20240925072522-ca68e666bb02 // indirect
+	github.com/CloudNativeAI/model-spec/specs-go v0.0.0-20240926032628-0609fae554bf // indirect
 	golang.org/x/sync v0.6.0 // indirect
 )
 
