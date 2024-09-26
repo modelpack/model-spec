@@ -74,7 +74,7 @@ func BuildModel(commands []format.Command) error {
 			config.Extensions = append(config.Extensions, *layer)
 			fmt.Printf("Add config [%s]\n", c.Args)
 
-		case format.PARAM_SIZE:
+		case format.PARAMSIZE:
 			engine.Name = c.Args
 
 		case format.FORMAT:

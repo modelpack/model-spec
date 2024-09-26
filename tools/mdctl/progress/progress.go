@@ -37,7 +37,7 @@ func (p *Progress) stop() bool {
 	if p.ticker != nil {
 		p.ticker.Stop()
 		p.ticker = nil
-		p.render()
+		_ = p.render()
 		return true
 	}
 
@@ -108,6 +108,6 @@ func (p *Progress) render() error {
 func (p *Progress) start() {
 	p.ticker = time.NewTicker(100 * time.Millisecond)
 	for range p.ticker.C {
-		p.render()
+		_ = p.render()
 	}
 }

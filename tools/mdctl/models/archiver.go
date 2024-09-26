@@ -18,14 +18,14 @@ func Tar(src, dst, newName string) error {
 
 	if fi.IsDir() {
 		return tarDirectory(src, dst)
-	} else {
-		out, err := os.Create(dst)
-		if err != nil {
-			return fmt.Errorf("failed to create tar file: %w", err)
-		}
-		defer out.Close()
-		return tarFile(src, newName, out)
 	}
+
+	out, err := os.Create(dst)
+	if err != nil {
+		return fmt.Errorf("failed to create tar file: %w", err)
+	}
+	defer out.Close()
+	return tarFile(src, newName, out)
 }
 
 func tarFile(src, newName string, writers ...io.Writer) error {

@@ -1,27 +1,23 @@
 package cmd
 
 import (
-	"bytes"
 	"fmt"
 	"os"
-	"os/exec"
 	"path/filepath"
 
 	"github.com/CloudNativeAI/model-spec/tools/mdctl/models"
 )
 
 const (
-	DOT_GITS_DIR    = ".gits"
-	DOT_VOLUMES_DIR = ".volumes"
-	MODEL_DIR       = "model"
-	DATASET_DIR     = "dataset"
-	SOURCE_DIR      = "source"
-	TASK_DIR        = "task"
-	ENTRYPOINT      = "run.py"
-	SETUP           = "setup.sh"
-	CONFIG          = "config.json"
-	INFO            = "info.json"
-	LICENSE         = "LICENSE"
+	MODELDIR   = "model"
+	DATASETDIR = "dataset"
+	SOURCEDIR  = "source"
+	TASKDIR    = "task"
+	ENTRYPOINT = "run.py"
+	SETUP      = "setup.sh"
+	CONFIG     = "config.json"
+	INFO       = "info.json"
+	LICENSE    = "LICENSE"
 )
 
 func RunModel(name string) error {
@@ -108,45 +104,45 @@ func RunModel(name string) error {
 	return nil
 }
 
-func executeBinary(binaryPath string, args []string) (stdout string, stderr string, err error) {
-	cmd := exec.Command(binaryPath, args...)
+// func executeBinary(binaryPath string, args []string) (stdout string, stderr string, err error) {
+// 	cmd := exec.Command(binaryPath, args...)
 
-	var outBuf, errBuf bytes.Buffer
-	cmd.Stdout = &outBuf
-	cmd.Stderr = &errBuf
+// 	var outBuf, errBuf bytes.Buffer
+// 	cmd.Stdout = &outBuf
+// 	cmd.Stderr = &errBuf
 
-	err = cmd.Run()
-	if err != nil {
-		return "", "", fmt.Errorf("failed to execute binary: %w", err)
-	}
+// 	err = cmd.Run()
+// 	if err != nil {
+// 		return "", "", fmt.Errorf("failed to execute binary: %w", err)
+// 	}
 
-	stdout = outBuf.String()
-	stderr = errBuf.String()
+// 	stdout = outBuf.String()
+// 	stderr = errBuf.String()
 
-	return stdout, stderr, nil
-}
+// 	return stdout, stderr, nil
+// }
 
-func executeScript(scriptPath string, args []string) (stdout string, stderr string, err error) {
-	var cmd *exec.Cmd
-	if bytes.HasSuffix([]byte(scriptPath), []byte(".sh")) {
-		cmd = exec.Command("bash", append([]string{scriptPath}, args...)...)
-	} else if bytes.HasSuffix([]byte(scriptPath), []byte(".py")) {
-		cmd = exec.Command("python3", append([]string{scriptPath}, args...)...)
-	} else {
-		return "", "", fmt.Errorf("unsupported script type: %s", scriptPath)
-	}
+// func executeScript(scriptPath string, args []string) (stdout string, stderr string, err error) {
+// 	var cmd *exec.Cmd
+// 	if bytes.HasSuffix([]byte(scriptPath), []byte(".sh")) {
+// 		cmd = exec.Command("bash", append([]string{scriptPath}, args...)...)
+// 	} else if bytes.HasSuffix([]byte(scriptPath), []byte(".py")) {
+// 		cmd = exec.Command("python3", append([]string{scriptPath}, args...)...)
+// 	} else {
+// 		return "", "", fmt.Errorf("unsupported script type: %s", scriptPath)
+// 	}
 
-	var outBuf, errBuf bytes.Buffer
-	cmd.Stdout = &outBuf
-	cmd.Stderr = &errBuf
+// 	var outBuf, errBuf bytes.Buffer
+// 	cmd.Stdout = &outBuf
+// 	cmd.Stderr = &errBuf
 
-	err = cmd.Run()
-	if err != nil {
-		return "", "", fmt.Errorf("failed to execute script: %w", err)
-	}
+// 	err = cmd.Run()
+// 	if err != nil {
+// 		return "", "", fmt.Errorf("failed to execute script: %w", err)
+// 	}
 
-	stdout = outBuf.String()
-	stderr = errBuf.String()
+// 	stdout = outBuf.String()
+// 	stderr = errBuf.String()
 
-	return stdout, stderr, nil
-}
+// 	return stdout, stderr, nil
+// }

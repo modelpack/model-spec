@@ -12,9 +12,8 @@ import (
 	modelspec "github.com/CloudNativeAI/model-spec/specs-go/v2"
 	"github.com/CloudNativeAI/model-spec/tools/mdctl/models"
 	"github.com/opencontainers/image-spec/specs-go"
-	"oras.land/oras-go/v2/content"
-
 	oci "github.com/opencontainers/image-spec/specs-go/v1"
+	"oras.land/oras-go/v2/content"
 	"oras.land/oras-go/v2/registry/remote"
 	"oras.land/oras-go/v2/registry/remote/auth"
 	"oras.land/oras-go/v2/registry/remote/retry"
@@ -67,7 +66,7 @@ func NewOciManifest(layers []oci.Descriptor) ([]byte, error) {
 	return json.Marshal(content)
 }
 
-func PushLayer(repo *remote.Repository, ctx context.Context, descriptor *oci.Descriptor) (bool, error) {
+func PushLayer(ctx context.Context, repo *remote.Repository, descriptor *oci.Descriptor) (bool, error) {
 	layerPath, err := models.GetBlobsPath(descriptor.Digest.String())
 	if err != nil {
 		return false, fmt.Errorf("failed to get blobs path: %w", err)
@@ -90,7 +89,7 @@ func PushLayer(repo *remote.Repository, ctx context.Context, descriptor *oci.Des
 	return false, repo.Push(ctx, *descriptor, layerFile)
 }
 
-func PushModelManifest(repo *remote.Repository, ctx context.Context, modelManifestPath string) (*oci.Descriptor, error) {
+func PushModelManifest(ctx context.Context, repo *remote.Repository, modelManifestPath string) (*oci.Descriptor, error) {
 	modelManifestFile, err := os.Open(modelManifestPath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open model manifest file: %w", err)
@@ -111,7 +110,7 @@ func PushModelManifest(repo *remote.Repository, ctx context.Context, modelManife
 	return descriptor, nil
 }
 
-func PushModel(repo *remote.Repository, tag string, ctx context.Context, layers []oci.Descriptor) error {
+func PushModel(ctx context.Context, repo *remote.Repository, tag string, layers []oci.Descriptor) error {
 	manifestBlob, err := NewOciManifest(layers)
 	if err != nil {
 		return fmt.Errorf("failed to new oci manifest: %w", err)
@@ -126,7 +125,7 @@ func PushModel(repo *remote.Repository, tag string, ctx context.Context, layers 
 	return nil
 }
 
-func PullImageManifest(repo *remote.Repository, ctx context.Context, tag string) (*oci.Manifest, error) {
+func PullImageManifest(ctx context.Context, repo *remote.Repository, tag string) (*oci.Manifest, error) {
 	descriptor, err := repo.Resolve(ctx, tag)
 	if err != nil {
 		return nil, fmt.Errorf("failed to resolve image manifest: %w", err)
@@ -145,7 +144,7 @@ func PullImageManifest(repo *remote.Repository, ctx context.Context, tag string)
 	return &manifest, nil
 }
 
-func PullLayer(repo *remote.Repository, ctx context.Context, digest string, size int64, targetPath string) error {
+func PullLayer(ctx context.Context, repo *remote.Repository, digest string, size int64, targetPath string) error {
 	if fi, err := os.Stat(targetPath); err == nil && fi.Mode().IsRegular() && fi.Size() == size {
 		return nil
 	}

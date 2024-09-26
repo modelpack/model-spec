@@ -17,7 +17,7 @@ const (
 	ARCHITECTURE = "architecture"
 	LICENSE      = "license"
 	DESCRIPTION  = "description"
-	PARAM_SIZE   = "param_size"
+	PARAMSIZE    = "param_size"
 	WEIGHTS      = "weights"
 	TOKENIZER    = "tokenizer"
 	PRECISION    = "precision"
@@ -64,7 +64,7 @@ func Parse(reader io.Reader) ([]Command, error) {
 			strings.ToUpper(FORMAT),
 			strings.ToUpper(PRECISION),
 			strings.ToUpper(QUANTIZATION),
-			strings.ToUpper(PARAM_SIZE),
+			strings.ToUpper(PARAMSIZE),
 			strings.ToUpper(WEIGHTS),
 			strings.ToUpper(CONFIG),
 			strings.ToUpper(TOKENIZER):
@@ -119,9 +119,8 @@ func scan(openBytes, closeBytes, data []byte, atEOF bool) (advance int, token []
 		if end < 0 {
 			if atEOF {
 				return 0, nil, fmt.Errorf("unterminated %s: expecting %s", openBytes, closeBytes)
-			} else {
-				return 0, nil, nil
 			}
+			return 0, nil, nil
 		}
 
 		n := start + len(openBytes) + end + len(closeBytes)
