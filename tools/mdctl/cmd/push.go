@@ -59,14 +59,14 @@ func PushModel(name string) error {
 
 		for _, layer := range group.layers {
 			fmt.Println("Push layer:", layer.Digest, layer.Size)
-			_, err := registry.PushLayer(repo, ctx, &layer)
+			_, err := registry.PushLayer(ctx, repo, &layer)
 			if err != nil {
 				return fmt.Errorf("failed to push layer: %w", err)
 			}
 		}
 	}
 
-	manifestDesc, err := registry.PushModelManifest(repo, ctx, manifestPath)
+	manifestDesc, err := registry.PushModelManifest(ctx, repo, manifestPath)
 	if err != nil {
 		return fmt.Errorf("failed to push model manifest: %w", err)
 	}
@@ -79,7 +79,7 @@ func PushModel(name string) error {
 
 	// assemble descriptors and model manifest to a image manifest
 	layers = append(layers, *manifestDesc)
-	err = registry.PushModel(repo, mp.Tag, ctx, layers)
+	err = registry.PushModel(ctx, repo, mp.Tag, layers)
 	if err != nil {
 		return fmt.Errorf("failed to push oci image manifest: %w", err)
 	}

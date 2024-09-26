@@ -24,30 +24,30 @@ var (
 
 var errModelPathInvalid = errors.New("invalid models path")
 
-func realpath(mfDir, from string) string {
-	abspath, err := filepath.Abs(from)
-	if err != nil {
-		return from
-	}
+// func realpath(mfDir, from string) string {
+// 	abspath, err := filepath.Abs(from)
+// 	if err != nil {
+// 		return from
+// 	}
 
-	home, err := os.UserHomeDir()
-	if err != nil {
-		return abspath
-	}
+// 	home, err := os.UserHomeDir()
+// 	if err != nil {
+// 		return abspath
+// 	}
 
-	if from == "~" {
-		return home
-	} else if strings.HasPrefix(from, "~/") {
-		return filepath.Join(home, from[2:])
-	}
+// 	if from == "~" {
+// 		return home
+// 	} else if strings.HasPrefix(from, "~/") {
+// 		return filepath.Join(home, from[2:])
+// 	}
 
-	if _, err := os.Stat(filepath.Join(mfDir, from)); err == nil {
-		// this is a file relative to the Modelfile
-		return filepath.Join(mfDir, from)
-	}
+// 	if _, err := os.Stat(filepath.Join(mfDir, from)); err == nil {
+// 		// this is a file relative to the Modelfile
+// 		return filepath.Join(mfDir, from)
+// 	}
 
-	return abspath
-}
+// 	return abspath
+// }
 
 func ParseModelPath(name string) ModelPath {
 	mp := ModelPath{
@@ -85,8 +85,8 @@ func ParseModelPath(name string) ModelPath {
 	return mp
 }
 
-// ModelsDir returns the path to the models directory.
-func ModelsDir() (string, error) {
+// ModelDir returns the path to the models directory.
+func ModelDir() (string, error) {
 	if models, exists := os.LookupEnv("MODELS_DIR"); exists {
 		return models, nil
 	}
@@ -98,7 +98,7 @@ func ModelsDir() (string, error) {
 }
 
 func GetManifestRoot() (string, error) {
-	dir, err := ModelsDir()
+	dir, err := ModelDir()
 	if err != nil {
 		return "", fmt.Errorf("failed to get models dir: %w", err)
 	}
@@ -112,7 +112,7 @@ func GetManifestRoot() (string, error) {
 }
 
 func GetBlobsPath(digest string) (string, error) {
-	dir, err := ModelsDir()
+	dir, err := ModelDir()
 	if err != nil {
 		return "", fmt.Errorf("failed to get models dir: %w", err)
 	}
@@ -171,7 +171,7 @@ func (mp ModelPath) GetShortTagname() string {
 // GetManifestRoot returns the path to the manifest file for the given models path,
 // it is up to the caller to create the directory if it does not exist.
 func (mp ModelPath) GetManifestPath() (string, error) {
-	dir, err := ModelsDir()
+	dir, err := ModelDir()
 	if err != nil {
 		return "", fmt.Errorf("failed to get models dir: %w", err)
 	}

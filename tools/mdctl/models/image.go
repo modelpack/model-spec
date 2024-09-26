@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"os"
 )
 
 type RootFS struct {
@@ -24,22 +23,22 @@ func GetSHA256Digest(r io.Reader) (string, int64) {
 	return fmt.Sprintf("sha256:%x", h.Sum(nil)), n
 }
 
-func verifyBlob(digest string) error {
-	fp, err := GetBlobsPath(digest)
-	if err != nil {
-		return fmt.Errorf("failed to get blobs path: %w", err)
-	}
+// func verifyBlob(digest string) error {
+// 	fp, err := GetBlobsPath(digest)
+// 	if err != nil {
+// 		return fmt.Errorf("failed to get blobs path: %w", err)
+// 	}
 
-	f, err := os.Open(fp)
-	if err != nil {
-		return fmt.Errorf("failed to open blob: %w", err)
-	}
-	defer f.Close()
+// 	f, err := os.Open(fp)
+// 	if err != nil {
+// 		return fmt.Errorf("failed to open blob: %w", err)
+// 	}
+// 	defer f.Close()
 
-	fileDigest, _ := GetSHA256Digest(f)
-	if digest != fileDigest {
-		return fmt.Errorf("digest mismatch: want %s, got %s", digest, fileDigest)
-	}
+// 	fileDigest, _ := GetSHA256Digest(f)
+// 	if digest != fileDigest {
+// 		return fmt.Errorf("digest mismatch: want %s, got %s", digest, fileDigest)
+// 	}
 
-	return nil
-}
+// 	return nil
+// }

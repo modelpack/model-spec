@@ -21,7 +21,7 @@ func FetchManifest(name string, manifest *spec.Manifest, config *spec.Config) (*
 		return nil, fmt.Errorf("failed to new repo: %w", err)
 	}
 	ctx := context.Background()
-	imageManifest, err := registry.PullImageManifest(repo, ctx, mp.Tag)
+	imageManifest, err := registry.PullImageManifest(ctx, repo, mp.Tag)
 	if err != nil {
 		return nil, fmt.Errorf("failed to pull image manifest: %w", err)
 	}
@@ -49,7 +49,7 @@ func FetchManifest(name string, manifest *spec.Manifest, config *spec.Config) (*
 		defer temp.Close()
 
 		//fmt.Println("Pull layer: ", layer.Digest, layer.Size)
-		err = registry.PullLayer(repo, ctx, layer.Digest.String(), layer.Size, temp.Name())
+		err = registry.PullLayer(ctx, repo, layer.Digest.String(), layer.Size, temp.Name())
 		if err != nil {
 			return nil, fmt.Errorf("failed to pull layer: %w", err)
 		}
@@ -81,12 +81,12 @@ func PullModel(name string) error {
 	}
 	ctx := context.Background()
 
-	image_manifest, err := registry.PullImageManifest(repo, ctx, mp.Tag)
+	imageManifest, err := registry.PullImageManifest(ctx, repo, mp.Tag)
 	if err != nil {
 		return fmt.Errorf("failed to pull image manifest: %w", err)
 	}
 
-	for _, layer := range image_manifest.Layers {
+	for _, layer := range imageManifest.Layers {
 		fmt.Println("Pull layer:", layer.Digest, layer.Size)
 		digest := layer.Digest.String()
 
@@ -104,7 +104,7 @@ func PullModel(name string) error {
 			return fmt.Errorf("failed to get blobs path: %w", err)
 		}
 
-		err = registry.PullLayer(repo, ctx, digest, layer.Size, targetPath)
+		err = registry.PullLayer(ctx, repo, digest, layer.Size, targetPath)
 		if err != nil {
 			return fmt.Errorf("failed to pull layer: %w", err)
 		}
