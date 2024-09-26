@@ -1,0 +1,5 @@
+mdctl
+vendor
+*.safetensors
+*.model
+gemma-2b:*
