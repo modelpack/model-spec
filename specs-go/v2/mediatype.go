@@ -12,10 +12,10 @@ const (
 	MediaTypeModelConfig = "application/vnd.cnai.model.config.v2+json"
 
 	// MediaTypeModelLicense specifies the media type for model license.
-	MediaTypeModelLicense = "application/vnd.cnai.model.license.v2+json"
+	MediaTypeModelLicense = "application/vnd.cnai.model.license.v2+plaintext"
 
 	// MediaTypeModelDescription specifies the media type for model description.
-	MediaTypeModelDescription = "application/vnd.cnai.model.description.v2+json"
+	MediaTypeModelDescription = "application/vnd.cnai.model.description.v2+plaintext"
 
 	// MediaTypeModelExtension specifies the media type for model configuration extension.
 	MediaTypeModelExtension = "application/vnd.cnai.model.extension.v2+json"
