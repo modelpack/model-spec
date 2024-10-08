@@ -1,6 +1,6 @@
-# Model Specification
+# Model Specification Version 1
 
-This specification defines an open standard Artifacial Intelegence model, which is based on the [Image Format Specification](https://github.com/opencontainers/image-spec/blob/main/spec.md#image-format-specification).
+The specification defines an open standard Artifacial Intelegence model. It is defined through the artifact extension based on [the OCI image specification](https://github.com/opencontainers/image-spec/blob/main/spec.md#image-format-specification), and extends model features through `artifactType` and `annotations`. Model storage and distribution can be optimized based on artifact extension.
 
 The goal of this specification is to package models in an OCI artifact to take advantage of OCI distribution and ensure efficient model deployment.
 
@@ -19,7 +19,7 @@ Therefore, the model specification must be defined through the artifact extensio
 
 The model specification is defined through the artifact extension based on the OCI image specification, and extend model features through `artifactType` and `annotations`. Model storage and distribution can be optimized based on artifact extension.
 
-![manifest](../../img/v1/manifest.svg)
+![manifest](../img/v1/manifest.svg)
 
 ## Workflow
 
@@ -31,13 +31,13 @@ Use tools(ORAS, Ollama, etc.) to build required resources in the model repositor
 
 Next push the artifact to the OCI registry(Harbor, Docker Hub, etc.), and use the functionalities of the OCI registry to manage the model artifact.
 
-![build-push](../../img/v1/build-and-push.png)
+![build-push](../img/v1/build-and-push.png)
 
 ### PULL & SERVE
 
 The container runtime(containerd, cri-o, etc) pulls the model artifact from the OCI registry, and mounts the model artifact as a read-only volume. Therefore, distributed model can use the P2P technology(Dragonfly, Kraken, etc) to reduce the pressure on the registry and preheat the model artifact into each node. If the model artifact is already present on the node, the container runtime can reuse the model artifact to mount different containers in the same node.
 
-![pull-serve](../../img/v1/pull-and-serve.png)
+![pull-serve](../img/v1/pull-and-serve.png)
 
 ## Understanding the Specification
 
