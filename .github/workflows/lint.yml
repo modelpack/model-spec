@@ -29,9 +29,9 @@ jobs:
           cache: false
 
       - name: Golangci lint
-        uses: golangci/golangci-lint-action@aaa42aa0628b4ae2578232a66b541047968fac86
+        uses: golangci/golangci-lint-action@v6
         with:
-          version: v1.54
+          version: v1.61
           working-directory: ${{ matrix.go-path }}
           args: --config $GITHUB_WORKSPACE/.golangci.yml --verbose
 
