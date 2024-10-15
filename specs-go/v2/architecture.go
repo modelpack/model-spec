@@ -5,7 +5,7 @@ type Architecture struct {
 	// Transformer architecture
 	Transformer Transformer `json:"transformer"`
 
-	// TODO: Other architectures
+	// TODO: Other architectures, like mamba, etc.
 }
 
 // Transformer represents the transformer architecture.
@@ -30,6 +30,9 @@ type TransformerForCausalLM struct {
 	// The hidden size of the model
 	HiddenSize int `json:"hidden_size"`
 
+	// embedding
+	Embedding Embedding `json:"embedding"`
+
 	// Position embedding type
 	PositionEmbedding PositionEmbedding `json:"position_embedding"`
 
@@ -45,8 +48,11 @@ type TransformerForCausalLM struct {
 
 // TransformerLayer represents the transformer layer parameters.
 type TransformerLayer struct {
+	// Attention parameters
 	Attention Attention `json:"attention"`
-	MLP       MLP       `json:"mlp"`
+
+	// MLP parameters
+	MLP MLP `json:"mlp"`
 }
 
 // MLP represents the MLP (Multi-Layer Perceptron) parameters.
@@ -97,6 +103,9 @@ type Attention struct {
 	// Number of key-value heads
 	NumKeyValueHeads int `json:"num_key_value_heads"`
 
+	// The attention head dimension. If 0, it will default to hidden_size / NumAttentionHeads
+	HeadDim int `json:"head_dim"`
+
 	// Whether the attention has a residual connection
 	HasResidual bool `json:"has_residual"`
 
@@ -112,17 +121,35 @@ type Attention struct {
 
 // PositionEmbedding represents the position embedding type and parameters.
 type PositionEmbedding struct {
-	// Type of position embedding, e.g. 'rope', 'sinusoidal', 'alibi', etc.
+	// Type of position embedding, e.g. 'rope', 'alibi', etc.
 	Type string `json:"type"`
 
 	// The maximum number of position embeddings
 	MaxPositionEmbeddings int `json:"max_position_embeddings"`
 
-	// The base in signifying the rotary embedding period.
-	RotaryEmbeddingBase int `json:"rotary_embedding_base,omitempty"`
+	// Only used with 'RoPE'. The theta parameter in the RoPE position embedding.
+	RotaryEmbeddingTheta float64 `json:"rope_theta,omitempty"`
 
-	// Fraction of hidden size to apply rotary embeddings to. Must be in [0,1].
-	RotaryEmbeddingFraction float64 `json:"rotary_embedding_fraction,omitempty"`
+	// Only used with 'RoPE'. The scaling configuration for the RoPE embeddings
+	RotaryEmbeddingScaling RotaryEmbeddingScaling `json:"rope_scaling,omitempty"`
+}
+
+// RotaryEmbeddingScaling represents the scaling configuration for the RoPE embeddings.
+type RotaryEmbeddingScaling struct {
+	// Type of scaling, can be one of ['default', 'linear', 'dynamic', 'llama3'], with 'default' being the original RoPE implementation.
+	Type string `json:"type"`
+
+	// The scaling factor
+	Factor float64 `json:"factor"`
+
+	// The original max position used during pretraining.
+	OriginalMaxPosition int `json:"original_max_position"`
+
+	// Only used with 'llama3'. Scaling factor applied to low frequency components of the RoPE
+	LowFreqFactor float64 `json:"low_freq_factor"`
+
+	// Only used with 'llama3'. Scaling factor applied to high frequency components of the RoPE
+	HighFreqFactor float64 `json:"high_freq_factor"`
 }
 
 // Normalization represents the normalization parameters.
@@ -132,4 +159,13 @@ type Normalization struct {
 
 	// Epsilon for the normalization
 	Epsilon float64 `json:"epsilon"`
+}
+
+// Embedding represents the embedding parameters.
+type Embedding struct {
+	// Whether the embedding has a bias
+	HasBias bool `json:"has_bias"`
+
+	// Whether the embedding has a normalization
+	HasNorm bool `json:"has_norm"`
 }
