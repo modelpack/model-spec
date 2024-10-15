@@ -3,7 +3,7 @@
 [![LICENSE](https://img.shields.io/github/license/CloudNativeAI/model-spec.svg?style=flat-square)](https://github.com/CloudNativeAI/model-spec/blob/main/LICENSE)
 [![GoDoc](https://godoc.org/github.com/CloudNativeAI/model-spec?status.svg)](https://godoc.org/github.com/CloudNativeAI/model-spec)
 
-The Cloud Native Artifacial Intelegence(CNAI) Model Specification aims to provide a standard way to package, distribute and run AI models in a cloud native environment.
+The Cloud Native Artifacial Intelligence (CNAI) Model Specification aims to provide a standard way to package, distribute and run AI models in a cloud native environment.
 
 ## Rationale
 
