@@ -8,7 +8,7 @@ This property contains arbitrary metadata, and SHOULD follow the rules of [OCI i
 
 #### Model-common Annotation Keys
 
-- **`org.cnai.model.created`**: Date and time on which the image was built, conforming to [RFC 3339](https://tools.ietf.org/html/rfc3339#section-5.6).
+- **`org.cnai.model.created`**: Date and time on which the model was built, conforming to [RFC 3339](https://tools.ietf.org/html/rfc3339#section-5.6).
 - **`org.cnai.model.authors`**: Contact details of the people or organization responsible for the model (freeform string).
 - **`org.cnai.model.url`**: URL to find more information on the model (string).
 - **`org.cnai.model.documentation`**: URL to get documentation on the model (string).
