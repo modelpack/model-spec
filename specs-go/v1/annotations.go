@@ -74,10 +74,10 @@ const (
 	AnnotationParamSize = "org.cnai.model.param.size"
 
 	// AnnotationPrecision is the annotation key for the model precision, such as `bf16`, `fp16`, `int8`, etc.
-	AnotationPrecision = "org.cnai.model.precision"
+	AnnotationPrecision = "org.cnai.model.precision"
 
 	// AnnotationQuantization is the annotation key for the model quantization, such as `awq`, `gptq`, etc.
-	AnotationQuantization = "org.cnai.model.quantization"
+	AnnotationQuantization = "org.cnai.model.quantization"
 )
 
 const (
