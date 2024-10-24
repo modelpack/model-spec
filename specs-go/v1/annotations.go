@@ -83,4 +83,13 @@ const (
 const (
 	// AnnotationReadme is the annotation key for the layer is a README.md file (boolean), such as `true` or `false`.
 	AnnotationReadme = "org.cnai.model.readme"
+
+	// AnnotationLicense is the annotation key for the layer is a license file (boolean), such as `true` or `false`.
+	AnnotationLicense = "org.cnai.model.license"
+
+	// AnnotationConfig is the annotation key for the layer is a configuration file (boolean), such as `true` or `false`.
+	AnnotationConfig = "org.cnai.model.config"
+
+	// AnnotationModel is the annotation key for the layer is a model file (boolean), such as `true` or `false`.
+	AnnotationModel = "org.cnai.model.model"
 )
