@@ -92,4 +92,7 @@ const (
 
 	// AnnotationModel is the annotation key for the layer is a model file (boolean), such as `true` or `false`.
 	AnnotationModel = "org.cnai.model.model"
+
+	// AnnotationFilepath is the annotation key for the file path of the layer.
+	AnnotationFilepath = "org.cnai.model.filepath"
 )
