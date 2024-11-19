@@ -14,26 +14,20 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    strategy:
-      matrix:
-        include:
-          - go-path: tools/mdctl
-          - go-path: specs-go
     steps:
       - name: Checkout code
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
       - uses: actions/setup-go@0a12ed9d6a96ab950c8f026ed9f722fe0da7ef32
         with:
-          go-version-file: specs-go/go.mod
+          go-version-file: go.mod
           cache: false
 
       - name: Golangci lint
         uses: golangci/golangci-lint-action@v6
         with:
           version: v1.61
-          working-directory: ${{ matrix.go-path }}
-          args: --config $GITHUB_WORKSPACE/.golangci.yml --verbose
+          args: --verbose
 
       - name: Markdown lint
         uses: docker://avtodev/markdown-lint:v1@sha256:6aeedc2f49138ce7a1cd0adffc1b1c0321b841dc2102408967d9301c031949ee

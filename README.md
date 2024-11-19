@@ -1,4 +1,4 @@
-# CNAI Model Specification Proposal
+# CNAI Model Format Specification
 
 [![LICENSE](https://img.shields.io/github/license/CloudNativeAI/model-spec.svg?style=flat-square)](https://github.com/CloudNativeAI/model-spec/blob/main/LICENSE)
 [![GoDoc](https://godoc.org/github.com/CloudNativeAI/model-spec?status.svg)](https://godoc.org/github.com/CloudNativeAI/model-spec)
@@ -15,14 +15,9 @@ Each of the new ages has brought new technologies and new ways of thinking. The 
 
 ## Current Work
 
-There are two versions of specifications proposed, both of which are under development:
+The specification, provides a compatible way to package and distribute models based on the current [OCI image specification](https://github.com/opencontainers/image-spec/) and [the artifacts guidelines](https://github.com/opencontainers/image-spec/blob/main/manifest.md#guidelines-for-artifact-usage). For compatibility reasons, it only contains part of the model metadata, and handles model artifacts as opaque binaries. However, it provides a convient way to package AI models in the container image format and can be used as [OCI volume sources](https://github.com/kubernetes/enhancements/issues/4639) in Kubernetes environments.
 
-* v1: The first version of the specification, provides a compatible way to package and distribute models based on the current [OCI image specification](https://github.com/opencontainers/image-spec/) and [the artifacts guidelines](https://github.com/opencontainers/image-spec/blob/main/manifest.md#guidelines-for-artifact-usage). For compatibility reasons, it only contains part of the model metadata, and handles model artifacts as opaque binaries. However, it provides a convient way to package AI models in the container image format and can be used as [OCI volume sources](https://github.com/kubernetes/enhancements/issues/4639) in Kubernetes environments.
-* v2: The second version of the specification, in a pretty early stage, includes a model image specification and a model runtime specification. The model image specification packages models with details like model artifacts, metadata, configuration, and runtime environment. The model runtime specification defines how to run the packaged models in a cloud native environment. It builds a foundation for promoting AI models as a first-class citizen in the cloud native ecosystem, and let users build once and run anywhere.
-
-We consider the two versions incremental steps toward a standard model specification. The v1 specification is a simple and compatible way to package AI models in the container image format, while the v2 specification is a more comprehensive and cloud native way to package, distribute, and run AI models.
-
-For details, please see [the v1 specification](docs/v1/spec.md) and [the v2 specification introduction](docs/v2/intro.md).
+For details, please see [the specification](docs/spec.md).
 
 ## LICENSE
 
@@ -32,6 +27,6 @@ Apache 2.0 License. Please see [LICENSE](LICENSE) for more information.
 
 Any feedback, suggestions, and contributions are welcome. Please feel free to open an issue or pull request.
 
-Especially, we look forward to integrating the model specification with different model registry implementations (like [Harbor](https://goharbor.io/) and [Kubeflow model registry](https://www.kubeflow.org/docs/components/model-registry/overview/)), as well as existing model centric infrastructure projects like [Kubeflow](https://www.kubeflow.org/), [ollama](https://github.com/ollama/ollama), [Huggingface](https://huggingface.co/), [Lepton](https://www.lepton.ai/), and others.
+Especially, we look forward to integrating the model specification with different model registry implementations (like [Harbor](https://goharbor.io/) and [Kubeflow model registry](https://www.kubeflow.org/docs/components/model-registry/overview/)), as well as existing model centric infrastructure projects like [Huggingface](https://huggingface.co/), [KitOps](https://kitops.ml/), [Kubeflow](https://www.kubeflow.org/), [Lepton](https://www.lepton.ai/), [ollama](https://github.com/ollama/ollama), [ORAS](https://oras.land/), and others.
 
 Enjoy!
