@@ -1,0 +1,35 @@
+run:
+  deadline: 3m
+  modules-download-mode: readonly
+
+linters-settings:
+  gocyclo:
+    min-complexity: 100
+  gci:
+    sections:
+      - standard
+      - default
+
+issues:
+  new: true
+  exclude-rules:
+    - linters:
+        - staticcheck
+      text: "SA1019:"
+
+linters:
+  disable-all: true
+  enable:
+    - gci
+    - gofmt
+    - misspell
+    - govet
+    - goconst
+    - gocyclo
+    - staticcheck
+    - errcheck
+
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
