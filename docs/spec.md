@@ -1,6 +1,6 @@
 # Model Format Specification
 
-The specification defines an open standard Artifacial Intelegence model. It is defined through the artifact extension based on [the OCI image specification](https://github.com/opencontainers/image-spec/blob/main/spec.md#image-format-specification), and extends model features through `artifactType` and `annotations`. Model storage and distribution can be optimized based on artifact extension.
+The specification defines an open standard Artifacial Intelligence model. It is defined through the artifact extension based on [the OCI image specification](https://github.com/opencontainers/image-spec/blob/main/spec.md#image-format-specification), and extends model features through `artifactType` and `annotations`. Model storage and distribution can be optimized based on artifact extension.
 
 The goal of this specification is to package models in an OCI artifact to take advantage of OCI distribution and ensure efficient model deployment.
 
