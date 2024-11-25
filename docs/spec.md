@@ -35,7 +35,7 @@ Next push the artifact to the OCI registry(Harbor, Docker Hub, etc.), and use th
 
 ### PULL & SERVE
 
-The container runtime(containerd, cri-o, etc) pulls the model artifact from the OCI registry, and mounts the model artifact as a read-only volume. Therefore, distributed model can use the P2P technology(Dragonfly, Kraken, etc) to reduce the pressure on the registry and preheat the model artifact into each node. If the model artifact is already present on the node, the container runtime can reuse the model artifact to mount different containers in the same node.
+The container runtime(containerd, CRI-O, etc) pulls the model artifact from the OCI registry, and mounts the model artifact as a read-only volume. Therefore, distributed model can use the P2P technology(Dragonfly, Kraken, etc) to reduce the pressure on the registry and preheat the model artifact into each node. If the model artifact is already present on the node, the container runtime can reuse the model artifact to mount different containers in the same node.
 
 ![pull-serve](./img/pull-and-serve.png)
 
