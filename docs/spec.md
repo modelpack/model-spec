@@ -11,7 +11,7 @@ The model specification needs to consider two factors:
    packaging content other than OCI image specification.
 2. The model needs to be mounted by the container runtime as
    [read only volumes based on the OCI Artifacts in Kubernetes 1.31+](https://kubernetes.io/blog/2024/08/16/kubernetes-1-31-image-volume-source/).
-   Container runtimes can only pull OCI artifact that follows the OCI image specification.
+   Container runtimes can only pull OCI artifact that follow the OCI image specification.
 
 Therefore, the model specification must be defined through the artifact extension based on the [OCI image specification](https://github.com/opencontainers/image-spec/blob/main/spec.md#image-format-specification). It can be better compatible with the kubernetes ecosystem.
 
@@ -51,14 +51,25 @@ The model specification is based on the [OCI image specification](https://github
 
 - **`layers`** _array of objects_
 
+  - **`mediaType`** _string_
+
+  `mediaType` MUST follow the [OCI image specification](https://github.com/opencontainers/image-spec/blob/main/layer.md), because the model needs to be mounted
+  by the container runtime as [read only volumes based on the OCI Artifacts in Kubernetes 1.31+](https://kubernetes.io/blog/2024/08/16/kubernetes-1-31-image-volume-source/).
+  Container runtimes can only pull OCI artifact that follow the OCI image specification.
+
   - **`artifactType`** _string_
 
     Implementations MUST support at least the following media types:
 
-    - `application/vnd.cnai.model.layer.v1.tar`
-    - `application/vnd.cnai.model.layer.v1.tar+gzip`
-
-    If `mediaType` is `application/vnd.oci.image.layer.v1.tar`, the `artifactType` MUST be `application/vnd.cnai.model.layer.v1.tar`. If `mediaType` is `application/vnd.oci.image.layer.v1.tar+gzip`, the `artifactType` MUST be `application/vnd.cnai.model.layer.v1.tar+gzip`. The `mediaType` and `artifactType` MUST be consistent, for detailed definitions of Filesystem Layers, please refer to the [Image Layer Filesystem Changeset](https://github.com/opencontainers/image-spec/blob/main/layer.md).
+    - `application/vnd.cnai.model.layer.v1.tar`: The layer is a tarball that contains the model weight file. If the model has multiple weight files,
+      need to package them in separate layers.
+    - `application/vnd.cnai.model.layer.v1.tar+gzip`: The layer is a tarball that contains the model weight file and is compressed by gzip.
+      If the model has multiple weight files, need to package them in separate layers. But recommended package model weight files without compressed to
+      avoid the container runtime decompressing the model layer. Because the model weight files have been compressed, the container runtime will
+      cost long time to decompress the model layer.
+    - `application/vnd.cnai.model.doc.v1.tar`: The layer is a tarball that contains the model documentation file, such as README.md, LICENSE, etc.
+    - `application/vnd.cnai.model.config.v1.tar`: The layer is a tarball that contains the model configuration file,
+      such as config.json, tokenizer.json, generation_config.json, etc.
 
   - **`annotations`** _string-string map_
 

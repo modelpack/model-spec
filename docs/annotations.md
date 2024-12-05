@@ -35,6 +35,4 @@ This property contains arbitrary metadata, and SHOULD follow the rules of [OCI i
 
 - **`org.cnai.model.readme`**: Specifies the layer is a README.md file (boolean), such as `true` or `false`.
 - **`org.cnai.model.license`**: Specifies the layer is a LICENSE file (boolean), such as `true` or `false`.
-- **`org.cnai.model.config`**: Specifies the layer is a configuration file (boolean), such as `true` or `false`.
-- **`org.cnai.model.model`**: Specifies the layer is a model file (boolean), such as `true` or `false`.
 - **`org.cnai.model.filepath`**: Specifies the file path of the layer (string).
