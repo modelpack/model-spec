@@ -1,80 +1,71 @@
 # Model Format Specification
 
-The specification defines an open standard Artifacial Intelligence model. It is defined through the artifact extension based on [the OCI image specification](https://github.com/opencontainers/image-spec/blob/main/spec.md#image-format-specification), and extends model features through `artifactType` and `annotations`. Model storage and distribution can be optimized based on artifact extension.
+The specification defines an open standard for packaging and distribution Artificial Intelligence models as OCI artifacts, adhering to [the OCI image specification](https://github.com/opencontainers/image-spec/blob/main/spec.md#image-format-specification).
 
-The goal of this specification is to package models in an OCI artifact to take advantage of OCI distribution and ensure efficient model deployment.
+The goal of this specification is to outline a blueprint and enable the creation of interoperable solutions for packaging and retrieving AI/ML models by leveraging the existing OCI ecosystem, thereby facilitating efficient model management, deployment and serving in cloud-native environments.
 
-The model specification needs to consider two factors:
+## Use Cases
 
-1. The model needs to be stored in the OCI registry and display the parameters of the model. So that the model should use
-   the [artifact extension](https://github.com/opencontainers/image-spec/blob/main/artifacts-guidance.md) to
-   packaging content other than OCI image specification.
-2. The model needs to be mounted by the container runtime as
-   [read only volumes based on the OCI Artifacts in Kubernetes 1.31+](https://kubernetes.io/blog/2024/08/16/kubernetes-1-31-image-volume-source/).
-   Container runtimes can only pull OCI artifact that follow the OCI image specification.
-
-Therefore, the model specification must be defined through the artifact extension based on the [OCI image specification](https://github.com/opencontainers/image-spec/blob/main/spec.md#image-format-specification). It can be better compatible with the kubernetes ecosystem.
+* An OCI Registry could storage and manage AI/ML model artifacts with model versions, metadata, and parameters retrievable and displayable.
+* A Data Scientist can package models together with their metadata (e.g., format, precision) and upload them to a registry, facilitating collaboration with MLOps Engineers while streamlining the deployment process to efficiently deliver models into production.
+* A model serving/deployment platform can read model metadata (e.g., format, precision) from a registry to understand the AI/ML model details, identify the required server runtime
+  (as well as startup parameters, necessary resources, etc.), and serve the model in Kubernetes by [mounting it directly as a volume source](https://kubernetes.io/blog/2024/08/16/kubernetes-1-31-image-volume-source/)
+  without needing to pre-download it in an init-container or bundle it within the server runtime container.
 
 ## Overview
 
-The model specification is defined through the artifact extension based on the OCI image specification, and extend model features through `artifactType` and `annotations`. Model storage and distribution can be optimized based on artifact extension.
+At a high level, the Model Format Specification is based on the [OCI Image Format Specification](https://github.com/opencontainers/image-spec/blob/main/spec.md#image-format-specification) and incorporates [all its components](https://github.com/opencontainers/image-spec/blob/main/spec.md#understanding-the-specification). The key distinction lies in extending the [OCI Image Manifest Specification](https://github.com/opencontainers/image-spec/blob/main/manifest.md) to accommodate artifact usage specifically tailored for AI/ML models.
+
+### Extended OCI Image Manifest Specification For Model Artifacts
+
+The image manifest of model artifacts follows the [OCI Image Manifest Specification](https://github.com/opencontainers/image-spec/blob/main/manifest.md) and adheres to the [guidelines for artifacts usage](https://github.com/opencontainers/image-spec/blob/main/manifest.md#guidelines-for-artifact-usage). Specifically, it leverages the extensible `artifactType` and `annotations` properties to define attributes specific to model artifacts.
 
 ![manifest](./img/manifest.svg)
 
-## Workflow
-
-The model specification running workflow is divided into two stages: `BUILD & PUSH` and `PULL & SERVE`.
-
-### BUILD & PUSH
-
-Use tools(ORAS, Ollama, etc.) to build required resources in the model repository into artifact based on the model specification. Note that the model layer MUST NOT be compressed, because the files of model weight has been compressed. If the model layer is compressed, the container runtime will cost long time to decompress the model layer. Therefore, it's recommended to use the `application/vnd.oci.image.layer.v1.tar` format for the model layer to avoid compression
-
-Next push the artifact to the OCI registry(Harbor, Docker Hub, etc.), and use the functionalities of the OCI registry to manage the model artifact.
-
-![build-push](./img/build-and-push.png)
-
-### PULL & SERVE
-
-The container runtime(containerd, CRI-O, etc) pulls the model artifact from the OCI registry, and mounts the model artifact as a read-only volume. Therefore, distributed model can use the P2P technology(Dragonfly, Kraken, etc) to reduce the pressure on the registry and preheat the model artifact into each node. If the model artifact is already present on the node, the container runtime can reuse the model artifact to mount different containers in the same node.
-
-![pull-serve](./img/pull-and-serve.png)
-
-## Understanding the Specification
-
-The model specification is based on the [OCI image specification](https://github.com/opencontainers/image-spec/blob/main/spec.md) and focuses on defining the artifact extension according to the [Artifacts Guidance](https://github.com/opencontainers/image-spec/blob/main/artifacts-guidance.md).
-
-### Image Manifest Extension Properties
 
 - **`artifactType`** _string_
 
-  This REQUIRED property MUST contain the media type `application/vnd.cnai.model.manifest.v1+json`.
+  This REQUIRED property MUST be `application/vnd.cnai.model.manifest.v1+json`.
 
 - **`layers`** _array of objects_
 
   - **`mediaType`** _string_
 
-  `mediaType` MUST follow the [OCI image specification](https://github.com/opencontainers/image-spec/blob/main/layer.md), because the model needs to be mounted
-  by the container runtime as [read only volumes based on the OCI Artifacts in Kubernetes 1.31+](https://kubernetes.io/blog/2024/08/16/kubernetes-1-31-image-volume-source/).
-  Container runtimes can only pull OCI artifact that follow the OCI image specification.
+    This REQUIRED property MUST be one of the [OCI Image Media Types](https://github.com/opencontainers/image-spec/blob/main/media-types.md) designated for [layers](https://github.com/opencontainers/image-spec/blob/main/layer.md).
+    Otherwise, it will not be compatible with the container runtime.
 
   - **`artifactType`** _string_
 
-    Implementations MUST support at least the following media types:
+    This REQUIRED property MUST be at least the following media types:
 
-    - `application/vnd.cnai.model.layer.v1.tar`: The layer is a tarball that contains the model weight file. If the model has multiple weight files,
-      need to package them in separate layers.
-    - `application/vnd.cnai.model.layer.v1.tar+gzip`: The layer is a tarball that contains the model weight file and is compressed by gzip.
-      If the model has multiple weight files, need to package them in separate layers. But recommended package model weight files without compressed to
-      avoid the container runtime decompressing the model layer. Because the model weight files have been compressed, the container runtime will
-      cost long time to decompress the model layer.
-    - `application/vnd.cnai.model.doc.v1.tar`: The layer is a tarball that contains the model documentation file, such as README.md, LICENSE, etc.
-    - `application/vnd.cnai.model.config.v1.tar`: The layer is a tarball that contains the model configuration file,
-      such as config.json, tokenizer.json, generation_config.json, etc.
+    - `application/vnd.cnai.model.layer.v1.tar`: The layer is a [tar archive](https://en.wikipedia.org/wiki/Tar_(computing)) that contains the model weight file. If the model has multiple weight files, they SHOULD be packaged into separate layers.
+    - `application/vnd.cnai.model.layer.v1.tar+gzip`: The layer is a [tar archive](https://en.wikipedia.org/wiki/Tar_(computing)) compressed with [gzip](https://datatracker.ietf.org/doc/html/rfc1952) that contains the model weight file.
+      If the model has multiple weight files, they SHOULD be packaged in separate layers.
+      
+      _Implementers note_: It is recommended to package weight files without compression to avoid unnecessary overhead of decompression by the container runtime as model weight files are typically already compressed.
+    - `application/vnd.cnai.model.doc.v1.tar`: The layer is a [tar archive](https://en.wikipedia.org/wiki/Tar_(computing)) that includes documentation files like `README.md`, `LICENSE`, etc.
+    - `application/vnd.cnai.model.config.v1.tar`: The layer is a [tar archive](https://en.wikipedia.org/wiki/Tar_(computing)) that includes additional configuration files such as `config.json`，`tokenizer.json`, `generation_config.json`, etc.
 
   - **`annotations`** _string-string map_
 
-    This OPTIONAL property contains arbitrary metadata for the layer. For model specification, SHOULD set the pre-defined annotation keys, refer to the [Layer Annotation Keys](./annotations.md#layer-annotation-keys).
+    This OPTIONAL property contains arbitrary attributes for the layer. For metadata specific to models, implementations SHOULD use the predefined annotation keys as outlined in the [Layer Annotation Keys](./annotations.md#layer-annotation-keys).
 
-- **`annotations`** _string-string map_
+## Workflow
 
-  This OPTIONAL property contains arbitrary metadata for the image manifest. For model specification, SHOULD set the pre-defined annotation keys, refer to the [Manifest Annotation Keys](./annotations.md#manifest-annotation-keys).
+As the model format specification conforms to the [OCI Image Specification](https://github.com/opencontainers/image-spec/blob/main/layer.md), it naturally aligns with the standard [OCI distribution workflow](https://github.com/opencontainers/distribution-spec/blob/main/spec.md).
+
+This section outlines the typical workflow for a model OCI artifact, which consists of two main stages: `BUILD & PUSH` and `PULL & SERVE`.
+
+### BUILD & PUSH
+
+Build tools can package required resources into an OCI artifact following the model format specification.
+
+The generated artifact can then be pushed to OCI registries (e.g., Harbor, DockerHub) for storage and management.
+
+![build-push](./img/build-and-push.png)
+
+### PULL & SERVE
+
+Once the model artifact is stored in an OCI registry, the container runtime (e.g., containerd, CRI-O) can pull it from the OCI registry and mount it as a read-only volume during the model serving process, if required.
+
+![pull-serve](./img/pull-and-serve.png)
