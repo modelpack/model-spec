@@ -22,31 +22,30 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
 ![manifest](./img/manifest.svg)
 
-
-- **`artifactType`** _string_
+* **`artifactType`** *string*
 
   This REQUIRED property MUST be `application/vnd.cnai.model.manifest.v1+json`.
 
-- **`layers`** _array of objects_
+* **`layers`** *array of objects*
 
-  - **`mediaType`** _string_
+  * **`mediaType`** *string*
 
     This REQUIRED property MUST be one of the [OCI Image Media Types](https://github.com/opencontainers/image-spec/blob/main/media-types.md) designated for [layers](https://github.com/opencontainers/image-spec/blob/main/layer.md).
     Otherwise, it will not be compatible with the container runtime.
 
-  - **`artifactType`** _string_
+  * **`artifactType`** *string*
 
     This REQUIRED property MUST be at least the following media types:
 
-    - `application/vnd.cnai.model.layer.v1.tar`: The layer is a [tar archive](https://en.wikipedia.org/wiki/Tar_(computing)) that contains the model weight file. If the model has multiple weight files, they SHOULD be packaged into separate layers.
-    - `application/vnd.cnai.model.layer.v1.tar+gzip`: The layer is a [tar archive](https://en.wikipedia.org/wiki/Tar_(computing)) compressed with [gzip](https://datatracker.ietf.org/doc/html/rfc1952) that contains the model weight file.
+    * `application/vnd.cnai.model.layer.v1.tar`: The layer is a [tar archive](https://en.wikipedia.org/wiki/Tar_(computing)) that contains the model weight file. If the model has multiple weight files, they SHOULD be packaged into separate layers.
+    * `application/vnd.cnai.model.layer.v1.tar+gzip`: The layer is a [tar archive](https://en.wikipedia.org/wiki/Tar_(computing)) compressed with [gzip](https://datatracker.ietf.org/doc/html/rfc1952) that contains the model weight file.
       If the model has multiple weight files, they SHOULD be packaged in separate layers.
-      
-      _Implementers note_: It is recommended to package weight files without compression to avoid unnecessary overhead of decompression by the container runtime as model weight files are typically already compressed.
-    - `application/vnd.cnai.model.doc.v1.tar`: The layer is a [tar archive](https://en.wikipedia.org/wiki/Tar_(computing)) that includes documentation files like `README.md`, `LICENSE`, etc.
-    - `application/vnd.cnai.model.config.v1.tar`: The layer is a [tar archive](https://en.wikipedia.org/wiki/Tar_(computing)) that includes additional configuration files such as `config.json`，`tokenizer.json`, `generation_config.json`, etc.
 
-  - **`annotations`** _string-string map_
+      *Implementers note*: It is recommended to package weight files without compression to avoid unnecessary overhead of decompression by the container runtime as model weight files are typically already compressed.
+    * `application/vnd.cnai.model.doc.v1.tar`: The layer is a [tar archive](https://en.wikipedia.org/wiki/Tar_(computing)) that includes documentation files like `README.md`, `LICENSE`, etc.
+    * `application/vnd.cnai.model.config.v1.tar`: The layer is a [tar archive](https://en.wikipedia.org/wiki/Tar_(computing)) that includes additional configuration files such as `config.json`，`tokenizer.json`, `generation_config.json`, etc.
+
+  * **`annotations`** *string-string map*
 
     This OPTIONAL property contains arbitrary attributes for the layer. For metadata specific to models, implementations SHOULD use the predefined annotation keys as outlined in the [Layer Annotation Keys](./annotations.md#layer-annotation-keys).
 
