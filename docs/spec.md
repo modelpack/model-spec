@@ -20,6 +20,30 @@ At a high level, the Model Format Specification is based on the [OCI Image Forma
 
 The image manifest of model artifacts follows the [OCI Image Manifest Specification][image-manifest] and adheres to the [artifacts guidance](https://github.com/opencontainers/image-spec/blob/main/artifacts-guidance.md).
 
+* **`mediaType`** *string*
+
+  This REQUIRED property MUST be `application/vnd.cnai.model.manifest.v1+json`.
+
+* **`layers`** *array of objects*
+
+  * **`mediaType`** *string*
+
+       This is a REQUIRED property. Implementations MUST support at least the following media types:
+
+    * `application/vnd.cnai.model.layer.v1.tar`: The layer is a [tar archive][tar-archive] that contains the model weight file. If the model has multiple weight files, they SHOULD be packaged into separate layers.
+
+    * `application/vnd.cnai.model.doc.v1.tar`: The layer is a [tar archive][tar-archive] that includes documentation files like `README.md`, `LICENSE`, etc.
+
+    * `application/vnd.cnai.model.code.v1.tar`: The layer is a [tar archive][tar-archive] that includes code artifacts like scripts, code files etc.
+
+    * `application/vnd.cnai.model.dataset.v1.tar`: The layer is a [tar archive][tar-archive] that includes datasets that may be needed for the lifecycle of AI/ML models.
+
+    * **`annotations`** *string-string map*
+
+      This OPTIONAL property contains arbitrary attributes for the layer. For metadata specific to models, implementations SHOULD use the predefined annotation keys as outlined in the [Layer Annotation Keys](./annotations.md#layer-annotation-keys).
+
+### Example Image Manifest For Model Artifacts
+
 ```JSON
 {
     "schemaVersion": 2,
@@ -49,33 +73,11 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 }
 ```
 
-* **`mediaType`** *string*
-
-  This REQUIRED property MUST be `application/vnd.cnai.model.manifest.v1+json`.
-
-* **`layers`** *array of objects*
-
-  * **`mediaType`** *string*
-
-       This is a REQUIRED property. Implemenations MUST support at least the following media types:
-
-      * `application/vnd.cnai.model.layer.v1.tar`: The layer is a [tar archive][tar-archive] that contains the model weight file. If the model has multiple weight files, they SHOULD be packaged into separate layers.
-
-      * `application/vnd.cnai.model.doc.v1.tar`: The layer is a [tar archive][tar-archive] that includes documentation files like `README.md`, `LICENSE`, etc.
-
-      * `application/vnd.cnai.model.code.v1.tar`: The layer is a [tar archive][tar-archive] that includes code artifacts like scripts, code files etc.
-
-      * `application/vnd.cnai.model.dataset.v1.tar`: The layer is a [tar archive][tar-archive] that includes datasets that may be needed for the lifecycle of AI/ML models.
-
-      * **`annotations`** *string-string map*
-
-        This OPTIONAL property contains arbitrary attributes for the layer. For metadata specific to models, implementations SHOULD use the predefined annotation keys as outlined in the [Layer Annotation Keys](./annotations.md#layer-annotation-keys).
-
 ## Guidance on Layers
 
 This section describes how to serialize AI/ML artifacts into a blob called a layer.
 
-**Implementers' note**: It is recommended to package weight files without compression to avoid unnecessary overhead of decompression by the container runtime as model weight files are typically uncompressible.
+**Implementers' note**: It is recommended to package weight files without compression to avoid unnecessary overhead of decompression by the container runtime as model weight files are typically incompressible.
 
 ### `+gzip` Media Types
 
