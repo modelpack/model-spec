@@ -17,16 +17,25 @@
 package v1
 
 const (
-	// ArtifactTypeModelManifest specifies the media type for a model manifest.
-	ArtifactTypeModelManifest = "application/vnd.cnai.model.manifest.v1+json"
+	// MediaTypeModelManifest specifies the media type for a model manifest.
+	MediaTypeModelManifest = "application/vnd.cnai.model.manifest.v1+json"
 
-	// ArtifactTypeModelConfig specifies the media type for a model configuration.
-	ArtifactTypeModelConfig = "application/vnd.cnai.model.config.v1+json"
+	// MediaTypeModelConfig specifies the media type for a model configuration.
+	MediaTypeModelConfig = "application/vnd.cnai.model.config.v1+json"
 
-	// ArtifactTypeModelLayer is the media type used for layers referenced by the manifest.
-	ArtifactTypeModelLayer = "application/vnd.cnai.model.layer.v1.tar"
+	// MediaTypeModelLayer is the media type used for layers referenced by the manifest.
+	MediaTypeModelLayer = "application/vnd.cnai.model.layer.v1.tar"
 
-	// ArtifactTypeModelLayerGzip is the media type used for gzipped layers
+	// MediaTypeModelLayerGzip is the media type used for gzipped layers
 	// referenced by the manifest.
-	ArtifactTypeModelLayerGzip = "application/vnd.cnai.model.layer.v1.tar+gzip"
+	MediaTypeModelLayerGzip = "application/vnd.cnai.model.layer.v1.tar+gzip"
+
+	// MediaTypeModelDoc specifies the media type for a model documentation, includes documentation files like `README.md`, `LICENSE`, etc.
+	MediaTypeModelDoc = "application/vnd.cnai.model.doc.v1.tar"
+
+	// MediaTypeModelCode specifies the media type for a model code, includes code artifacts like scripts, code files etc.
+	MediaTypeModelCode = "application/vnd.cnai.model.code.v1.tar"
+
+	// MediaTypeModelDataset specifies the media type for a model dataset, includes datasets that may be needed for the lifecycle of AI/ML models.
+	MediaTypeModelDataset = "application/vnd.cnai.model.dataset.v1.tar"
 )
