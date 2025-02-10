@@ -19,9 +19,10 @@ package v1
 const (
 	// ArtifactTypeModelManifest specifies the media type for a model manifest.
 	ArtifactTypeModelManifest = "application/vnd.cnai.model.manifest.v1+json"
-)
 
-const (
+	// ArtifactTypeModelConfig specifies the media type for a model configuration.
+	ArtifactTypeModelConfig = "application/vnd.cnai.model.config.v1+json"
+
 	// ArtifactTypeModelLayer is the media type used for layers referenced by the manifest.
 	ArtifactTypeModelLayer = "application/vnd.cnai.model.layer.v1.tar"
 
