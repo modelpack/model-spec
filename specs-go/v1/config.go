@@ -53,7 +53,7 @@ type ModelFS struct {
 // ModelDescriptor defines the general information of a model
 type ModelDescriptor struct {
 	// Date and time on which the model was built
-	CreateTime *time.Time `json:"createTime,omitempty"`
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
 
 	// The contact details of the people or organization responsible for the model
 	Authors []string `json:"authors,omitempty"`
