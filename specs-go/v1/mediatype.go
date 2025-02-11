@@ -36,6 +36,6 @@ const (
 	// MediaTypeModelCode specifies the media type for model code, including code artifacts like scripts, code files etc.
 	MediaTypeModelCode = "application/vnd.cnai.model.code.v1.tar"
 
-	// MediaTypeModelDataset specifies the media type for a model dataset, includes datasets that may be needed for the lifecycle of AI/ML models.
+	// MediaTypeModelDataset specifies the media type for model datasets, including datasets that may be needed throughout the lifecycle of AI/ML models.
 	MediaTypeModelDataset = "application/vnd.cnai.model.dataset.v1.tar"
 )
