@@ -64,9 +64,6 @@ type ModelDescriptor struct {
 	// The model name, such as llama3-8b-instruct, gpt2-xl, qwen2-vl-72b-instruct, etc.
 	Name string `json:"name,omitempty"`
 
-	// The URL to find more information on the model
-	InfoURL string `json:"infoURL,omitempty"`
-
 	// The URL to get documentation on the model
 	DocURL string `json:"docURL,omitempty"`
 
