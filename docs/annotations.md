@@ -33,6 +33,4 @@ This property contains arbitrary metadata, and SHOULD follow the rules of [OCI i
 
 ### Layer Annotation Keys
 
-- **`org.cnai.model.readme`**: Specifies the layer is a README.md file (boolean), such as `true` or `false`.
-- **`org.cnai.model.license`**: Specifies the layer is a LICENSE file (boolean), such as `true` or `false`.
 - **`org.cnai.model.filepath`**: Specifies the file path of the layer (string).
