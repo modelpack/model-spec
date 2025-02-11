@@ -30,7 +30,7 @@ const (
 	// referenced by the manifest.
 	MediaTypeModelLayerGzip = "application/vnd.cnai.model.layer.v1.tar+gzip"
 
-	// MediaTypeModelDoc specifies the media type for a model documentation, includes documentation files like `README.md`, `LICENSE`, etc.
+	// MediaTypeModelDoc specifies the media type for model documentation, including documentation files like `README.md`, `LICENSE`, etc.
 	MediaTypeModelDoc = "application/vnd.cnai.model.doc.v1.tar"
 
 	// MediaTypeModelCode specifies the media type for a model code, includes code artifacts like scripts, code files etc.
