@@ -28,6 +28,14 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
   This REQUIRED property MUST be `application/vnd.cnai.model.manifest.v1+json`.
 
+- **`config`** _[descriptor](config.md)_
+
+  This REQUIRED property references a configuration object for a AI/ML model, by digest.
+
+  - **`mediaType`** _string_
+
+    This REQUIRED property MUST be `application/vnd.cnai.model.config.v1+json`.
+
 - **`layers`** _array of objects_
 
   - **`mediaType`** _string_
