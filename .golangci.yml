@@ -1,5 +1,5 @@
 run:
-  deadline: 3m
+  timeout: 3m
   modules-download-mode: readonly
 
 linters-settings:
@@ -30,6 +30,8 @@ linters:
     - errcheck
 
 output:
-  format: colored-line-number
+  formats:
+    - format: colored-line-number
+      path: stdout
   print-issued-lines: true
   print-linter-name: true
