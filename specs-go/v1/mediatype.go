@@ -34,6 +34,9 @@ const (
 	// MediaTypeModelWeightZstd is the media type used for zstd compressed model weights.
 	MediaTypeModelWeightZstd = "application/vnd.cnai.model.weight.v1.tar+zstd"
 
+	// MediaTypeModelWeightRaw is the media type used for an unarchived, uncompressed model weights file.
+	MediaTypeModelWeightRaw = "application/vnd.cnai.model.weight.v1.raw"
+
 	// MediaTypeModelConfig specifies the media type for configuration of the model weights, including files like `tokenizer.json`, `config.json`, etc.
 	MediaTypeModelWeightConfig = "application/vnd.cnai.model.weight.config.v1.tar"
 

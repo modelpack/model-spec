@@ -44,7 +44,9 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
     - `application/vnd.cnai.model.weight.v1.tar`: The layer is a [tar archive][tar-archive] that contains the model weight file. If the model has multiple weight files, they SHOULD be packaged into separate layers.
 
-      Also, implementations SHOULD support the following media types:
+    Also, implementations SHOULD support the following media types:
+
+    - `application/vnd.cnai.model.weight.v1.raw`: The layer is an unarchived, uncompressed model weights file. If the model weight files are large, implementations are RECOMMENDED to use this media type.
 
     - `application/vnd.cnai.model.weight.config.v1.tar`: The layer is a [tar archive][tar-archive] that includes config of the model weights like `tokenizer.json`, `config.json`, etc.
 
