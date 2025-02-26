@@ -79,9 +79,9 @@ The following terms are used in this section:
 
     The format for the model, such as "onnx", "tensorflow", or "pytorch".
 
-  - **parameterSize** _integer_, OPTIONAL
+  - **paramSize** _string_, OPTIONAL
 
-    The total number of parameters of the model parameters.
+    The total number of parameters of the model parameters, such as "8b", "16b", "32b", etc.
 
   - **precision** _string_, OPTIONAL
 
@@ -109,34 +109,34 @@ Here is an example model artifact configuration JSON document:
 
 ```json
 {
-    "descriptor": {
-        "createdAt": "2025-01-01T00:00:00Z",
-        "authors": ["xyz@xyz.com"],
-        "vendor": "XYZ Corp.",
-        "family": "xyz3",
-        "name": "xyz-3-8B-Instruct",
-        "version": "3.1",
-        "title": "XYZ 3 8B Instruct",
-        "description": "xyz is a large language model.",
-        "docURL": "https://www.xyz.com/get-started/",
-        "sourceURL": "https://github.com/xyz/xyz3",
-        "revision": "1234567890",
-        "licenses": ["Apache-2.0"]
-    },
-    "config": {
-        "architecture": "transformer",
-        "format": "pytorch",
-        "parameterSize": "50000000000",
-        "precision": "fp16",
-        "quantization": "gptq"
-    },
-    "modelfs": {
-        "type": "layers",
-        "diff_ids": [
-            "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
-            "sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
-        ]
-    }
+  "descriptor": {
+    "createdAt": "2025-01-01T00:00:00Z",
+    "authors": ["xyz@xyz.com"],
+    "vendor": "XYZ Corp.",
+    "family": "xyz3",
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1",
+    "title": "XYZ 3 8B Instruct",
+    "description": "xyz is a large language model.",
+    "docURL": "https://www.xyz.com/get-started/",
+    "sourceURL": "https://github.com/xyz/xyz3",
+    "revision": "1234567890",
+    "licenses": ["Apache-2.0"]
+  },
+  "config": {
+    "architecture": "transformer",
+    "format": "pytorch",
+    "paramSize": "8b",
+    "precision": "fp16",
+    "quantization": "gptq"
+  },
+  "modelfs": {
+    "type": "layers",
+    "diff_ids": [
+      "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+    ]
+  }
 }
 ```
 

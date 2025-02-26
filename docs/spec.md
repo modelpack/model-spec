@@ -85,7 +85,7 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
             "mediaType": "application/vnd.cnai.model.weight.config.v1.tar",
             "digest": "sha256:a5378e569c625f7643952fcab30c74f2a84ece52335c292e630f740ac4694146",
             "size": 106
-        }
+        },
         {
             "mediaType": "application/vnd.cnai.model.doc.v1.tar",
             "digest": "sha256:5e236ec37438b02c01c83d134203a646cb354766ac294e533a308dd8caa3a11e",
