@@ -31,8 +31,8 @@ type ModelConfig struct {
 	// The model format, such as onnx, tensorflow, pytorch, etc.
 	Format string `json:"format,omitempty"`
 
-	// The size of the model parameters
-	ParameterSize uint64 `json:"parameterSize,omitempty"`
+	// The size of the model parameters, such as "8b", "16b", "32b", etc.
+	ParamSize string `json:"paramSize,omitempty"`
 
 	// The model precision, such as bf16, fp16, int8, mixed etc.
 	Precision string `json:"precision,omitempty"`
