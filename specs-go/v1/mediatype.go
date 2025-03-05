@@ -25,6 +25,9 @@ const (
 	// MediaTypeModelConfig specifies the media type for a model configuration.
 	MediaTypeModelConfig = "application/vnd.cnai.model.config.v1+json"
 
+	// MediaTypeModelWeightRaw is the media type used for an unarchived, uncompressed model weights.
+	MediaTypeModelWeightRaw = "application/vnd.cnai.model.weight.v1.raw"
+
 	// MediaTypeModelWeight is the media type used for model weights.
 	MediaTypeModelWeight = "application/vnd.cnai.model.weight.v1.tar"
 
@@ -34,8 +37,8 @@ const (
 	// MediaTypeModelWeightZstd is the media type used for zstd compressed model weights.
 	MediaTypeModelWeightZstd = "application/vnd.cnai.model.weight.v1.tar+zstd"
 
-	// MediaTypeModelWeightRaw is the media type used for an unarchived, uncompressed model weights file.
-	MediaTypeModelWeightRaw = "application/vnd.cnai.model.weight.v1.raw"
+	// MediaTypeModelWeightConfigRaw is the media type used for an unarchived, uncompressed model weights, including files like `tokenizer.json`, `config.json`, etc.
+	MediaTypeModelWeightConfigRaw = "application/vnd.cnai.model.weight.config.v1.raw"
 
 	// MediaTypeModelConfig specifies the media type for configuration of the model weights, including files like `tokenizer.json`, `config.json`, etc.
 	MediaTypeModelWeightConfig = "application/vnd.cnai.model.weight.config.v1.tar"
@@ -46,6 +49,9 @@ const (
 	// MediaTypeModelConfigZstd specifies the media type for zstd compressed configuration of the model weights, including files like `tokenizer.json`, `config.json`, etc.
 	MediaTypeModelWeightConfigZstd = "application/vnd.cnai.model.weight.config.v1.tar+zstd"
 
+	// MediaTypeModelDocRaw is the media type used for an unarchived, uncompressed model documentation, including documentation files like `README.md`, `LICENSE`, etc.
+	MediaTypeModelDocRaw = "application/vnd.cnai.model.doc.v1.raw"
+
 	// MediaTypeModelDoc specifies the media type for model documentation, including documentation files like `README.md`, `LICENSE`, etc.
 	MediaTypeModelDoc = "application/vnd.cnai.model.doc.v1.tar"
 
@@ -55,6 +61,9 @@ const (
 	// MediaTypeModelDocZstd specifies the media type for zstd compressed model documentation, including documentation files like `README.md`, `LICENSE`, etc.
 	MediaTypeModelDocZstd = "application/vnd.cnai.model.doc.v1.tar+zstd"
 
+	// MediaTypeModelCodeRaw is the media type used for an unarchived, uncompressed model code, including code artifacts like scripts, code files etc.
+	MediaTypeModelCodeRaw = "application/vnd.cnai.model.code.v1.raw"
+
 	// MediaTypeModelCode specifies the media type for model code, including code artifacts like scripts, code files etc.
 	MediaTypeModelCode = "application/vnd.cnai.model.code.v1.tar"
 
@@ -63,6 +72,9 @@ const (
 
 	// MediaTypeModelCodeZstd specifies the media type for zstd compressed model code, including code artifacts like scripts, code files etc.
 	MediaTypeModelCodeZstd = "application/vnd.cnai.model.code.v1.tar+zstd"
+
+	// MediaTypeModelDatasetRaw is the media type used for an unarchived, uncompressed model datasets, including datasets that may be needed throughout the lifecycle of AI/ML models.
+	MediaTypeModelDatasetRaw = "application/vnd.cnai.model.dataset.v1.raw"
 
 	// MediaTypeModelDataset specifies the media type for model datasets, including datasets that may be needed throughout the lifecycle of AI/ML models.
 	MediaTypeModelDataset = "application/vnd.cnai.model.dataset.v1.tar"
