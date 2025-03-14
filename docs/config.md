@@ -99,6 +99,10 @@ The following terms are used in this section:
 
     Must be set to "layers".
 
+  - **file_infos** _object_, REQUIRED
+
+    Specifies the file information for each layer. The key is the digest of the layer content, and the value is the file information (`os.FileInfo`) for that layer, including metadata such as file size, permissions, modification time, etc.
+
   - **diff_ids** _array of strings_, REQUIRED
 
     An array of layer content hashes (`DiffIDs`), in order from first to last.

@@ -17,6 +17,7 @@
 package v1
 
 import (
+	"os"
 	"time"
 
 	digest "github.com/opencontainers/go-digest"
@@ -45,6 +46,10 @@ type ModelConfig struct {
 type ModelFS struct {
 	// Type is the type of the rootfs. MUST be set to "layers".
 	Type string `json:"type"`
+
+	// FileInfos is a collection of file information for the layer. The key is the digest of the layer and the value is the
+	// file information for the layer.
+	FileInfos map[digest.Digest]os.FileInfo `json:"file_infos"`
 
 	// DiffIDs is an array of layer content hashes (DiffIDs), in order from bottom-most to top-most.
 	DiffIDs []digest.Digest `json:"diff_ids"`
