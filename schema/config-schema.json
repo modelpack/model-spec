@@ -1,0 +1,117 @@
+{
+    "description": "Model Artifact Configuration Schema",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$id": "https://github.com/CloudNativeAI/model-spec/config",
+    "type": "object",
+    "properties": {
+      "descriptor": {
+        "$ref": "#/$defs/ModelDescriptor"
+      },
+      "modelfs": {
+        "$ref": "#/$defs/ModelFS"
+      },
+      "config": {
+        "$ref": "#/$defs/ModelConfig"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "descriptor",
+      "config",
+      "modelfs"
+    ],
+    "$defs": {
+      "ModelConfig": {
+        "type": "object",
+        "properties": {
+          "architecture": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "paramSize": {
+            "type": "string"
+          },
+          "precision": {
+            "type": "string"
+          },
+          "quantization": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ModelDescriptor": {
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "family": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "docURL": {
+            "type": "string"
+          },
+          "sourceURL": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "revision": {
+            "type": "string"
+          },
+          "vendor": {
+            "type": "string"
+          },
+          "licenses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ModelFS": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["layers"]
+          },
+          "diff_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "diff_ids"
+        ]
+      }
+    }
+  }
