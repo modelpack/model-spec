@@ -8,7 +8,7 @@ This property contains arbitrary metadata, and SHOULD follow the rules of [OCI i
 
 - **`org.cnai.model.filepath`**: Specifies the file path of the layer (string).
 
-- **`org.cnai.model.file.metadata`**: Specifies the metadata of the file (string), value is the JSON string of [File Metadata Annotation Value](#File-Metadata-Annotation-Value).
+- **`org.cnai.model.file.metadata+json`**: Specifies the metadata of the file (string), value is the JSON string of [File Metadata Annotation Value](#File-Metadata-Annotation-Value).
 
 ### Layer Annotation Values
 
