@@ -23,6 +23,10 @@ For details, please see [the specification](docs/spec.md).
 
 Apache 2.0 License. Please see [LICENSE](LICENSE) for more information.
 
+## Community, Support, Discussion
+
+You can engage with this project by joining the discussion on our Slack channel: [#model-spec-discussion](https://cloud-native.slack.com/archives/C07T0V480LF) in the [CNCF Slack workspace](https://slack.cncf.io/).
+
 ## Contributing
 
 Any feedback, suggestions, and contributions are welcome. Please feel free to open an issue or pull request.
