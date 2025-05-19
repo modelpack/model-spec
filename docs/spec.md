@@ -82,6 +82,14 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
     - `application/vnd.cnai.model.dataset.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that includes datasets that may be needed for the lifecycle of AI/ML models. The archive is compressed with [zstd][rfc8478].
 
+    - `application/vnd.cnai.model.unknown.v1.raw`: The layer is an unarchived, uncompressed unknown model file type. If the files are large, implementations are RECOMMENDED to use this media type. If the type of model file cannot be determined, this media type can be used.
+
+    - `application/vnd.cnai.model.unknown.v1.tar`: The layer is a [tar archive][tar-archive] that includes unknown model file types. If the type of model file cannot be determined, this media type can be used.
+
+    - `application/vnd.cnai.model.unknown.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that includes unknown model file types. The archive is compressed with [gzip][rfc1952_2]. If the type of model file cannot be determined, this media type can be used.
+
+    - `application/vnd.cnai.model.unknown.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that includes unknown model file types. The archive is compressed with [zstd][rfc8478]. If the type of model file cannot be determined, this media type can be used.
+
   - **`annotations`** _string-string map_
 
     This OPTIONAL property contains arbitrary attributes for the layer. For metadata specific to models, implementations SHOULD use the predefined annotation keys as outlined in the [Layer Annotation Keys](./annotations.md#layer-annotation-keys).
@@ -136,6 +144,12 @@ The `application/vnd.cnai.model.weight.v1.tar+gzip` represents an `application/v
 ### `+zstd` Media Types
 
 The `application/vnd.cnai.model.weight.v1.tar+zstd` represents an `application/vnd.cnai.model.weight.v1.tar` payload which has been compressed with the [zstd][rfc8478] algorithm. The mediaTypes `application/vnd.cnai.model.weight.config.v1.tar+zstd`, `application/vnd.cnai.model.doc.v1.tar+zstd`, `application/vnd.cnai.model.code.v1.tar+zstd`, `application/vnd.cnai.model.dataset.v1.tar+zstd` refer to the zstd compressed payloads of their corresponding type.
+
+### `unknown` Media Types
+
+The `application/vnd.cnai.model.unknown.v1.tar` media type and its friends represent an file type which is unknown to the implementation. In some cases, the model package system may not know the type of the file, or the file is not config, weight, doc, code or dataset. For instance, the file is a binary file, or the file is a model file but the type is not known, but it is still a valid model file, which is required by the downstream model serving/deployment platform.
+
+The `application/vnd.cnai.model.unknown.v1.tar+gzip` and `application/vnd.cnai.model.unknown.v1.tar+zstd` media types represent the gzip and zstd compressed payloads of the `application/vnd.cnai.model.unknown.v1.tar` media type. If the file is large, implementations are RECOMMENDED to use `application/vnd.cnai.model.unknown.v1.raw` media type.
 
 ### File Attributes
 

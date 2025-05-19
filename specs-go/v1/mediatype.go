@@ -84,4 +84,16 @@ const (
 
 	// MediaTypeModelDatasetZstd specifies the media type for zstd compressed model datasets, including datasets that may be needed throughout the lifecycle of AI/ML models.
 	MediaTypeModelDatasetZstd = "application/vnd.cnai.model.dataset.v1.tar+zstd"
+
+	// MediaTypeModelUnknownRaw specifies the media type for an unarchived, uncompressed unknown file type.
+	MediaTypeModelUnknownRaw = "application/vnd.cnai.model.unknown.v1.raw"
+
+	// MediaTypeModelUnknown specifies the media type for an unknown file type.
+	MediaTypeModelUnknown = "application/vnd.cnai.model.unknown.v1.tar"
+
+	// MediaTypeModelUnknownGzip specifies the media type for a gzipped unknown file type.
+	MediaTypeModelUnknownGzip = "application/vnd.cnai.model.unknown.v1.tar+gzip"
+
+	// MediaTypeModelUnknownZstd specifies the media type for a zstd compressed unknown file type.
+	MediaTypeModelUnknownZstd = "application/vnd.cnai.model.unknown.v1.tar+zstd"
 )
