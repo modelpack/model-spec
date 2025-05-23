@@ -81,7 +81,20 @@ The following terms are used in this section:
 
   - **paramSize** _string_, OPTIONAL
 
-    The total number of parameters of the model parameters, such as "8b", "16b", "32b", etc.
+    The model size is represented as a combination of a decimal `count` and a single-letter `scale-prefix` in the format of `<count><scale-prefix>`, which together specify the total number of parameters in the model.
+
+    - `count`:
+      A numeric value representing the base parameter count before scaling. This value may include up to one digit after the decimal point to allow for partial scaling precision. For example: `6.7`.
+
+    - `scale-prefix`:
+      A single letter indicating the order of magnitude multiplier applied to the count. The prefix is case-insensitive and must be one of the following:
+      - `Q` or `q` (Quadrillion)
+      - `T` or `t` (Trillion)
+      - `B` or `b` (Billion)
+      - `M` or `m` (Million)
+      - `K` or `k` (Thousand)
+
+    Some examples: `6.7B`(6.7 Billion parameters), `1.0t`(1 Trillion parameters), `100m`(100 Million parameters).
 
   - **precision** _string_, OPTIONAL
 
