@@ -104,6 +104,10 @@ The following terms are used in this section:
 
     Quantization technique applied to the model, such as "awq", or "gptq".
 
+  - **capabilities** _object_, OPTIONAL
+
+    Special capabilities that the model supports, such as reasoning, toolusage, etc.
+
 - **modelfs** _object_, REQUIRED
 
   Contains hashes of each uncompressed layer's content.
@@ -116,6 +120,30 @@ The following terms are used in this section:
 
     An array of layer content hashes (`DiffIDs`), in order from first to last.
 
+- **capabilities** _object_, OPTIONAL
+
+    Special capabilities that the model supports, such as reasoning, toolusage, etc.
+
+  - **input_types** _array of string_, OPTIONAL
+
+    Input types that the model supports, such as "text", "image", "audio", "video", etc.
+
+  - **output_types** _array of string_, OPTIONAL
+
+    Output types that the model supports, such as "text", "image", "audio", "video", etc.
+
+  - **knowledge_cutoff** _string_, OPTIONAL
+
+    The date and time of the datasets that the model was trained on, formatted as defined by [RFC 3339, section 5.6][rfc3339-s5.6].
+
+  - **reasoning** _boolean_, OPTIONAL
+
+    Whether the model can perform reasoning tasks.
+
+  - **tool_usage** _boolean_, OPTIONAL
+
+    Whether the model can use external tools or APIs to perform tasks.
+
 ## Example
 
 Here is an example model artifact configuration JSON document:
@@ -124,7 +152,9 @@ Here is an example model artifact configuration JSON document:
 {
   "descriptor": {
     "createdAt": "2025-01-01T00:00:00Z",
-    "authors": ["xyz@xyz.com"],
+    "authors": [
+      "xyz@xyz.com"
+    ],
     "vendor": "XYZ Corp.",
     "family": "xyz3",
     "name": "xyz-3-8B-Instruct",
@@ -134,14 +164,28 @@ Here is an example model artifact configuration JSON document:
     "docURL": "https://www.xyz.com/get-started/",
     "sourceURL": "https://github.com/xyz/xyz3",
     "revision": "1234567890",
-    "licenses": ["Apache-2.0"]
+    "licenses": [
+      "Apache-2.0"
+    ]
   },
   "config": {
     "architecture": "transformer",
     "format": "pytorch",
     "paramSize": "8b",
     "precision": "fp16",
-    "quantization": "gptq"
+    "quantization": "gptq",
+    "capabilities": {
+      "input_types": [
+        "text"
+      ],
+      "output_types": [
+        "text",
+        "image"
+      ],
+      "knowledge_cutoff": "2024-05-21T00:00:00Z",
+      "reasoning": true,
+      "tool_usage": false
+    }
   },
   "modelfs": {
     "type": "layers",
