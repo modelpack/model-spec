@@ -120,7 +120,7 @@ The following terms are used in this section:
 
 Here is an example model artifact configuration JSON document:
 
-```json
+```json,title=Model%20Config%20JSON&mediatype=application/vnd.cnai.model.config.v1%2Bjson
 {
   "descriptor": {
     "createdAt": "2025-01-01T00:00:00Z",
