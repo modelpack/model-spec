@@ -38,6 +38,9 @@
           },
           "quantization": {
             "type": "string"
+          },
+          "capabilities": {
+            "type": "object"
           }
         },
         "additionalProperties": false
