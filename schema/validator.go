@@ -22,7 +22,7 @@ import (
 	"fmt"
 	"io"
 
-	v1 "github.com/CloudNativeAI/model-spec/specs-go/v1"
+	v1 "github.com/modelpack/model-spec/specs-go/v1"
 	"github.com/santhosh-tekuri/jsonschema/v5"
 )
 

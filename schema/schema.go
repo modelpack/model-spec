@@ -20,7 +20,7 @@ import (
 	"embed"
 	"net/http"
 
-	v1 "github.com/CloudNativeAI/model-spec/specs-go/v1"
+	v1 "github.com/modelpack/model-spec/specs-go/v1"
 )
 
 // Media types for the model-spec related formats
@@ -41,7 +41,7 @@ var (
 	// specURLs lists the various URLs a given spec may be known by.
 	specURLs = map[string][]string{
 		"config-schema.json": {
-			"https://github.com/CloudNativeAI/model-spec/config",
+			"https://github.com/modelpack/model-spec/config",
 		},
 	}
 )

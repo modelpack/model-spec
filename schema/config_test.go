@@ -20,7 +20,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/CloudNativeAI/model-spec/schema"
+	"github.com/modelpack/model-spec/schema"
 )
 
 func TestConfig(t *testing.T) {

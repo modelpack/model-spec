@@ -1,7 +1,7 @@
 # CNAI Model Format Specification
 
-[![GoDoc](https://godoc.org/github.com/CloudNativeAI/model-spec?status.svg)](https://godoc.org/github.com/CloudNativeAI/model-spec)
-[![Discussions](https://img.shields.io/badge/discussions-on%20github-blue?style=flat-square)](https://github.com/CloudNativeAI/model-spec/discussions)
+[![GoDoc](https://godoc.org/github.com/modelpack/model-spec?status.svg)](https://godoc.org/github.com/modelpack/model-spec)
+[![Discussions](https://img.shields.io/badge/discussions-on%20github-blue?style=flat-square)](https://github.com/modelpack/model-spec/discussions)
 
 The Cloud Native Artifacial Intelligence (CNAI) Model Specification aims to provide a standard way to package, distribute and run AI models in a cloud native environment.
 
