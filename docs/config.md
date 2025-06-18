@@ -144,6 +144,14 @@ The following terms are used in this section:
 
     Whether the model can use external tools or APIs to perform tasks.
 
+  - **embedding** _boolean_, OPTIONAL
+
+    Whether the model can perform embedding tasks.
+
+  - **reward** _boolean_, OPTIONAL
+
+    Whether the model is a reward model.
+
 ## Example
 
 Here is an example model artifact configuration JSON document:
@@ -185,6 +193,8 @@ Here is an example model artifact configuration JSON document:
       "knowledgeCutoff": "2024-05-21T00:00:00Z",
       "reasoning": true,
       "toolUsage": false
+      "embedding": false,
+      "reward": false
     }
   },
   "modelfs": {
