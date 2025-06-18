@@ -116,7 +116,7 @@ The following terms are used in this section:
 
     Must be set to "layers".
 
-  - **diff_ids** _array of strings_, REQUIRED
+  - **diffIds** _array of strings_, REQUIRED
 
     An array of layer content hashes (`DiffIDs`), in order from first to last.
 
@@ -124,15 +124,15 @@ The following terms are used in this section:
 
     Special capabilities that the model supports, such as reasoning, toolusage, etc.
 
-  - **input_types** _array of string_, OPTIONAL
+  - **inputTypes** _array of string_, OPTIONAL
 
     Input types that the model supports, such as "text", "image", "audio", "video", etc.
 
-  - **output_types** _array of string_, OPTIONAL
+  - **outputTypes** _array of string_, OPTIONAL
 
     Output types that the model supports, such as "text", "image", "audio", "video", etc.
 
-  - **knowledge_cutoff** _string_, OPTIONAL
+  - **knowledgeCutoff** _string_, OPTIONAL
 
     The date and time of the datasets that the model was trained on, formatted as defined by [RFC 3339, section 5.6][rfc3339-s5.6].
 
@@ -140,7 +140,7 @@ The following terms are used in this section:
 
     Whether the model can perform reasoning tasks.
 
-  - **tool_usage** _boolean_, OPTIONAL
+  - **toolUsage** _boolean_, OPTIONAL
 
     Whether the model can use external tools or APIs to perform tasks.
 
@@ -175,21 +175,21 @@ Here is an example model artifact configuration JSON document:
     "precision": "fp16",
     "quantization": "gptq",
     "capabilities": {
-      "input_types": [
+      "inputTypes": [
         "text"
       ],
-      "output_types": [
+      "outputTypes": [
         "text",
         "image"
       ],
-      "knowledge_cutoff": "2024-05-21T00:00:00Z",
+      "knowledgeCutoff": "2024-05-21T00:00:00Z",
       "reasoning": true,
-      "tool_usage": false
+      "toolUsage": false
     }
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
       "sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
     ]
