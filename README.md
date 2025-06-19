@@ -19,13 +19,13 @@ The specification, provides a compatible way to package and distribute models ba
 
 For details, please see [the specification](docs/spec.md).
 
-## LICENSE
-
-Apache 2.0 License. Please see [LICENSE](LICENSE) for more information.
-
 ## Community, Support, Discussion
 
 You can engage with this project by joining the discussion on our Slack channel: [#model-spec-discussion](https://cloud-native.slack.com/archives/C07T0V480LF) in the [CNCF Slack workspace](https://slack.cncf.io/).
+
+This project holds inclusivity, empathy, and responsibility at our core. We follow the CNCF's [Code of Conduct](./code-of-conduct.md), you can read it to understand the values guiding our community.
+
+The rules governing this project can be found in the [Governance policy document](./GOVERNANCE.md)
 
 ## Contributing
 
@@ -33,4 +33,28 @@ Any feedback, suggestions, and contributions are welcome. Please feel free to op
 
 Especially, we look forward to integrating the model specification with different model registry implementations (like [Harbor](https://goharbor.io/) and [Kubeflow model registry](https://www.kubeflow.org/docs/components/model-registry/overview/)), as well as existing model centric infrastructure projects like [Huggingface](https://huggingface.co/), [KitOps](https://kitops.ml/), [Kubeflow](https://www.kubeflow.org/), [Lepton](https://www.lepton.ai/), [Ollama](https://github.com/ollama/ollama), [ORAS](https://oras.land/), and others.
 
+## LICENSE
+
+Apache 2.0 License. Please see [LICENSE](LICENSE) for more information.
+
 Enjoy!
+
+
+Need Help?
+Join KitOps community
+For support, release updates, and general KitOps discussion, please join the KitOps Discord. Follow KitOps on X for daily updates.
+
+If you need help there are several ways to reach our community and Maintainers outlined in our support doc
+
+Reporting Issues and Suggesting Features
+Your insights help KitOps evolve as an open standard for AI/ML. We deeply value the issues and feature requests we get from users in our community 💖. To contribute your thoughts,navigate to the Issues tab and hitting the New Issue green button. Our templates guide you in providing essential details to address your request effectively.
+
+Joining the KitOps Contributors
+We ❤️ our KitOps community and contributors. To learn more about the many ways you can contribute (you don't need to be a coder) and how to get started see our Contributor's Guide. Please read our Governance and our Code of Conduct before contributing.
+
+📢 KitOps Community Calls (bi-weekly)
+Wednesdays @ 13:30 – 14:00 Time zone: America/Toronto Video call link: Google Meet Or dial: (CA) +1 647-736-3184 PIN: 144 931 404# More phone numbers: Phone Numbers
+
+A Community Built on Respect
+At KitOps, inclusivity, empathy, and responsibility are at our core. Please read our Code of Conduct to understand the values guiding our community.
+
