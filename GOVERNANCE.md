@@ -1,6 +1,6 @@
 # Project Governance
 
-The ModelSpec project is dedicated to creating a universal, vendor-neutral standard for packaging, versioning, and sharing AI/ML projects that aligns with the OCI specifiction. This is not an implementation, it is the specification on which compliant implementations can be built.
+The ModelSpec project is dedicated to creating a universal, vendor-neutral standard for packaging, versioning, and sharing AI/ML projects that aligns with the OCI specification. This is not an implementation, it is the specification on which compliant implementations can be built.
 
 This governance document explains how the project is run.
 
