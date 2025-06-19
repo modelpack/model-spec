@@ -38,7 +38,6 @@ The collective team of all Maintainers is known as the **Maintainer Council**, w
 ### Becoming a Maintainer
 
 To become a Maintainer you need to demonstrate the following:
-
 - **Commitment to the project**:
   - Participate actively and impactfully in discussions, contributions, code and documentation reviews `this will need quantifying eventually`
   - Perform useful reviews for a significant number of non-trivial pull requests `this will need quantifying eventually`
