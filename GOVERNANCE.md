@@ -68,9 +68,9 @@ Time zones permitting, Maintainers are expected to participate in the ModelSpec 
 
 ### ModelSpec Public Office Hours (bi-weekly)
 
-**Every second Thursday @ 10:00 – 11:00**
-**Time zone**: America / New York
-**Video call link**: [Zoom](https://www.google.com/url?q=https://us06web.zoom.us/j/89085916734?pwd%3DdBaeMvmg9SyWvWj5Caf2i1bNaCf2oJ.1&sa=D&source=calendar&ust=1750722675947352&usg=AOvVaw36ofckOkq8F8CGjqNWwiDk)
+**Every second Thursday @ 14:00 - 15:00**
+**Time zone**: UTC
+**Video call link**: [Zoom](https://us06web.zoom.us/j/89085916734?pwd=dBaeMvmg9SyWvWj5Caf2i1bNaCf2oJ.1)
 **Meeting ID**: 890 8591 6734
 **Passcode**: 274899
 
