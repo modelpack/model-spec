@@ -27,10 +27,12 @@ Apache 2.0 License. Please see [LICENSE](LICENSE) for more information.
 
 You can engage with this project by joining the discussion on our Slack channel: [#modelpack](https://cloud-native.slack.com/archives/C07T0V480LF) in the [CNCF Slack workspace](https://slack.cncf.io/).
 
+This project holds inclusivity, empathy, and responsibility at our core. We follow the CNCF's [Code of Conduct](./code-of-conduct.md), you can read it to understand the values guiding our community.
+
+The rules governing this project can be found in the [Governance policy document](./GOVERNANCE.md)
+
 ## Contributing
 
 Any feedback, suggestions, and contributions are welcome. Please feel free to open an issue or pull request.
 
 Especially, we look forward to integrating the model specification with different model registry implementations (like [Harbor](https://goharbor.io/) and [Kubeflow model registry](https://www.kubeflow.org/docs/components/model-registry/overview/)), as well as existing model centric infrastructure projects like [Huggingface](https://huggingface.co/), [KitOps](https://kitops.ml/), [Kubeflow](https://www.kubeflow.org/), [Lepton](https://www.lepton.ai/), [Ollama](https://github.com/ollama/ollama), [ORAS](https://oras.land/), and others.
-
-Enjoy!
