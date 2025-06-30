@@ -38,7 +38,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -59,7 +59,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -81,7 +81,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -103,7 +103,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -125,7 +125,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -140,14 +140,14 @@ func TestConfig(t *testing.T) {
   "descriptor": {
     "name": "xyz-3-8B-Instruct",
     "version": "3.1",
-	"licenses": "Apache-2.0"
+    "licenses": "Apache-2.0"
   },
   "config": {
      "paramSize": "8b"
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -171,7 +171,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -195,7 +195,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -216,7 +216,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -237,7 +237,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -258,7 +258,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layer",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -266,7 +266,7 @@ func TestConfig(t *testing.T) {
 `,
 			fail: true,
 		},
-		// expected failure: diff_ids is not an array
+		// expected failure: diffIds is not an array
 		{
 			config: `
 {
@@ -279,13 +279,13 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    "diffIds": "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
   }
 }
 `,
 			fail: true,
 		},
-		// expected failure: diff_ids is empty
+		// expected failure: diffIds is empty
 		{
 			config: `
 {
@@ -298,7 +298,157 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": []
+    "diffIds": []
+  }
+}
+`,
+			fail: true,
+		},
+		// expected failure: inputTypes is not an array
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1"
+  },
+  "config": {
+     "paramSize": "8b",
+     "capabilities": {
+        "inputTypes": "text"
+     }
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
+  }
+}
+`,
+			fail: true,
+		},
+		// expected failure: outputTypes is not an array
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1"
+  },
+  "config": {
+     "paramSize": "8b",
+     "capabilities": {
+        "outputTypes": "text"
+     }
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
+  }
+}
+`,
+			fail: true,
+		},
+		// expected failure: the element of inputTypes/outputTypes is not a valid type
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1"
+  },
+  "config": {
+     "paramSize": "8b",
+     "capabilities": {
+        "inputTypes": ["img"]
+     }
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
+  }
+}
+`,
+			fail: true,
+		},
+		// expected failure: knowledgeCutoff is not RFC3339 format
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1"
+  },
+  "config": {
+     "paramSize": "8b",
+     "capabilities": {
+        "inputTypes": ["text"],
+        "outputTypes": ["text"],
+        "knowledgeCutoff": "2025-01-01"
+     }
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
+  }
+}
+`,
+			fail: true,
+		},
+		// expected failure: reasoning is not boolean
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1"
+  },
+  "config": {
+     "paramSize": "8b",
+     "capabilities": {
+        "inputTypes": ["text"],
+        "outputTypes": ["text"],
+        "reasoning": "true"
+     }
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
+  }
+}
+`,
+			fail: true,
+		},
+		// expected failure: toolUsage is not boolean
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1"
+  },
+  "config": {
+     "paramSize": "8b",
+     "capabilities": {
+        "inputTypes": ["text"],
+        "outputTypes": ["text"],
+        "toolUsage": "true"
+     }
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
   }
 }
 `,
