@@ -1,8 +1,8 @@
 # Model Artifact Configuration
 
-Each model artifact has an associated JSON structure which describes some basic information about the model such as name and version, as well as technical metadata such as format, precision and quantization. This content is referred to as _Model Artifact Configuration_ and is identified by the [media type][oci-media-type] `application/vnd.cnai.model.config.v1+json`.
+Each model artifact has an associated JSON structure which describes some basic information about the model such as name and version, as well as technical metadata such as format, precision and quantization. This content is referred to as _Model Artifact Configuration_ and is identified by the [media type][oci-media-type] `application/vnd.cncf.model.config.v1+json`.
 
-This section defines `application/vnd.cnai.model.config.v1+json` media type.
+This section defines `application/vnd.cncf.model.config.v1+json` media type.
 
 ## Terminology
 
@@ -148,7 +148,7 @@ The following terms are used in this section:
 
 Here is an example model artifact configuration JSON document:
 
-```json,title=Model%20Config%20JSON&mediatype=application/vnd.cnai.model.config.v1%2Bjson
+```json,title=Model%20Config%20JSON&mediatype=application/vnd.cncf.model.config.v1%2Bjson
 {
   "descriptor": {
     "createdAt": "2025-01-01T00:00:00Z",
