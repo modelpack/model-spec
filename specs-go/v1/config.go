@@ -120,6 +120,12 @@ type ModelCapabilities struct {
 	// Reasoning indicates whether the model can perform reasoning tasks
 	Reasoning *bool `json:"reasoning,omitempty"`
 
+	// Embedding indicates whether the model can perform embedding tasks
+	Embedding *bool `json:"embedding,omitempty"`
+
+	// Reward indicates whether the model is a reward model
+	Reward *bool `json:"reward,omitempty"`
+
 	// ToolUsage indicates whether the model can use external tools
 	// such as a calculator, a search engine, etc.
 	ToolUsage *bool `json:"toolUsage,omitempty"`
