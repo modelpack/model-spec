@@ -73,6 +73,9 @@ type ModelDescriptor struct {
 	// The URL to get source code for building the model
 	SourceURL string `json:"sourceURL,omitempty"`
 
+	// The URLs to reference to datasets that the model was trained upon.
+	DatasetsURL []string `json:"datasetsURL,omitempty"`
+
 	// The version of the packaged software
 	Version string `json:"version,omitempty"`
 
