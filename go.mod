@@ -1,4 +1,4 @@
-module github.com/CloudNativeAI/model-spec
+module github.com/modelpack/model-spec
 
 go 1.23.1
 
