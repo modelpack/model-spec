@@ -42,7 +42,7 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
     Implementations SHOULD support the following media types:
 
-    - `application/vnd.cnai.model.weight.v1.raw`: The layer is an unarchived, uncompressed model weights file.
+    - `application/vnd.cnai.model.weight.v1`: The layer is an unarchived, uncompressed model weights file.
 
     - `application/vnd.cnai.model.weight.v1.tar`: The layer is a [tar archive][tar-archive] that contains the model weight file. If the model has multiple weight files, they SHOULD be packaged into separate layers.
 
@@ -50,15 +50,11 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
     - `application/vnd.cnai.model.weight.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that includes the configuration file for the model weights. The archive is compressed with [zstd][rfc8478].
 
-    - `application/vnd.cnai.model.weight.config.v1.raw`: The layer is a [tar archive][tar-archive] that includes config of the model weights like tokenizer.json, config.json, etc.
-
     - `application/vnd.cnai.model.weight.config.v1.tar`: The layer is a [tar archive][tar-archive] that includes config of the model weights like tokenizer.json, config.json, etc.
 
     - `application/vnd.cnai.model.weight.config.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that includes config of the model weights like tokenizer.json, config.json, etc. The archive is compressed with [gzip][rfc1952_2].
 
     - `application/vnd.cnai.model.weight.config.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that includes config of the model weights like tokenizer.json, config.json, etc. The archive is compressed with [zstd][rfc8478].
-
-    - `application/vnd.cnai.model.doc.v1.raw`: The layer is an unarchived, uncompressed documentation file.
 
     - `application/vnd.cnai.model.doc.v1.tar`: The layer is a [tar archive][tar-archive] that includes documentation files like `README.md`, `LICENSE`, etc.
 
@@ -66,15 +62,11 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
     - `application/vnd.cnai.model.doc.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that includes documentation files like `README.md`, `LICENSE`, etc. The archive is compressed with [zstd][rfc8478].
 
-    - `application/vnd.cnai.model.code.v1.raw`: The layer is an unarchived, uncompressed code artifact.
-
     - `application/vnd.cnai.model.code.v1.tar`: The layer is a [tar archive][tar-archive] that includes code artifacts like scripts, code files etc.
 
     - `application/vnd.cnai.model.code.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that includes code artifacts like scripts, code files etc. The archive is compressed with [gzip][rfc1952_2].
 
     - `application/vnd.cnai.model.code.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that includes code artifacts like scripts, code files etc. The archive is compressed with [zstd][rfc8478].
-
-    - `application/vnd.cnai.model.dataset.v1.raw`: The layer is an unarchived, uncompressed dataset.
 
     - `application/vnd.cnai.model.dataset.v1.tar`: The layer is a [tar archive][tar-archive] that includes datasets that may be needed for the lifecycle of AI/ML models.
 
