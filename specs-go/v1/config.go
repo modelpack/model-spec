@@ -123,6 +123,12 @@ type ModelCapabilities struct {
 	// ToolUsage indicates whether the model can use external tools
 	// such as a calculator, a search engine, etc.
 	ToolUsage *bool `json:"toolUsage,omitempty"`
+
+	// Embedding indicates whether the model can perform embedding tasks
+	Embedding *bool `json:"embedding,omitempty"`
+
+	// Reward indicates whether the model is a reward model
+	Reward *bool `json:"reward,omitempty"`
 }
 
 // Model defines the basic information of a model.
