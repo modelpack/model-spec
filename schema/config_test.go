@@ -38,7 +38,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -59,7 +59,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -81,7 +81,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -103,7 +103,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -125,7 +125,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -147,7 +147,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -171,7 +171,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -195,7 +195,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -216,7 +216,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -237,7 +237,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -258,7 +258,7 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layer",
-    "diff_ids": [
+    "diffIds": [
        "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
     ]
   }
@@ -266,7 +266,7 @@ func TestConfig(t *testing.T) {
 `,
 			fail: true,
 		},
-		// expected failure: diff_ids is not an array
+		// expected failure: diffIds is not an array
 		{
 			config: `
 {
@@ -279,13 +279,13 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    "diffIds": "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
   }
 }
 `,
 			fail: true,
 		},
-		// expected failure: diff_ids is empty
+		// expected failure: diffIds is empty
 		{
 			config: `
 {
@@ -298,11 +298,32 @@ func TestConfig(t *testing.T) {
   },
   "modelfs": {
     "type": "layers",
-    "diff_ids": []
+    "diffIds": []
   }
 }
 `,
 			fail: true,
+		},
+		// example Positive test, expected to pass schema validation
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1"
+  },
+  "config": {
+     "paramSize": "8b"
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+      "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
+  }
+}
+`,
+			fail: false,
 		},
 	} {
 		r := strings.NewReader(tt.config)
