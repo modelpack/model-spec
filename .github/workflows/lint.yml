@@ -35,6 +35,13 @@ jobs:
           config: '.markdownlint.yml'
           args: '**/*.md'
 
-      - uses: crate-ci/typos@b74202f74b4346efdbce7801d187ec57b266bac8 # v1.27.3
+      - name: Typo lint
+        uses: crate-ci/typos@b74202f74b4346efdbce7801d187ec57b266bac8 # v1.27.3
         with:
           config: .typos.toml
+
+      - name: Example lint
+        run: make validate-examples
+
+      - name: Run tests
+        run: make test
