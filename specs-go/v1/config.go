@@ -123,6 +123,10 @@ type ModelCapabilities struct {
 	// ToolUsage indicates whether the model can use external tools
 	// such as a calculator, a search engine, etc.
 	ToolUsage *bool `json:"toolUsage,omitempty"`
+
+	// Language indicates the languages that the model can speak.
+	// Encoded as ISO 639 two letter codes. For example, ["en", "fr", "zh"].
+	Languages []string `json:"languages,omitempty"`
 }
 
 // Model defines the basic information of a model.
