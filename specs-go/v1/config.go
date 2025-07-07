@@ -126,7 +126,7 @@ type ModelCapabilities struct {
 }
 
 // Model defines the basic information of a model.
-// It provides the `application/vnd.cnai.model.config.v1+json` mediatype when marshalled to JSON.
+// It provides the `application/vnd.cncf.model.config.v1+json` mediatype when marshalled to JSON.
 type Model struct {
 	// The model descriptor
 	Descriptor ModelDescriptor `json:"descriptor"`
