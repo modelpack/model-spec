@@ -29,30 +29,49 @@ import (
 // Validator wraps a media type string identifier and implements validation against a JSON schema.
 type Validator string
 
-// Validate validates the given reader against the schema of the wrapped media type.
-func (v Validator) Validate(src io.Reader) error {
+func (v Validator) validateByMediaType(src io.Reader) (io.Reader, error) {
 	// run the media type specific validation
 	if fn, ok := validateByMediaType[v]; ok {
 		if fn == nil {
-			return fmt.Errorf("internal error: mapValidate is nil for %s", string(v))
+			return nil, fmt.Errorf("internal error: mapValidate is nil for %s", string(v))
 		}
 		// buffer the src so the media type validation and the schema validation can both read it
 		buf, err := io.ReadAll(src)
 		if err != nil {
-			return fmt.Errorf("failed to read input: %w", err)
+			return nil, fmt.Errorf("failed to read input: %w", err)
 		}
 		src = bytes.NewReader(buf)
 		err = fn(buf)
 		if err != nil {
-			return err
+			return nil, err
 		}
 	}
 
-	// json schema validation
-	return v.validateSchema(src)
+	return src, nil
 }
 
-func (v Validator) validateSchema(src io.Reader) error {
+// Validate validates the given reader against the schema of the wrapped media type.
+func (v Validator) Validate(src io.Reader) error {
+	srcReader, err := v.validateByMediaType(src)
+	if err != nil {
+		return err
+	}
+
+	// json schema validation
+	return v.validateSchema(srcReader, false)
+}
+
+// ValidateNoUnknownFields rejects if 
+func (v Validator) ValidateNoUnknownFields(src io.Reader) error {
+	srcReader, err := v.validateByMediaType(src)
+	if err != nil {
+		return err
+	}
+
+	return v.validateSchema(srcReader, true)
+}
+
+func (v Validator) validateSchema(src io.Reader, rejectUnknownfields bool) error {
 	if _, ok := specs[v]; !ok {
 		return fmt.Errorf("no validator available for %s", string(v))
 	}
@@ -94,6 +113,10 @@ func (v Validator) validateSchema(src io.Reader) error {
 		return fmt.Errorf("failed to compile schema %s: %w", string(v), err)
 	}
 
+	if rejectUnknownfields {
+		forceSetAdditionalPropertiesFalse(schema)
+	}
+
 	// read in the user input and validate
 	var input interface{}
 	err = json.NewDecoder(src).Decode(&input)
@@ -122,4 +145,32 @@ func validateConfig(buf []byte) error {
 	}
 
 	return nil
+}
+
+func forceSetAdditionalPropertiesFalse(schema *jsonschema.Schema) {
+	if len(schema.Types) == 0 {
+		return
+	}
+
+    t := schema.Types[0]
+    if  t == "object" {
+        schema.AdditionalProperties = false
+    }
+
+    // Recurse into properties
+    if schema.Properties != nil {
+        for _, propSchema := range schema.Properties {
+            forceSetAdditionalPropertiesFalse(propSchema)
+        }
+    }
+
+    // Recurse into items (for arrays)
+    if schema.Items != nil {
+        forceSetAdditionalPropertiesFalse(schema.Items.(*jsonschema.Schema))
+    }
+
+    // Recurse into additionalProperties if it's a schema
+    if s, ok := schema.AdditionalProperties.(*jsonschema.Schema); ok {
+        forceSetAdditionalPropertiesFalse(s)
+    }
 }
