@@ -20,13 +20,13 @@ import "time"
 
 const (
 	// AnnotationFilepath is the annotation key for the file path of the layer.
-	AnnotationFilepath = "org.cnai.model.filepath"
+	AnnotationFilepath = "org.cncf.model.filepath"
 
 	// AnnotationFileMetadata is the annotation key for the file metadata of the layer.
-	AnnotationFileMetadata = "org.cnai.model.file.metadata+json"
+	AnnotationFileMetadata = "org.cncf.model.file.metadata+json"
 
 	// AnnotationUntested is the annotation key for file media type untested flag of the layer.
-	AnnotationMediaTypeUntested = "org.cnai.model.file.mediatype.untested"
+	AnnotationMediaTypeUntested = "org.cncf.model.file.mediatype.untested"
 )
 
 // FileMetadata represents the metadata of file, which is the value definition of AnnotationFileMetadata.
