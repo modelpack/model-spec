@@ -1,7 +1,7 @@
 {
     "description": "Model Artifact Configuration Schema",
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "$id": "https://github.com/CloudNativeAI/model-spec/config",
+    "$id": "https://github.com/modelpack/model-spec/config",
     "type": "object",
     "properties": {
       "descriptor": {

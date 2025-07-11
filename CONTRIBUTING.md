@@ -9,7 +9,7 @@ Welcome to the Cloud Native AI Model Format Specification project! We are excite
 * **Clone the repository**:
 
 ```sh
-git clone https://github.com/CloudNativeAI/model-spec.git
+git clone https://github.com/modelpack/model-spec.git
 cd model-spec
 ```
 
