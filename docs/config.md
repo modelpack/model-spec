@@ -98,7 +98,30 @@ The following terms are used in this section:
 
   - **precision** _string_, OPTIONAL
 
-    The computational precision of the model, e.g., "bf16", "fp16", "int8", or "mixed".
+    The computational precision of the model. Supported values include:
+
+    | Precision | Description |
+    |-----------|-------------|
+    | `"float32"` | 32-bit floating point |
+    | `"float64"` | 64-bit floating point |
+    | `"float16"` | 16-bit floating point. Uses 1 sign, 5 exponent, and 10 significand bits. |
+    | `"bfloat16"` | 16-bit brain floating point. Uses 1 sign, 8 exponent and 7 significand bits. |
+    | `"float8_e4m3"` | 8-bit floating point, e4m3 format. Uses 1 sign, 4 exponent, and 3 significand bits. |
+    | `"float8_e5m2"` | 8-bit floating point, e5m2 format. Uses 1 sign, 5 exponent, and 2 significand bits. |
+    | `"complex32"` | 32-bit complex |
+    | `"complex64"` | 64-bit complex |
+    | `"complex128"` | 128-bit complex |
+    | `"int8"` | 8-bit signed integer |
+    | `"int16"` | 16-bit signed integer |
+    | `"int32"` | 32-bit signed integer |
+    | `"int64"` | 64-bit signed integer |
+    | `"uint8"` | 8-bit unsigned integer |
+    | `"uint16"` | 16-bit unsigned integer |
+    | `"uint32"` | 32-bit unsigned integer |
+    | `"uint64"` | 64-bit unsigned integer |
+    | `"bool"` | Boolean |
+
+    If multiple precisions are used, they should be separated by commas. For example, if the model uses float16 and float8_e4m3, the precision should be set to `"float16,float8_e4m3"`.
 
   - **quantization** _string_, OPTIONAL
 
