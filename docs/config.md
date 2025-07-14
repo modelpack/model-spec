@@ -215,7 +215,7 @@ Here is an example model artifact configuration JSON document:
       ],
       "knowledgeCutoff": "2024-05-21T00:00:00Z",
       "reasoning": true,
-      "toolUsage": false
+      "toolUsage": false,
       "embedding": false,
       "reward": false
     }
