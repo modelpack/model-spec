@@ -129,6 +129,10 @@ type ModelCapabilities struct {
 
 	// Reward indicates whether the model is a reward model
 	Reward *bool `json:"reward,omitempty"`
+
+	// Language indicates the languages that the model can speak.
+	// Encoded as ISO 639 two letter codes. For example, ["en", "fr", "zh"].
+	Languages []string `json:"languages,omitempty"`
 }
 
 // Model defines the basic information of a model.
