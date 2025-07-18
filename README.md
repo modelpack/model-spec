@@ -19,6 +19,10 @@ This specification provides a compatible way to package and distribute models ba
 
 For details, please see [the specification](docs/spec.md).
 
+## Copyright
+
+Copyright © contributors to ModelPack, established as ModelPack a Series of LF Projects, LLC.
+
 ## LICENSE
 
 Apache 2.0 License. Please see [LICENSE](LICENSE) for more information.
