@@ -1,5 +1,5 @@
 /*
- *     Copyright 2025 The CNAI Authors
+ *     Copyright 2025 The CNCF ModelPack Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -123,10 +123,16 @@ type ModelCapabilities struct {
 	// ToolUsage indicates whether the model can use external tools
 	// such as a calculator, a search engine, etc.
 	ToolUsage *bool `json:"toolUsage,omitempty"`
+
+	// Embedding indicates whether the model can perform embedding tasks
+	Embedding *bool `json:"embedding,omitempty"`
+
+	// Reward indicates whether the model is a reward model
+	Reward *bool `json:"reward,omitempty"`
 }
 
 // Model defines the basic information of a model.
-// It provides the `application/vnd.cnai.model.config.v1+json` mediatype when marshalled to JSON.
+// It provides the `application/vnd.cncf.model.config.v1+json` mediatype when marshalled to JSON.
 type Model struct {
 	// The model descriptor
 	Descriptor ModelDescriptor `json:"descriptor"`

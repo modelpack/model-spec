@@ -1,8 +1,8 @@
 # Model Artifact Configuration
 
-Each model artifact has an associated JSON structure which describes some basic information about the model such as name and version, as well as technical metadata such as format, precision and quantization. This content is referred to as _Model Artifact Configuration_ and is identified by the [media type][oci-media-type] `application/vnd.cnai.model.config.v1+json`.
+Each model artifact has an associated JSON structure which describes some basic information about the model such as name and version, as well as technical metadata such as format, precision and quantization. This content is referred to as _Model Artifact Configuration_ and is identified by the [media type][oci-media-type] `application/vnd.cncf.model.config.v1+json`.
 
-This section defines `application/vnd.cnai.model.config.v1+json` media type.
+This section defines `application/vnd.cncf.model.config.v1+json` media type.
 
 ## Terminology
 
@@ -98,7 +98,30 @@ The following terms are used in this section:
 
   - **precision** _string_, OPTIONAL
 
-    The computational precision of the model, e.g., "bf16", "fp16", "int8", or "mixed".
+    The computational precision of the model. Supported values include:
+
+    | Precision | Description |
+    |-----------|-------------|
+    | `"float32"` | 32-bit floating point |
+    | `"float64"` | 64-bit floating point |
+    | `"float16"` | 16-bit floating point. Uses 1 sign, 5 exponent, and 10 significand bits. |
+    | `"bfloat16"` | 16-bit brain floating point. Uses 1 sign, 8 exponent and 7 significand bits. |
+    | `"float8_e4m3"` | 8-bit floating point, e4m3 format. Uses 1 sign, 4 exponent, and 3 significand bits. |
+    | `"float8_e5m2"` | 8-bit floating point, e5m2 format. Uses 1 sign, 5 exponent, and 2 significand bits. |
+    | `"complex32"` | 32-bit complex |
+    | `"complex64"` | 64-bit complex |
+    | `"complex128"` | 128-bit complex |
+    | `"int8"` | 8-bit signed integer |
+    | `"int16"` | 16-bit signed integer |
+    | `"int32"` | 32-bit signed integer |
+    | `"int64"` | 64-bit signed integer |
+    | `"uint8"` | 8-bit unsigned integer |
+    | `"uint16"` | 16-bit unsigned integer |
+    | `"uint32"` | 32-bit unsigned integer |
+    | `"uint64"` | 64-bit unsigned integer |
+    | `"bool"` | Boolean |
+
+    If multiple precisions are used, they should be separated by commas. For example, if the model uses float16 and float8_e4m3, the precision should be set to `"float16,float8_e4m3"`.
 
   - **quantization** _string_, OPTIONAL
 
@@ -144,11 +167,19 @@ The following terms are used in this section:
 
     Whether the model can use external tools or APIs to perform tasks.
 
+  - **embedding** _boolean_, OPTIONAL
+
+    Whether the model can perform embedding tasks.
+
+  - **reward** _boolean_, OPTIONAL
+
+    Whether the model is a reward model.
+
 ## Example
 
 Here is an example model artifact configuration JSON document:
 
-```json,title=Model%20Config%20JSON&mediatype=application/vnd.cnai.model.config.v1%2Bjson
+```json,title=Model%20Config%20JSON&mediatype=application/vnd.cncf.model.config.v1%2Bjson
 {
   "descriptor": {
     "createdAt": "2025-01-01T00:00:00Z",
@@ -184,7 +215,9 @@ Here is an example model artifact configuration JSON document:
       ],
       "knowledgeCutoff": "2024-05-21T00:00:00Z",
       "reasoning": true,
-      "toolUsage": false
+      "toolUsage": false,
+      "embedding": false,
+      "reward": false
     }
   },
   "modelfs": {

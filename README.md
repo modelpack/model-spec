@@ -1,7 +1,8 @@
 # CNCF ModelPack Specification Standard
 
-[![GoDoc](https://godoc.org/github.com/CloudNativeAI/model-spec?status.svg)](https://godoc.org/github.com/CloudNativeAI/model-spec)
-[![Discussions](https://img.shields.io/badge/discussions-on%20github-blue?style=flat-square)](https://github.com/CloudNativeAI/model-spec/discussions)
+[![GoDoc](https://godoc.org/github.com/modelpack/model-spec?status.svg)](https://godoc.org/github.com/modelpack/model-spec)
+[![Discussions](https://img.shields.io/badge/discussions-on%20github-blue?style=flat-square)](https://github.com/modelpack/model-spec/discussions)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/10919/badge)](https://www.bestpractices.dev/projects/10919)
 
 The Cloud Native Computing Foundation's (CNCF) ModelPack project is a vendor-neutral, open source specification standard to package, distribute and run AI models in a cloud native environments. It's goal is to enable the creation of standard-compliant implementations that would move AI/ML project artifacts out of vendor-controlled, proprietary formats and into a standardized and interchangeable format that is compatible with the cloud-native ecosystem.
 
@@ -18,6 +19,10 @@ Each of the new ages has brought new technologies and new ways of thinking. The 
 This specification provides a compatible way to package and distribute models based on the current [OCI image specification](https://github.com/opencontainers/image-spec/) and [the artifacts guidelines](https://github.com/opencontainers/image-spec/blob/main/manifest.md#guidelines-for-artifact-usage). For compatibility reasons, it only contains part of the model metadata, and handles model artifacts as opaque binaries. However, it provides a convenient way to package AI models in the container image format and can be used as [OCI volume sources](https://github.com/kubernetes/enhancements/issues/4639) in Kubernetes environments.
 
 For details, please see [the specification](docs/spec.md).
+
+## Copyright
+
+Copyright © contributors to ModelPack, established as ModelPack a Series of LF Projects, LLC.
 
 ## LICENSE
 

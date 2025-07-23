@@ -16,9 +16,9 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Checkout code
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
-      - uses: actions/setup-go@0a12ed9d6a96ab950c8f026ed9f722fe0da7ef32
+      - uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5
         with:
           go-version-file: go.mod
           cache: false
@@ -35,6 +35,13 @@ jobs:
           config: '.markdownlint.yml'
           args: '**/*.md'
 
-      - uses: crate-ci/typos@b74202f74b4346efdbce7801d187ec57b266bac8 # v1.27.3
+      - name: Typo lint
+        uses: crate-ci/typos@392b78fe18a52790c53f42456e46124f77346842 # v1.34.0
         with:
           config: .typos.toml
+
+      - name: Example lint
+        run: make validate-examples
+
+      - name: Run tests
+        run: make test

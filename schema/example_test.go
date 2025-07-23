@@ -1,5 +1,5 @@
 /*
- *     Copyright 2025 The CNAI Authors
+ *     Copyright 2025 The CNCF ModelPack Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/CloudNativeAI/model-spec/schema"
+	"github.com/modelpack/model-spec/schema"
 	"github.com/russross/blackfriday"
 )
 

@@ -1,7 +1,7 @@
 {
     "description": "Model Artifact Configuration Schema",
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "$id": "https://github.com/CloudNativeAI/model-spec/config",
+    "$id": "https://github.com/modelpack/model-spec/config",
     "type": "object",
     "properties": {
       "descriptor": {
@@ -38,6 +38,9 @@
           },
           "quantization": {
             "type": "string"
+          },
+          "capabilities": {
+            "$ref": "#/$defs/ModelCapabilities"
           }
         },
         "additionalProperties": false
@@ -99,7 +102,7 @@
             "type": "string",
             "enum": ["layers"]
           },
-          "diff_ids": {
+          "diffIds": {
             "type": "array",
             "items": {
               "type": "string"
@@ -110,8 +113,39 @@
         "additionalProperties": false,
         "required": [
           "type",
-          "diff_ids"
+          "diffIds"
         ]
+      },
+      "ModelCapabilities": {
+        "type": "object",
+        "properties": {
+          "inputTypes": {
+            "type": "array",
+            "items": {
+               "$ref": "#/$defs/Modality"
+            }
+          },
+          "outputTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/Modality"
+            }
+          },
+          "knowledgeCutoff": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reasoning": {
+            "type": "boolean"
+          },
+          "toolUsage": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Modality": {
+        "type": "string",
+        "enum": ["text", "image", "audio", "video", "embedding", "other"]
       }
-    }
   }
+}
