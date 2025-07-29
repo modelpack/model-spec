@@ -24,9 +24,9 @@ jobs:
           cache: false
 
       - name: Golangci lint
-        uses: golangci/golangci-lint-action@v6
+        uses: golangci/golangci-lint-action@v8
         with:
-          version: v1.61
+          version: v2.1.0
           args: --verbose
 
       - name: Markdown lint

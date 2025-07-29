@@ -1,37 +1,54 @@
+version: "2"
+
 run:
   timeout: 3m
   modules-download-mode: readonly
 
-linters-settings:
-  gocyclo:
-    min-complexity: 100
-  gci:
-    sections:
-      - standard
-      - default
-
-issues:
-  new: true
-  exclude-rules:
-    - linters:
-        - staticcheck
-      text: "SA1019:"
-
 linters:
-  disable-all: true
+  default: none
+  enable:
+    - errcheck
+    - goconst
+    - gocyclo
+    - govet
+    - misspell
+    - staticcheck
+  settings:
+    gocyclo:
+      min-complexity: 100
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - staticcheck
+        text: 'SA1019:'
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+
+formatters:
   enable:
     - gci
     - gofmt
-    - misspell
-    - govet
-    - goconst
-    - gocyclo
-    - staticcheck
-    - errcheck
+  settings:
+    gci:
+      sections:
+        - standard
+        - default
+
+issues:
+  new: true
 
 output:
   formats:
-    - format: colored-line-number
+    text:
       path: stdout
-  print-issued-lines: true
-  print-linter-name: true
+      print-linter-name: true
+      print-issued-lines: true
+      colors: true
