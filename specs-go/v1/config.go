@@ -98,11 +98,11 @@ type ModelDescriptor struct {
 type Modality string
 
 const (
-	TextModality      Modality = "text"
-	ImageModality     Modality = "image"
-	AudioModality     Modality = "audio"
-	VideoModality     Modality = "video"
-	
+	TextModality  Modality = "text"
+	ImageModality Modality = "image"
+	AudioModality Modality = "audio"
+	VideoModality Modality = "video"
+
 	// EmbeddingModality indicates that the model can process or generate embeddings.
 	// If present in InputTypes, the model accepts embeddings as input.
 	// If present in OutputTypes, the model produces embeddings as output.
