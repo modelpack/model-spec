@@ -102,6 +102,11 @@ const (
 	ImageModality     Modality = "image"
 	AudioModality     Modality = "audio"
 	VideoModality     Modality = "video"
+	
+	// EmbeddingModality indicates that the model can process or generate embeddings.
+	// If present in InputTypes, the model accepts embeddings as input.
+	// If present in OutputTypes, the model produces embeddings as output.
+	// For a dedicated "embedding model", EmbeddingModality should be present in its OutputTypes.
 	EmbeddingModality Modality = "embedding"
 	OtherModality     Modality = "other"
 )
@@ -123,9 +128,6 @@ type ModelCapabilities struct {
 	// ToolUsage indicates whether the model can use external tools
 	// such as a calculator, a search engine, etc.
 	ToolUsage *bool `json:"toolUsage,omitempty"`
-
-	// Embedding indicates whether the model can perform embedding tasks
-	Embedding *bool `json:"embedding,omitempty"`
 
 	// Reward indicates whether the model is a reward model
 	Reward *bool `json:"reward,omitempty"`
