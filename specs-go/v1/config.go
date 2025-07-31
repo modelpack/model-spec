@@ -98,9 +98,24 @@ type ModelDescriptor struct {
 type Modality string
 
 const (
-	TextModality  Modality = "text"
+	// TextModality indicates that the model can process or generate text.
+	// If present in InputTypes, the model accepts text as input.
+	// If present in OutputTypes, the model produces text as output.
+	TextModality Modality = "text"
+
+	// ImageModality indicates that the model can process or generate images.
+	// If present in InputTypes, the model accepts images as input.
+	// If present in OutputTypes, the model produces images as output.
 	ImageModality Modality = "image"
+
+	// AudioModality indicates that the model can process or generate audio.
+	// If present in InputTypes, the model accepts audio as input.
+	// If present in OutputTypes, the model produces audio as output.
 	AudioModality Modality = "audio"
+
+	// VideoModality indicates that the model can process or generate video.
+	// If present in InputTypes, the model accepts video as input.
+	// If present in OutputTypes, the model produces video as output.
 	VideoModality Modality = "video"
 
 	// EmbeddingModality indicates that the model can process or generate embeddings.
@@ -108,7 +123,9 @@ const (
 	// If present in OutputTypes, the model produces embeddings as output.
 	// For a dedicated "embedding model", EmbeddingModality should be present in its OutputTypes.
 	EmbeddingModality Modality = "embedding"
-	OtherModality     Modality = "other"
+
+	// OtherModality indicates that the model supports a modality not explicitly listed.
+	OtherModality Modality = "other"
 )
 
 // ModelCapabilities defines the special capabilities that the model supports
