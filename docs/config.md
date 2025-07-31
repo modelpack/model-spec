@@ -175,6 +175,10 @@ The following terms are used in this section:
 
     Whether the model is a reward model.
 
+  - **languages** _array of string_, OPTIONAL
+
+    What languages can the model speak. Encoded as [ISO 639][iso-639] two letter codes.
+
 ## Example
 
 Here is an example model artifact configuration JSON document:
@@ -217,7 +221,8 @@ Here is an example model artifact configuration JSON document:
       "reasoning": true,
       "toolUsage": false,
       "embedding": false,
-      "reward": false
+      "reward": false,
+      "languages": ["en", "zh"]
     }
   },
   "modelfs": {
@@ -233,3 +238,4 @@ Here is an example model artifact configuration JSON document:
 [oci-media-type]: https://github.com/opencontainers/image-spec/blob/main/descriptor.md#properties
 [rfc3339-s5.6]: https://tools.ietf.org/html/rfc3339#section-5.6
 [spdx-license-expression]: https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/
+[iso-639]: https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes
