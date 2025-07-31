@@ -42,8 +42,7 @@
           "capabilities": {
             "$ref": "#/$defs/ModelCapabilities"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "ModelDescriptor": {
         "type": "object",
@@ -92,8 +91,7 @@
           "description": {
             "type": "string"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "ModelFS": {
         "type": "object",
@@ -110,7 +108,6 @@
             "minItems": 1
           }
         },
-        "additionalProperties": false,
         "required": [
           "type",
           "diffIds"
