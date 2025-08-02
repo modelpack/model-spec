@@ -149,11 +149,13 @@ The following terms are used in this section:
 
   - **inputTypes** _array of string_, OPTIONAL
 
-    Input types that the model supports, such as "text", "image", "audio", "video", etc.
+    An array of strings specifying the data types that the model can accept as input.
+    The allowed values are: "text", "image", "audio", "video", or "embedding". For input types that are not explicitly defined, the value "other" value should be used.
 
   - **outputTypes** _array of string_, OPTIONAL
 
-    Output types that the model supports, such as "text", "image", "audio", "video", etc.
+    An array of strings specifying the data types that the model can produce as output.
+    The allowed values are: "text", "image", "audio", "video", or "embedding". For output types that are not explicitly defined, the value "other" value should be used.
 
   - **knowledgeCutoff** _string_, OPTIONAL
 
