@@ -2,20 +2,36 @@
 
 ## Reporting a Vulnerability
 
-If you find a potential security vulnerability in modelpack, please report it by following these steps:
+We're extremely grateful for security researchers and users who report vulnerabilities they discovered in modelpack.
+All reports are thoroughly reviewed and investigated.
 
-### **Use the GitHub Security Tab**
+### When Should I Report a Vulnerability?
 
-This repository is set up to allow vulnerability reports through GitHub's Security Advisories feature. To report a vulnerability:
+You should report if:
 
-1. Navigate to the repository's main page.
-2. Select the [**Security**](https://github.com/modelpack/model-spec/security) tab.
-3. Select **Advisories** from the left-hand sidebar.
-4. Click on **Report a vulnerability**.
-5. Fill in the required details and submit the report.
+- You think you have discovered a potential security vulnerability in modepack
+- You are uncertain about the security impact of an issue you found in modelpack.
 
-Following this process will create a private advisory for our maintainers to review.
+### How to Report a Vulnerability?
 
-### **Do Not Open Public Pull Requests, Issues, or Discussions**
+If you discover a potential security vulnerability in modelpack, please report it using GitHub’s [Security Advisories](https://github.com/modelpack/model-spec/security).
+**Do not create a public issue, pull request, or discussion**.
 
-Please **do not** discuss the issue, create PRs, or start discussions about the vulnerability. This ensures the vulnerability is not widely exploited before a fix is provided.
+To submit a report, navigate to the repository's main page, open the **Security** tab, select **Advisories** from the sidebar,
+click **Report a vulnerability**, provide the required details, and submit.
+This process will create a private advisory visible only to the maintainers for review.
+
+### Security Vulnerability Response
+
+Our maintainers will review and respond to your report within **5 working days**. Depending on the severity and complexity of the issue, resolution times may vary, but we will keep you informed throughout the process.
+
+### Public Disclosure Timing
+
+The disclosure date will be agreed upon between the **modelpack** maintainers and the reporter.  
+In general:
+
+- Immediate disclosure may occur if the issue is already public.  
+- For vulnerabilities with straightforward fixes, disclosure is typically within **7 days** of the report.  
+- For complex issues requiring more time to investigate and validate fixes, disclosure may be delayed—up to a maximum of **90 days**.  
+
+Delays may also be necessary if the bug or fix is not yet fully understood or adequately tested.
