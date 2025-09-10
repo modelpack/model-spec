@@ -59,6 +59,10 @@ The following terms are used in this section:
 
     A URL to get the source code or resources needed to build or understand the model's implementation.
 
+  - **datasetsURL** _array of string_, OPTIONAL
+
+    A list of links or references to datasets that the model was trained upon.
+
   - **revision** _string_, OPTIONAL
 
     The source control revision identifier for the model.
@@ -196,6 +200,7 @@ Here is an example model artifact configuration JSON document:
     "description": "xyz is a large language model.",
     "docURL": "https://www.xyz.com/get-started/",
     "sourceURL": "https://github.com/xyz/xyz3",
+    "datasetsURL": ["https://www.xyz.com/datasets/"],
     "revision": "1234567890",
     "licenses": [
       "Apache-2.0"
