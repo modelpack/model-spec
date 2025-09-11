@@ -71,6 +71,12 @@
           "sourceURL": {
             "type": "string"
           },
+          "datasetsURL": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "version": {
             "type": "string"
           },
