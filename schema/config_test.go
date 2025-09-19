@@ -203,6 +203,29 @@ func TestConfig(t *testing.T) {
 `,
 			fail: true,
 		},
+		// expected failure: datasetsURL is not an array
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1",
+    "sourceURL": "https://github.com/xyz/xyz3",
+    "datasetsURL": "https://example.com/dataset"
+  },
+  "config": {
+     "paramSize": "8b"
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
+  }
+}
+`,
+			fail: true,
+		},
 		// expected failure: paramSize is a number
 		{
 			config: `
