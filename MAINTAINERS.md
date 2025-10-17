@@ -1,15 +1,3 @@
 # Maintainers
 
-The current Maintainers for the project are
-
-- aftersnow
-- bergwolf
-- bmicklea
-- caozhuozi
-- chlins
-- gaius-qi
-- gorkem
-- raravena80
-- sabre1041
-- tarilabs
-- wy65701436
+Please refer to [the project's community maintainers file](https://github.com/modelpack/community/blob/main/MAINTAINERS.md) for the list of maintainers and their roles.
