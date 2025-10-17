@@ -21,6 +21,10 @@ This specification provides a compatible way to package and distribute models ba
 
 For details, please see [the specification](docs/spec.md).
 
+## Getting Started
+
+Please see [the getting started guide](docs/getting-started.md) for a quick introduction to the specification and how to use it.
+
 ## Copyright
 
 Copyright © contributors to ModelPack, established as ModelPack a Series of LF Projects, LLC.
