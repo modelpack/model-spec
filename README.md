@@ -21,9 +21,13 @@ This specification provides a compatible way to package and distribute models ba
 
 For details, please see [the specification](docs/spec.md).
 
-## Getting Started
+## Adopters
 
-Please see [the getting started guide](docs/getting-started.md) for a quick introduction to the specification and how to use it.
+The ModelPack specification is already being adopted by several projects in the cloud-native and AI/ML ecosystem:
+
+- **[KitOps](https://kitops.org/)** - A packaging and deployment platform for AI/ML projects that supports the ModelPack specification
+- **[Harbor](https://goharbor.io/)** - An open source trusted cloud native registry project that stores, signs, and scans content including ModelPack artifacts
+- **[CRI-O](https://cri-o.io/)** - A lightweight container runtime for Kubernetes that supports OCI artifacts and ModelPack
 
 ## Copyright
 
