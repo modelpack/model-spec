@@ -34,6 +34,7 @@ This section lists the core infrastructure components that ModelPack is working 
 
 - **[modctl](https://github.com/modelpack/modctl)**: CLI tool for building, pushing, pulling, and managing OCI model artifacts
 - **[KitOps](https://kitops.ml/)**: ModelKit packaging and deployment platform that supports the ModelPack specification
+- **[AIKit](https://kaito-project.github.io/aikit/docs/packaging)**: Package AI models as OCI artifacts from local, HTTP, or Hugging Face sources with extensible formats, including ModelPack specification
 
 ### Kubernetes Integration
 
@@ -149,5 +150,6 @@ This example shows how to mount a model artifact directly into a Kubernetes pod 
 - [CRI-O](https://cri-o.io/)
 - [KitOps](https://kitops.ml/)
 - [Hugging Face](https://huggingface.co/)
+- [AIKit](https://github.com/kaito-project/aikit)
 
 The ModelPack specification represents the next evolution in infrastructure standardization, bringing the benefits of containerization to AI model management. Start with the basics, explore the ecosystem, and join our growing community of contributors and users building the future of cloud-native AI.
