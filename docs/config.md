@@ -135,6 +135,36 @@ The following terms are used in this section:
 
     Special capabilities that the model supports, such as reasoning, toolusage, etc.
 
+    - **inputTypes** _array of string_, OPTIONAL
+
+      An array of strings specifying the data types that the model can accept as input.
+      The allowed values are: "text", "image", "audio", "video", or "embedding". For input types that are not explicitly defined, the value "other" value should be used.
+
+    - **outputTypes** _array of string_, OPTIONAL
+
+      An array of strings specifying the data types that the model can produce as output.
+      The allowed values are: "text", "image", "audio", "video", or "embedding". For output types that are not explicitly defined, the value "other" value should be used.
+
+    - **knowledgeCutoff** _string_, OPTIONAL
+
+      The date and time of the datasets that the model was trained on, formatted as defined by [RFC 3339, section 5.6][rfc3339-s5.6].
+
+    - **reasoning** _boolean_, OPTIONAL
+
+      Whether the model can perform reasoning tasks.
+
+    - **toolUsage** _boolean_, OPTIONAL
+
+      Whether the model can use external tools or APIs to perform tasks.
+
+    - **reward** _boolean_, OPTIONAL
+
+      Whether the model is a reward model.
+
+    - **languages** _array of string_, OPTIONAL
+
+      What languages can the model speak. Encoded as [ISO 639][iso-639] two letter codes.
+
 - **modelfs** _object_, REQUIRED
 
   Contains hashes of each uncompressed layer's content.
@@ -146,40 +176,6 @@ The following terms are used in this section:
   - **diffIds** _array of strings_, REQUIRED
 
     An array of layer content hashes (`DiffIDs`), in order from first to last.
-
-- **capabilities** _object_, OPTIONAL
-
-    Special capabilities that the model supports, such as reasoning, toolusage, etc.
-
-  - **inputTypes** _array of string_, OPTIONAL
-
-    An array of strings specifying the data types that the model can accept as input.
-    The allowed values are: "text", "image", "audio", "video", or "embedding". For input types that are not explicitly defined, the value "other" value should be used.
-
-  - **outputTypes** _array of string_, OPTIONAL
-
-    An array of strings specifying the data types that the model can produce as output.
-    The allowed values are: "text", "image", "audio", "video", or "embedding". For output types that are not explicitly defined, the value "other" value should be used.
-
-  - **knowledgeCutoff** _string_, OPTIONAL
-
-    The date and time of the datasets that the model was trained on, formatted as defined by [RFC 3339, section 5.6][rfc3339-s5.6].
-
-  - **reasoning** _boolean_, OPTIONAL
-
-    Whether the model can perform reasoning tasks.
-
-  - **toolUsage** _boolean_, OPTIONAL
-
-    Whether the model can use external tools or APIs to perform tasks.
-
-  - **reward** _boolean_, OPTIONAL
-
-    Whether the model is a reward model.
-
-  - **languages** _array of string_, OPTIONAL
-
-    What languages can the model speak. Encoded as [ISO 639][iso-639] two letter codes.
 
 ## Example
 
