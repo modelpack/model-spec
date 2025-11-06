@@ -59,12 +59,13 @@ oras pull $REGISTRY --output path/to/model/
 # Or using Skopeo
 skopeo copy docker://$REGISTRY dir://path/to/model/
 # rename files based on annotations
-for digest in $(jq -r '.layers[].digest' manifest.json); do
-  name=$(jq -r --arg digest "$digest" '.layers[] | select(.digest==$digest) | .annotations["org.cncf.model.filepath"]' manifest.json)
-  if [ "$name" != "null" ]; then
-    mv "${digest#sha256:}" "$name"
-  fi
-done
+(
+  cd path/to/model/
+  for digest in $(jq -r '.layers[].digest' manifest.json); do
+    name=$(jq -r --arg digest "$digest" '.layers[] | select(.digest==$digest) | .annotations["org.cncf.model.filepath"]' manifest.json)
+    if [ "$name" != "null" ]; then mv "${digest#sha256:}" "$name"; fi
+  done
+)
 ```
 
 ## Next Steps
