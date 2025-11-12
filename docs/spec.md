@@ -46,9 +46,9 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
     - `application/vnd.cncf.model.weight.v1.tar`: The layer is a [tar archive][tar-archive] that contains the model weight file. If the model has multiple weight files, they SHOULD be packaged into separate layers.
 
-    - `application/vnd.cncf.model.weight.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that includes the configuration file for the model weights. The archive is compressed with [gzip][rfc1952_2].
+    - `application/vnd.cncf.model.weight.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that contains the model weight file. The archive is compressed with [gzip][rfc1952_2].
 
-    - `application/vnd.cncf.model.weight.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that includes the configuration file for the model weights. The archive is compressed with [zstd][rfc8478].
+    - `application/vnd.cncf.model.weight.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains the model weight file. The archive is compressed with [zstd][rfc8478].
 
     - `application/vnd.cncf.model.weight.config.v1.raw`: The layer is an unarchived, uncompressed config of the model weights like tokenizer.json, config.json, etc.
 
