@@ -27,8 +27,8 @@ The ModelPack specification is designed to integrate seamlessly with existing cl
 
 This section lists the core infrastructure components that ModelPack is working with.
 
-- **[OCI Registries](https://github.com/opencontainers/distribution-spec)**: Store model artifacts using the same proven infrastructure as container images. One example of such implementation of an OCI registry is **[Harbor](https://goharbor.io/)**, which provides enterprise-grade OCI registry service that can host model artifacts with security scanning, policy management, and RBAC.
-- Model distribution service: Provide efficient model artifacts distribution. One example of such implementation is **[Dragonfly](https://d7y.io/)**, a P2P-based file distribution system at scale.
+- **[OCI Registries](https://github.com/opencontainers/distribution-spec)**: Store model artifacts using the same proven infrastructure as container images. One example of such an implementation of an OCI registry is **[Harbor](https://goharbor.io/)**, which provides enterprise-grade OCI registry service that can host model artifacts with security scanning, policy management, and RBAC.
+- Model distribution service: Provides efficient model artifacts distribution. One example of such an implementation is **[Dragonfly](https://d7y.io/)**, a P2P-based file distribution system at scale.
 
 ### Model Management Tools
 
@@ -62,7 +62,7 @@ This section lists the core infrastructure components that ModelPack is working 
 
 #### 1. Install modctl
 
-Follow the instructions to install `modctl` from the [modctl GitHub repository](https://github.com/modelpack/modctl/blob/main/docs/getting-started.md#installation) to install the CLI tool.
+Follow the instructions in the [modctl GitHub repository](https://github.com/modelpack/modctl/blob/main/docs/getting-started.md#installation) to install the CLI tool.
 
 #### 2. Install Model CSI Driver
 
@@ -133,12 +133,12 @@ spec:
           modelRef: "myregistry.com/mymodel:v1.0"
 ```
 
-This example shows how to mount a model artifact directly into a Kubernetes pod using the model CSI driver. The contents of the model is available within the /model directory within the running pod.
+This example shows how to mount a model artifact directly into a Kubernetes pod using the model CSI driver. The contents of the model are available within the /model directory within the running pod.
 
 ## Next Steps
 
 1. **Explore the [full ModelPack specification](./spec.md)** for technical implementation details
-2. **Try more options of the [modctl tool](https://github.com/modelpack/modctl)** for additional hands-on experience
+2. **Try more options with the [modctl tool](https://github.com/modelpack/modctl)** for additional hands-on experience
 3. **Join the community** on [CNCF Slack #modelpack](https://cloud-native.slack.com/archives/C07T0V480LF)
 4. **Contribute** to the ModelPack project - see our [contributing guidelines](../CONTRIBUTING.md)
 
