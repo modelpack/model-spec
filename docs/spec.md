@@ -30,7 +30,7 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
 - **`config`** _[descriptor](config.md)_
 
-  This REQUIRED property references a configuration object for a AI/ML model, by digest.
+  This REQUIRED property references a configuration object for an AI/ML model, by digest.
 
   - **`mediaType`** _string_
 
@@ -44,43 +44,43 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
     - `application/vnd.cncf.model.weight.v1.raw`: The layer is an unarchived, uncompressed model weights file.
 
-    - `application/vnd.cncf.model.weight.v1.tar`: The layer is a [tar archive][tar-archive] that contains the model weight file. If the model has multiple weight files, they SHOULD be packaged into separate layers.
+    - `application/vnd.cncf.model.weight.v1.tar`: The layer is a [tar archive][tar-archive] that contains the model weights file. If the model has multiple weight files, they SHOULD be packaged into separate layers.
 
-    - `application/vnd.cncf.model.weight.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that includes the configuration file for the model weights. The archive is compressed with [gzip][rfc1952_2].
+    - `application/vnd.cncf.model.weight.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that contains the model weights file. The archive is compressed with [gzip][rfc1952_2].
 
-    - `application/vnd.cncf.model.weight.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that includes the configuration file for the model weights. The archive is compressed with [zstd][rfc8478].
+    - `application/vnd.cncf.model.weight.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains the model weights file. The archive is compressed with [zstd][rfc8478].
 
-    - `application/vnd.cncf.model.weight.config.v1.raw`: The layer is an unarchived, uncompressed config of the model weights like tokenizer.json, config.json, etc.
+    - `application/vnd.cncf.model.weight.config.v1.raw`: The layer is an unarchived, uncompressed configuration file of the model weights like tokenizer.json, config.json, etc.
 
-    - `application/vnd.cncf.model.weight.config.v1.tar`: The layer is a [tar archive][tar-archive] that includes config of the model weights like tokenizer.json, config.json, etc.
+    - `application/vnd.cncf.model.weight.config.v1.tar`: The layer is a [tar archive][tar-archive] that contains configuration files of the model weights like tokenizer.json, config.json, etc.
 
-    - `application/vnd.cncf.model.weight.config.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that includes config of the model weights like tokenizer.json, config.json, etc. The archive is compressed with [gzip][rfc1952_2].
+    - `application/vnd.cncf.model.weight.config.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that contains configuration files of the model weights like tokenizer.json, config.json, etc. The archive is compressed with [gzip][rfc1952_2].
 
-    - `application/vnd.cncf.model.weight.config.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that includes config of the model weights like tokenizer.json, config.json, etc. The archive is compressed with [zstd][rfc8478].
+    - `application/vnd.cncf.model.weight.config.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains configuration files of the model weights like tokenizer.json, config.json, etc. The archive is compressed with [zstd][rfc8478].
 
     - `application/vnd.cncf.model.doc.v1.raw`: The layer is an unarchived, uncompressed documentation file.
 
-    - `application/vnd.cncf.model.doc.v1.tar`: The layer is a [tar archive][tar-archive] that includes documentation files like `README.md`, `LICENSE`, etc.
+    - `application/vnd.cncf.model.doc.v1.tar`: The layer is a [tar archive][tar-archive] that contains documentation files like `README.md`, `LICENSE`, etc.
 
-    - `application/vnd.cncf.model.doc.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that includes documentation files like `README.md`, `LICENSE`, etc. The archive is compressed with [gzip][rfc1952_2].
+    - `application/vnd.cncf.model.doc.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that contains documentation files like `README.md`, `LICENSE`, etc. The archive is compressed with [gzip][rfc1952_2].
 
-    - `application/vnd.cncf.model.doc.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that includes documentation files like `README.md`, `LICENSE`, etc. The archive is compressed with [zstd][rfc8478].
+    - `application/vnd.cncf.model.doc.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains documentation files like `README.md`, `LICENSE`, etc. The archive is compressed with [zstd][rfc8478].
 
     - `application/vnd.cncf.model.code.v1.raw`: The layer is an unarchived, uncompressed code artifact.
 
-    - `application/vnd.cncf.model.code.v1.tar`: The layer is a [tar archive][tar-archive] that includes code artifacts like scripts, code files etc.
+    - `application/vnd.cncf.model.code.v1.tar`: The layer is a [tar archive][tar-archive] that contains code artifacts like scripts, code files, etc.
 
-    - `application/vnd.cncf.model.code.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that includes code artifacts like scripts, code files etc. The archive is compressed with [gzip][rfc1952_2].
+    - `application/vnd.cncf.model.code.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that contains code artifacts like scripts, code files, etc. The archive is compressed with [gzip][rfc1952_2].
 
-    - `application/vnd.cncf.model.code.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that includes code artifacts like scripts, code files etc. The archive is compressed with [zstd][rfc8478].
+    - `application/vnd.cncf.model.code.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains code artifacts like scripts, code files, etc. The archive is compressed with [zstd][rfc8478].
 
-    - `application/vnd.cncf.model.dataset.v1.raw`: The layer is an unarchived, uncompressed dataset.
+    - `application/vnd.cncf.model.dataset.v1.raw`: The layer is an unarchived, uncompressed dataset file.
 
-    - `application/vnd.cncf.model.dataset.v1.tar`: The layer is a [tar archive][tar-archive] that includes datasets that may be needed for the lifecycle of AI/ML models.
+    - `application/vnd.cncf.model.dataset.v1.tar`: The layer is a [tar archive][tar-archive] that contains dataset files that may be needed for the lifecycle of AI/ML models.
 
-    - `application/vnd.cncf.model.dataset.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that includes datasets that may be needed for the lifecycle of AI/ML models. The archive is compressed with [gzip][rfc1952_2].
+    - `application/vnd.cncf.model.dataset.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that contains dataset files that may be needed for the lifecycle of AI/ML models. The archive is compressed with [gzip][rfc1952_2].
 
-    - `application/vnd.cncf.model.dataset.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that includes datasets that may be needed for the lifecycle of AI/ML models. The archive is compressed with [zstd][rfc8478].
+    - `application/vnd.cncf.model.dataset.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains dataset files that may be needed for the lifecycle of AI/ML models. The archive is compressed with [zstd][rfc8478].
 
   - **`annotations`** _string-string map_
 
@@ -127,7 +127,7 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
 This section describes how to serialize AI/ML artifacts into a blob called a layer.
 
-**Implementers' note**: It is recommended to package weight files without compression to avoid unnecessary overhead of decompression by the container runtime as model weight files are typically incompressible.
+**Implementers’ note**: It is recommended to package model weights files without compression to avoid unnecessary overhead of decompression by the container runtime as model weights files are typically incompressible.
 
 ### `+gzip` Media Types
 
@@ -139,22 +139,22 @@ The `application/vnd.cncf.model.weight.v1.tar+zstd` represents an `application/v
 
 ### File Attributes
 
-Where supported, MUST include file attributes
+Where supported, MUST include file attributes:
 
 - Modification Time (`mtime`)
 - User ID (`uid`)
-  - User Name (`uname`) should be ignored on platforms that support User ID (`uid`)
+  - User Name (`uname`) SHOULD be ignored on platforms that support User ID (`uid`)
 - Group ID (`gid`)
-  - Group Name (`gname`) should be ignored on platforms that support Group ID (`gid`)
+  - Group Name (`gname`) SHOULD be ignored on platforms that support Group ID (`gid`)
 - Mode (`mode`)
 
 ### Reproducibility
 
-To ensure tar layers are packaged in a reproducible way, implementation SHOULD adhere to the following guidance:
+To ensure tar layers are packaged in a reproducible way, implementations SHOULD adhere to the following guidance:
 
-- If the archive includes multiple files, files should be added to the archive in lexicographical order.
-- File metadata (such as modification time, owner/group id) should be set to known, constant values rather than the current values on disk.
-- Platform/implementation specific metadata should be omitted from the archive.
+- If the archive includes multiple files, files SHOULD be added to the archive in lexicographical order.
+- File metadata (such as modification time, owner/group ID) SHOULD be set to known, constant values rather than the current values on disk.
+- Platform/implementation specific metadata SHOULD be omitted from the archive.
 
 ## Workflow
 

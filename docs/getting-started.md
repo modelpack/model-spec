@@ -27,8 +27,8 @@ The ModelPack specification is designed to integrate seamlessly with existing cl
 
 This section lists the core infrastructure components that ModelPack is working with.
 
-- **[OCI Registries](https://github.com/opencontainers/distribution-spec)**: Store model artifacts using the same proven infrastructure as container images. One example of such implementation of an OCI registry is **[Harbor](https://goharbor.io/)**, which provides enterprise-grade OCI registry service that can host model artifacts with security scanning, policy management, and RBAC.
-- Model distribution service: Provide efficient model artifacts distribution. One example of such implementation is **[Dragonfly](https://d7y.io/)**, a P2P-based file distribution system at scale.
+- **[OCI Registries](https://github.com/opencontainers/distribution-spec)**: Store model artifacts using the same proven infrastructure as container images. One example of such an implementation of an OCI registry is **[Harbor](https://goharbor.io/)**, which provides enterprise-grade OCI registry service that can host model artifacts with security scanning, policy management, and RBAC.
+- Model distribution service: Provides efficient model artifacts distribution. One example of such an implementation is **[Dragonfly](https://d7y.io/)**, a P2P-based file distribution system at scale.
 
 ### Model Management Tools
 
@@ -96,7 +96,7 @@ spec:
           modelRef: "myregistry.com/mymodel:v1.0"
 ```
 
-This example shows how to mount a model artifact directly into a Kubernetes pod using the model CSI driver. The contents of the model is available within the /model directory within the running pod.
+This example shows how to mount a model artifact directly into a Kubernetes pod using the model CSI driver. The contents of the model are available within the /model directory within the running pod.
 
 ## Next Steps
 
