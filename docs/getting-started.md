@@ -58,56 +58,19 @@ This section lists the core infrastructure components that ModelPack is working 
 - Basic understanding of containers and OCI concepts
 - Access to an OCI-compatible registry (Docker Hub, Harbor, etc.)
 
-### Practical Steps
+### Choose Your Tool
 
-#### 1. Install modctl
+The ModelPack specification can be used with different tools depending on your needs:
 
-Follow the instructions in the [modctl GitHub repository](https://github.com/modelpack/modctl/blob/main/docs/getting-started.md#installation) to install the CLI tool.
+- **[modctl](./modctl.md)**: CLI tool for building, pushing, pulling, and managing OCI model artifacts. Great for command-line workflows and CI/CD pipelines.
+- **[AIKit](./aikit.md)**: Package AI models as OCI artifacts from local, HTTP, or Hugging Face sources with extensible formats.
+- **[KitOps](https://kitops.ml/)**: ModelKit packaging and deployment platform that supports the ModelPack specification.
 
-#### 2. Install Model CSI Driver
+### Install Model CSI Driver
 
 If you plan to use models in Kubernetes, install the Model CSI Driver by following the instructions in the [Model CSI Driver repository](https://github.com/modelpack/model-csi-driver/blob/main/docs/getting-started.md#helm-installation).
 
-#### 3. Download A Model
-
-To package a model, you need to download it to your local directory. The following example shows how to download a model from Huggingface.
-
-```bash
-export HF_MODEL="Qwen/Qwen3-0.6B"
-export MODEL_PATH=my-model-directory
-
-# Install the huggingface cli
-pip install 'huggingface_hub'
-
-# Login the huggingface cli
-hf auth login --token <your-huggingface-token>
-
-# Download a model
-hf download $HF_MODEL --local-dir $MODEL_PATH
-```
-
-#### 4. Package Your First Model
-
-The following script will walk through how to build a ModelPack format model artifact and push it to the model registry.
-
-```bash
-# Please modify the MODEL_REGISTRY environment variable to point to your OCI model registry
-export MODEL_REGISTRY=myregistry.com
-
-# If $MODEL_REGISTRY needs authentication, please login first
-modctl login -u <username> -p <password> $MODEL_REGISTRY
-
-# Generate a sample Modelfile, and edit the fields as needed
-modctl modelfile generate $MODEL_PATH
-
-# Build a model artifact from your model files
-modctl build -t $MODEL_REGISTRY/mymodel:v1.0 $MODEL_PATH
-
-# Push to an OCI registry
-modctl push $MODEL_REGISTRY/mymodel:v1.0
-```
-
-#### 5. Use Models in Kubernetes
+## Use Models in Kubernetes
 
 Here's an example Kubernetes pod spec that mounts a model artifact using the model CSI driver. The model will be available under the `/model` directory inside the container.
 
@@ -137,8 +100,8 @@ This example shows how to mount a model artifact directly into a Kubernetes pod 
 
 ## Next Steps
 
-1. **Explore the [full ModelPack specification](./spec.md)** for technical implementation details
-2. **Try more options with the [modctl tool](https://github.com/modelpack/modctl)** for additional hands-on experience
+1. **Get hands-on experience**: Follow the step-by-step guides for [modctl](./modctl.md) or [AIKit](./aikit.md)
+2. **Explore the [full ModelPack specification](./spec.md)** for technical implementation details
 3. **Join the community** on [CNCF Slack #modelpack](https://cloud-native.slack.com/archives/C07T0V480LF)
 4. **Contribute** to the ModelPack project - see our [contributing guidelines](../CONTRIBUTING.md)
 
