@@ -51,4 +51,7 @@ type FileMetadata struct {
 
 	// File type flag (e.g., regular file, directory, etc.)
 	Typeflag byte `json:"typeflag"`
+
+	// dstlinkpath is the destination link path for link type files (e.g., TypeLink, TypeSymlink)
+	DstLinkPath string `json:"dstlinkpath,omitempty"`
 }
