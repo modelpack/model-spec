@@ -21,6 +21,14 @@ This specification provides a compatible way to package and distribute models ba
 
 For details, please see [the specification](docs/spec.md).
 
+## Compatibility
+
+The `compat` package provides tools for converting between ModelPack and other model packaging formats. Currently supported:
+
+- [Docker Model Spec](https://github.com/docker/model-spec) - bidirectional conversion
+
+For details, please see [the compatibility guide](docs/compatibility.md).
+
 ## Getting Started
 
 Please see [the getting started guide](docs/getting-started.md) for a quick introduction to the specification and how to use it.
