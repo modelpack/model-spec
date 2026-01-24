@@ -79,6 +79,10 @@ The following terms are used in this section:
 
     The architecture of the model, such as "transformer", "cnn", or "rnn".
 
+  - **architecture_config** _object_, OPTIONAL
+
+    The configuration of the architecture. The details are defined in the [Architecture](./architectures.md) file.
+
   - **format** _string_, OPTIONAL
 
     The format for the model, such as "onnx", "safetensors", "gguf", or "pt"(pytorch format).
