@@ -146,8 +146,19 @@
           },
           "toolUsage": {
             "type": "boolean"
+          },
+          "reward": {
+            "type": "boolean"
+          },
+          "languages": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z]{2}$"
+            }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "Modality": {
         "type": "string",
