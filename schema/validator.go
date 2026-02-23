@@ -114,9 +114,9 @@ var validateByMediaType = map[Validator]validateFunc{
 }
 
 func validateConfig(buf []byte) error {
-	mc := v1.ModelConfig{}
+	model := v1.Model{}
 
-	err := json.Unmarshal(buf, &mc)
+	err := json.Unmarshal(buf, &model)
 	if err != nil {
 		return fmt.Errorf("config format mismatch: %w", err)
 	}
