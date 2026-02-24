@@ -155,7 +155,8 @@
             "items": {
               "type": "string",
               "pattern": "^[a-z]{2}$"
-            }
+            },
+            "uniqueItems": true
           }
         },
         "additionalProperties": false
