@@ -204,9 +204,9 @@ Here is an example model artifact configuration JSON document:
   },
   "config": {
     "architecture": "transformer",
-    "format": "pytorch",
+    "format": "pt",
     "paramSize": "8b",
-    "precision": "fp16",
+    "precision": "float16",
     "quantization": "gptq",
     "capabilities": {
       "inputTypes": [

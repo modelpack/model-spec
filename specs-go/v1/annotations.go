@@ -25,7 +25,7 @@ const (
 	// AnnotationFileMetadata is the annotation key for the file metadata of the layer.
 	AnnotationFileMetadata = "org.cncf.model.file.metadata+json"
 
-	// AnnotationUntested is the annotation key for file media type untested flag of the layer.
+	// AnnotationMediaTypeUntested is the annotation key for file media type untested flag of the layer.
 	AnnotationMediaTypeUntested = "org.cncf.model.file.mediatype.untested"
 )
 
