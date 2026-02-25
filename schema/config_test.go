@@ -477,6 +477,109 @@ func TestConfig(t *testing.T) {
 `,
 			fail: true,
 		},
+		// expected failure: reward is not boolean
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1"
+  },
+  "config": {
+     "paramSize": "8b",
+     "capabilities": {
+        "inputTypes": ["text"],
+        "outputTypes": ["text"],
+        "reward": "true"
+     }
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
+  }
+}
+`,
+			fail: true,
+		},
+		// expected failure: languages is not an array
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1"
+  },
+  "config": {
+     "paramSize": "8b",
+     "capabilities": {
+        "inputTypes": ["text"],
+        "outputTypes": ["text"],
+        "languages": "en"
+     }
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
+  }
+}
+`,
+			fail: true,
+		},
+		// expected failure: language code is not a two-letter ISO 639 code
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1"
+  },
+  "config": {
+     "paramSize": "8b",
+     "capabilities": {
+        "inputTypes": ["text"],
+        "outputTypes": ["text"],
+        "languages": ["fra"]
+     }
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
+  }
+}
+`,
+			fail: true,
+		},
+		// expected failure: unknown field in capabilities
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1"
+  },
+  "config": {
+     "paramSize": "8b",
+     "capabilities": {
+        "inputTypes": ["text"],
+        "unknownField": true
+     }
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
+  }
+}
+`,
+			fail: true,
+		},
 	} {
 		r := strings.NewReader(tt.config)
 		err := schema.ValidatorMediaTypeModelConfig.Validate(r)
