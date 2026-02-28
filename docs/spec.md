@@ -48,7 +48,7 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
     - `application/vnd.cncf.model.weight.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that contains the model weights file. The archive is compressed with [gzip][rfc1952_2].
 
-    - `application/vnd.cncf.model.weight.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains the model weights file. The archive is compressed with [zstd][rfc8478].
+    - `application/vnd.cncf.model.weight.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains the model weights file. The archive is compressed with [zstd][rfc8878].
 
     - `application/vnd.cncf.model.weight.config.v1.raw`: The layer is an unarchived, uncompressed configuration file of the model weights like tokenizer.json, config.json, etc.
 
@@ -56,7 +56,7 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
     - `application/vnd.cncf.model.weight.config.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that contains configuration files of the model weights like tokenizer.json, config.json, etc. The archive is compressed with [gzip][rfc1952_2].
 
-    - `application/vnd.cncf.model.weight.config.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains configuration files of the model weights like tokenizer.json, config.json, etc. The archive is compressed with [zstd][rfc8478].
+    - `application/vnd.cncf.model.weight.config.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains configuration files of the model weights like tokenizer.json, config.json, etc. The archive is compressed with [zstd][rfc8878].
 
     - `application/vnd.cncf.model.doc.v1.raw`: The layer is an unarchived, uncompressed documentation file.
 
@@ -64,7 +64,7 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
     - `application/vnd.cncf.model.doc.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that contains documentation files like `README.md`, `LICENSE`, etc. The archive is compressed with [gzip][rfc1952_2].
 
-    - `application/vnd.cncf.model.doc.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains documentation files like `README.md`, `LICENSE`, etc. The archive is compressed with [zstd][rfc8478].
+    - `application/vnd.cncf.model.doc.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains documentation files like `README.md`, `LICENSE`, etc. The archive is compressed with [zstd][rfc8878].
 
     - `application/vnd.cncf.model.code.v1.raw`: The layer is an unarchived, uncompressed code artifact.
 
@@ -72,7 +72,7 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
     - `application/vnd.cncf.model.code.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that contains code artifacts like scripts, code files, etc. The archive is compressed with [gzip][rfc1952_2].
 
-    - `application/vnd.cncf.model.code.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains code artifacts like scripts, code files, etc. The archive is compressed with [zstd][rfc8478].
+    - `application/vnd.cncf.model.code.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains code artifacts like scripts, code files, etc. The archive is compressed with [zstd][rfc8878].
 
     - `application/vnd.cncf.model.dataset.v1.raw`: The layer is an unarchived, uncompressed dataset file.
 
@@ -80,7 +80,7 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 
     - `application/vnd.cncf.model.dataset.v1.tar+gzip`: The layer is a [tar archive][tar-archive] that contains dataset files that may be needed for the lifecycle of AI/ML models. The archive is compressed with [gzip][rfc1952_2].
 
-    - `application/vnd.cncf.model.dataset.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains dataset files that may be needed for the lifecycle of AI/ML models. The archive is compressed with [zstd][rfc8478].
+    - `application/vnd.cncf.model.dataset.v1.tar+zstd`: The layer is a [tar archive][tar-archive] that contains dataset files that may be needed for the lifecycle of AI/ML models. The archive is compressed with [zstd][rfc8878].
 
   - **`annotations`** _string-string map_
 
@@ -135,7 +135,7 @@ The `application/vnd.cncf.model.weight.v1.tar+gzip` represents an `application/v
 
 ### `+zstd` Media Types
 
-The `application/vnd.cncf.model.weight.v1.tar+zstd` represents an `application/vnd.cncf.model.weight.v1.tar` payload which has been compressed with the [zstd][rfc8478] algorithm. The mediaTypes `application/vnd.cncf.model.weight.config.v1.tar+zstd`, `application/vnd.cncf.model.doc.v1.tar+zstd`, `application/vnd.cncf.model.code.v1.tar+zstd`, `application/vnd.cncf.model.dataset.v1.tar+zstd` refer to the zstd compressed payloads of their corresponding type.
+The `application/vnd.cncf.model.weight.v1.tar+zstd` represents an `application/vnd.cncf.model.weight.v1.tar` payload which has been compressed with the [zstd][rfc8878] algorithm. The mediaTypes `application/vnd.cncf.model.weight.config.v1.tar+zstd`, `application/vnd.cncf.model.doc.v1.tar+zstd`, `application/vnd.cncf.model.code.v1.tar+zstd`, `application/vnd.cncf.model.dataset.v1.tar+zstd` refer to the zstd compressed payloads of their corresponding type.
 
 ### File Attributes
 
@@ -180,5 +180,5 @@ Once the model artifact is stored in an OCI registry, the container runtime (e.g
 [rfc1952_2]: https://tools.ietf.org/html/rfc1952
 [tar-archive]: https://en.wikipedia.org/wiki/Tar_(computing)
 [image-manifest]: https://github.com/opencontainers/image-spec/blob/main/manifest.md
-[rfc8478]: https://tools.ietf.org/html/rfc8478
+[rfc8878]: https://www.rfc-editor.org/rfc/rfc8878
 [distribution-spec]: https://github.com/opencontainers/distribution-spec/blob/main/spec.md
