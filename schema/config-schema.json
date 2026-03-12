@@ -153,12 +153,10 @@
           "languages": {
             "type": "array",
             "items": {
-              "type": "string",
-              "pattern": "^[a-z]{2}$"
+              "type": "string"
             }
           }
-        },
-        "additionalProperties": false
+        }
       },
       "Modality": {
         "type": "string",
