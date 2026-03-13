@@ -5,6 +5,7 @@ from .models import (
     ModelDescriptor,
     ModelFS,
     Modality,
+    Language,
 )
 
 __all__ = [
@@ -14,4 +15,5 @@ __all__ = [
     "ModelDescriptor",
     "ModelFS",
     "Modality",
+    "Language",
 ]

@@ -23,6 +23,13 @@ def main() -> int:
         )
         return 1
 
+    if not SCHEMA_PATH.is_file():
+        print(
+            f"error: JSON Schema file not found or not a file at expected path: {SCHEMA_PATH}",
+            file=sys.stderr,
+        )
+        return 1
+
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
     cmd = [
@@ -45,9 +52,19 @@ def main() -> int:
         "--disable-timestamp",
     ]
 
-    subprocess.run(cmd, check=True)
-    print(f"Generated: {OUTPUT_PATH}")
-    return 0
+    try:
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError as exc:
+        cmd_str = " ".join(exc.cmd) if getattr(exc, "cmd", None) else " ".join(cmd)
+        print(
+            f"error: datamodel-code-generator failed with exit code {exc.returncode}.",
+            file=sys.stderr,
+        )
+        print(f"command: {cmd_str}", file=sys.stderr)
+        return exc.returncode or 1
+    else:
+        print(f"Generated: {OUTPUT_PATH}")
+        return 0
 
 
 if __name__ == "__main__":
