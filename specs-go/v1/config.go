@@ -167,5 +167,5 @@ type Model struct {
 	ModelFS ModelFS `json:"modelfs"`
 
 	// Config defines the execution parameters which should be used as a base when running a model using an inference engine.
-	Config ModelConfig `json:"config,omitempty"`
+	Config ModelConfig `json:"config"`
 }
