@@ -37,7 +37,6 @@ pip install datamodel-code-generator
 make generate-python-api
 ```
 
-
 This executes `tools/generate_python_models.py`, which uses `datamodel-codegen` to regenerate `py/model_spec/v1/models.py`.
 
 ## Important
