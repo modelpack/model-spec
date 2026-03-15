@@ -580,6 +580,35 @@ func TestConfig(t *testing.T) {
 `,
 			fail: true,
 		},
+		// valid: capabilities with reward and languages set correctly
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1"
+  },
+  "config": {
+     "paramSize": "8b",
+     "capabilities": {
+        "inputTypes": ["text"],
+        "outputTypes": ["text"],
+        "reasoning": true,
+        "toolUsage": false,
+        "reward": false,
+        "languages": ["en", "zh"]
+     }
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
+  }
+}
+`,
+			fail: false,
+		},
 	} {
 		r := strings.NewReader(tt.config)
 		err := schema.ValidatorMediaTypeModelConfig.Validate(r)
