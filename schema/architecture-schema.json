@@ -1,0 +1,344 @@
+{
+    "description": "ModelPack Architecture Configuration Schema",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$id": "https://github.com/modelpack/model-spec/architecture",
+    "type": "object",
+    "properties": {
+        "architecture_version": {
+            "type": "string"
+        },
+        "transformer": {
+            "$ref": "#/$defs/TransformerArchitecture"
+        }
+    },
+    "required": [
+        "transformer"
+    ],
+    "additionalProperties": false,
+    "$defs": {
+        "TransformerArchitecture": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["decoder"]
+                },
+                "vocabulary_size": {
+                    "type": "integer"
+                },
+                "hidden_size": {
+                    "type": "integer"
+                },
+                "tokenizer": {
+                    "$ref": "#/$defs/Tokenizer"
+                },
+                "token_embedding": {
+                    "$ref": "#/$defs/TokenEmbedding"
+                },
+                "position_embedding": {
+                    "$ref": "#/$defs/PositionEmbedding"
+                },
+                "normalization": {
+                    "$ref": "#/$defs/Normalization"
+                },
+                "uniform_layers": {
+                    "$ref": "#/$defs/UniformLayers"
+                },
+                "mixed_layers": {
+                    "$ref": "#/$defs/MixedLayers"
+                }
+            },
+            "required": [
+                "type",
+                "vocabulary_size",
+                "hidden_size",
+                "tokenizer",
+                "token_embedding",
+                "position_embedding",
+                "normalization"
+            ],
+            "additionalProperties": false,
+            "oneOf": [
+                {
+                    "required": ["uniform_layers"]
+                },
+                {
+                    "required": ["mixed_layers"]
+                }
+            ]
+        },
+        "Tokenizer": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["bpe"]
+                },
+                "library": {
+                    "type": "string",
+                    "enum": ["huggingface"]
+                },
+                "revision": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "library"
+            ],
+            "additionalProperties": false
+        },
+        "TokenEmbedding": {
+            "type": "object",
+            "properties": {
+                "has_bias": {
+                    "type": "boolean"
+                },
+                "has_norm": {
+                    "type": "boolean"
+                },
+                "shared_embedding": {
+                    "type": "boolean"
+                }
+            },
+            "additionalProperties": false
+        },
+        "PositionEmbedding": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["rope"]
+                },
+                "max_position_embeddings": {
+                    "type": "integer"
+                },
+                "rope_theta": {
+                    "type": "number"
+                },
+                "rope_scaling": {
+                    "type": "object"
+                }
+            },
+            "required": [
+                "type",
+                "max_position_embeddings"
+            ],
+            "additionalProperties": false
+        },
+        "Attention": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["mha", "gqa", "mla"]
+                },
+                "is_causal": {
+                    "type": "boolean"
+                },
+                "num_attention_heads": {
+                    "type": "integer"
+                },
+                "num_key_value_heads": {
+                    "type": "integer"
+                },
+                "head_dim": {
+                    "type": "integer"
+                },
+                "is_qkv_merged": {
+                    "type": "boolean"
+                },
+                "has_qkv_bias": {
+                    "type": "boolean"
+                },
+                "has_output_bias": {
+                    "type": "boolean"
+                },
+                "has_pre_norm": {
+                    "type": "boolean"
+                },
+                "has_post_norm": {
+                    "type": "boolean"
+                },
+                "has_residual": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "type",
+                "is_causal",
+                "num_attention_heads",
+                "num_key_value_heads"
+            ],
+            "additionalProperties": false
+        },
+        "MLP": {
+            "type": "object",
+            "properties": {
+                "intermediate_size": {
+                    "type": "integer"
+                },
+                "activation": {
+                    "type": "string"
+                },
+                "use_gated_activation": {
+                    "type": "boolean"
+                },
+                "is_mlp_merged": {
+                    "type": "boolean"
+                },
+                "has_bias": {
+                    "type": "boolean"
+                },
+                "has_residual": {
+                    "type": "boolean"
+                },
+                "has_pre_norm": {
+                    "type": "boolean"
+                },
+                "has_post_norm": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "intermediate_size",
+                "activation"
+            ],
+            "additionalProperties": false
+        },
+        "MoE": {
+            "type": "object",
+            "properties": {
+                "num_experts": {
+                    "type": "integer"
+                },
+                "top_k": {
+                    "type": "integer"
+                },
+                "moe_intermediate_size": {
+                    "type": "integer"
+                },
+                "num_shared_experts": {
+                    "type": "integer"
+                },
+                "shared_expert_intermediate_size": {
+                    "type": "integer"
+                },
+                "scoring_function": {
+                    "type": "string"
+                },
+                "norm_topk_prob": {
+                    "type": "boolean"
+                },
+                "activation": {
+                    "type": "string"
+                },
+                "use_gated_activation": {
+                    "type": "boolean"
+                },
+                "has_bias": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "num_experts",
+                "top_k",
+                "moe_intermediate_size",
+                "scoring_function",
+                "activation"
+            ],
+            "additionalProperties": false
+        },
+        "Normalization": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["rmsnorm", "layernorm"]
+                },
+                "epsilon": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "additionalProperties": false
+        },
+        "UniformLayers": {
+            "type": "object",
+            "properties": {
+                "num_layers": {
+                    "type": "integer"
+                },
+                "attention": {
+                    "$ref": "#/$defs/Attention"
+                },
+                "mlp": {
+                    "$ref": "#/$defs/MLP"
+                },
+                "moe": {
+                    "$ref": "#/$defs/MoE"
+                }
+            },
+            "required": [
+                "num_layers",
+                "attention"
+            ],
+            "additionalProperties": false,
+            "oneOf": [
+                {
+                    "required": ["mlp"]
+                },
+                {
+                    "required": ["moe"]
+                }
+            ]
+        },
+        "MixedLayers": {
+            "type": "object",
+            "properties": {
+                "num_layers": {
+                    "type": "integer"
+                },
+                "mlp_layers": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "moe_frequency": {
+                    "type": "integer"
+                },
+                "pre_norm_layers": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "post_norm_layers": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "attention": {
+                    "$ref": "#/$defs/Attention"
+                },
+                "mlp": {
+                    "$ref": "#/$defs/MLP"
+                },
+                "moe": {
+                    "$ref": "#/$defs/MoE"
+                }
+            },
+            "required": [
+                "num_layers",
+                "attention",
+                "mlp_layers",
+                "moe_frequency"
+            ],
+            "additionalProperties": false
+        }
+    }
+}
