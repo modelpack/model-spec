@@ -22,9 +22,8 @@ import (
 	"testing"
 	"time"
 
-	digest "github.com/opencontainers/go-digest"
-
 	v1 "github.com/modelpack/model-spec/specs-go/v1"
+	digest "github.com/opencontainers/go-digest"
 )
 
 // TestDownstreamDetectionFields verifies that a fully populated ModelPack config
