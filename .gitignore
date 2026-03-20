@@ -54,3 +54,12 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# AI coding agent config files
+CLAUDE.md
+AGENTS.md
+GEMINI.md
+.cursorrules
+.cursor/
+.windsurfrules
+.github/copilot-instructions.md
