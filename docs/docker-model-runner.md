@@ -81,20 +81,27 @@ If any of these fields are present, the artifact is recognized as a ModelPack-fo
 
 ## Field Mapping: ModelPack to Docker
 
-When Docker Model Runner pulls a ModelPack model, it converts the config fields to Docker's internal format:
+When Docker Model Runner pulls a ModelPack model, it converts the config to Docker's internal format. Some fields are remapped to different names or locations:
 
-| ModelPack Field | Docker Field | Description |
+**Fields that are renamed (breaking changes if modified):**
+
+| ModelPack Field | Docker Field | Notes |
 |---|---|---|
-| `descriptor.createdAt` | `created` | Model creation timestamp |
-| `descriptor.name` | `descriptor.name` | Model name |
-| `descriptor.family` | `descriptor.family` | Model family |
-| `descriptor.description` | `descriptor.description` | Model description |
-| `descriptor.licenses` | `descriptor.licenses` | License information |
-| `config.paramSize` | `parameters` | Model parameter count |
-| `config.format` | `config.format` | Model format (e.g., GGUF) |
-| `config.quantization` | `config.quantization` | Quantization method |
-| `config.architecture` | `config.architecture` | Model architecture |
-| `modelfs` | `rootfs` | Layer content addresses |
+| `descriptor.createdAt` | `created` (top-level) | Moved out of `descriptor` and renamed |
+| `config.paramSize` | `parameters` (top-level) | Moved out of `config` and renamed |
+| `modelfs` (top-level object) | `rootfs` (top-level object) | Renamed at top level |
+
+**Fields that are passed through unchanged (within their parent objects):**
+
+| ModelPack Field | Docker Field | Notes |
+|---|---|---|
+| `descriptor.name` | `descriptor.name` | Kept in `descriptor` object |
+| `descriptor.family` | `descriptor.family` | Kept in `descriptor` object |
+| `descriptor.description` | `descriptor.description` | Kept in `descriptor` object |
+| `descriptor.licenses` | `descriptor.licenses` | Kept in `descriptor` object |
+| `config.format` | `config.format` | Kept in `config` object |
+| `config.quantization` | `config.quantization` | Kept in `config` object |
+| `config.architecture` | `config.architecture` | Kept in `config` object |
 
 ## Media Type Mapping
 
