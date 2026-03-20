@@ -18,6 +18,7 @@ package v1
 
 import (
 	"encoding/json"
+	"reflect"
 	"testing"
 	"time"
 )
@@ -64,26 +65,8 @@ func TestFileMetadataMarshalJSON(t *testing.T) {
 		t.Fatalf("failed to unmarshal FileMetadata: %v", err)
 	}
 
-	if got.Name != fm.Name {
-		t.Errorf("name = %q, want %q", got.Name, fm.Name)
-	}
-	if got.Mode != fm.Mode {
-		t.Errorf("mode = %d, want %d", got.Mode, fm.Mode)
-	}
-	if got.Uid != fm.Uid {
-		t.Errorf("uid = %d, want %d", got.Uid, fm.Uid)
-	}
-	if got.Gid != fm.Gid {
-		t.Errorf("gid = %d, want %d", got.Gid, fm.Gid)
-	}
-	if got.Size != fm.Size {
-		t.Errorf("size = %d, want %d", got.Size, fm.Size)
-	}
-	if !got.ModTime.Equal(mtime) {
-		t.Errorf("mtime = %v, want %v", got.ModTime, mtime)
-	}
-	if got.Typeflag != fm.Typeflag {
-		t.Errorf("typeflag = %d, want %d", got.Typeflag, fm.Typeflag)
+	if !reflect.DeepEqual(got, fm) {
+		t.Errorf("unmarshaled FileMetadata does not match original.\ngot:  %+v\nwant: %+v", got, fm)
 	}
 }
 

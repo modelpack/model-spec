@@ -18,6 +18,7 @@ package v1
 
 import (
 	"encoding/json"
+	"reflect"
 	"testing"
 	"time"
 
@@ -65,17 +66,8 @@ func TestModelMarshalJSON(t *testing.T) {
 		t.Fatalf("failed to unmarshal Model: %v", err)
 	}
 
-	if got.Descriptor.Name != m.Descriptor.Name {
-		t.Errorf("descriptor name = %q, want %q", got.Descriptor.Name, m.Descriptor.Name)
-	}
-	if got.Config.Architecture != m.Config.Architecture {
-		t.Errorf("config architecture = %q, want %q", got.Config.Architecture, m.Config.Architecture)
-	}
-	if got.ModelFS.Type != m.ModelFS.Type {
-		t.Errorf("modelfs type = %q, want %q", got.ModelFS.Type, m.ModelFS.Type)
-	}
-	if len(got.ModelFS.DiffIDs) != 1 || got.ModelFS.DiffIDs[0] != m.ModelFS.DiffIDs[0] {
-		t.Errorf("modelfs diffIds = %v, want %v", got.ModelFS.DiffIDs, m.ModelFS.DiffIDs)
+	if !reflect.DeepEqual(got, m) {
+		t.Errorf("unmarshaled Model does not match original.\ngot:  %+v\nwant: %+v", got, m)
 	}
 }
 
@@ -160,20 +152,8 @@ func TestModelDescriptorMarshalJSON(t *testing.T) {
 		t.Fatalf("failed to unmarshal ModelDescriptor: %v", err)
 	}
 
-	if got.Name != d.Name {
-		t.Errorf("name = %q, want %q", got.Name, d.Name)
-	}
-	if len(got.Authors) != 2 {
-		t.Errorf("authors len = %d, want 2", len(got.Authors))
-	}
-	if got.CreatedAt == nil || !got.CreatedAt.Equal(created) {
-		t.Errorf("createdAt = %v, want %v", got.CreatedAt, created)
-	}
-	if len(got.DatasetsURL) != 1 || got.DatasetsURL[0] != d.DatasetsURL[0] {
-		t.Errorf("datasetsURL = %v, want %v", got.DatasetsURL, d.DatasetsURL)
-	}
-	if len(got.Licenses) != 1 || got.Licenses[0] != d.Licenses[0] {
-		t.Errorf("licenses = %v, want %v", got.Licenses, d.Licenses)
+	if !reflect.DeepEqual(got, d) {
+		t.Errorf("unmarshaled ModelDescriptor does not match original.\ngot:  %+v\nwant: %+v", got, d)
 	}
 }
 
@@ -264,20 +244,8 @@ func TestModelConfigMarshalJSON(t *testing.T) {
 		t.Fatalf("failed to unmarshal ModelConfig: %v", err)
 	}
 
-	if got.Architecture != c.Architecture {
-		t.Errorf("architecture = %q, want %q", got.Architecture, c.Architecture)
-	}
-	if got.Format != c.Format {
-		t.Errorf("format = %q, want %q", got.Format, c.Format)
-	}
-	if got.Quantization != c.Quantization {
-		t.Errorf("quantization = %q, want %q", got.Quantization, c.Quantization)
-	}
-	if got.Capabilities == nil {
-		t.Fatal("capabilities should not be nil")
-	}
-	if got.Capabilities.Reasoning == nil || *got.Capabilities.Reasoning != true {
-		t.Error("capabilities.reasoning should be true")
+	if !reflect.DeepEqual(got, c) {
+		t.Errorf("unmarshaled ModelConfig does not match original.\ngot:  %+v\nwant: %+v", got, c)
 	}
 }
 
@@ -321,26 +289,8 @@ func TestModelCapabilitiesMarshalJSON(t *testing.T) {
 		t.Fatalf("failed to unmarshal ModelCapabilities: %v", err)
 	}
 
-	if len(got.InputTypes) != 2 {
-		t.Errorf("inputTypes len = %d, want 2", len(got.InputTypes))
-	}
-	if len(got.OutputTypes) != 1 || got.OutputTypes[0] != TextModality {
-		t.Errorf("outputTypes = %v, want [text]", got.OutputTypes)
-	}
-	if got.KnowledgeCutoff == nil || !got.KnowledgeCutoff.Equal(cutoff) {
-		t.Errorf("knowledgeCutoff = %v, want %v", got.KnowledgeCutoff, cutoff)
-	}
-	if got.Reasoning == nil || *got.Reasoning != true {
-		t.Error("reasoning should be true")
-	}
-	if got.ToolUsage == nil || *got.ToolUsage != false {
-		t.Error("toolUsage should be false")
-	}
-	if got.Reward == nil || *got.Reward != false {
-		t.Error("reward should be false")
-	}
-	if len(got.Languages) != 3 {
-		t.Errorf("languages len = %d, want 3", len(got.Languages))
+	if !reflect.DeepEqual(got, caps) {
+		t.Errorf("unmarshaled ModelCapabilities does not match original.\ngot:  %+v\nwant: %+v", got, caps)
 	}
 }
 
@@ -446,14 +396,8 @@ func TestModelFSMarshalJSON(t *testing.T) {
 		t.Fatalf("failed to unmarshal ModelFS: %v", err)
 	}
 
-	if got.Type != "layers" {
-		t.Errorf("type = %q, want %q", got.Type, "layers")
-	}
-	if len(got.DiffIDs) != 2 {
-		t.Fatalf("diffIds len = %d, want 2", len(got.DiffIDs))
-	}
-	if got.DiffIDs[0] != "sha256:abc123" {
-		t.Errorf("diffIds[0] = %q, want %q", got.DiffIDs[0], "sha256:abc123")
+	if !reflect.DeepEqual(got, fs) {
+		t.Errorf("unmarshaled ModelFS does not match original.\ngot:  %+v\nwant: %+v", got, fs)
 	}
 }
 
