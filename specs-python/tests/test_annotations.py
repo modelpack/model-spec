@@ -17,8 +17,8 @@
 from datetime import datetime, timezone
 
 from modelpack.v1.annotations import (
-    ANNOTATION_FILEPATH,
     ANNOTATION_FILE_METADATA,
+    ANNOTATION_FILEPATH,
     ANNOTATION_MEDIA_TYPE_UNTESTED,
     FileMetadata,
 )
@@ -69,4 +69,4 @@ class TestFileMetadata:
         d = meta.to_dict()
         assert d["name"] == ""
         assert d["size"] == 0
-        assert "mtime" not in d
+        assert "mtime" in d

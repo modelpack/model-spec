@@ -14,24 +14,26 @@
 
 """JSON schema validation for ModelPack configs.
 
-Uses the same config-schema.json as the Go validator to ensure
-consistent validation behavior across languages.
+Loads config-schema.json from the repo root (schema/config-schema.json)
+as the single source of truth, matching the Go validator.
 """
 
 from __future__ import annotations
 
-import importlib.resources
 import json
+from pathlib import Path
 
-from jsonschema import Draft202012Validator, FormatChecker
+from jsonschema import Draft4Validator, FormatChecker
 
 
 def _load_schema() -> dict:
-    """Load and return the config JSON schema."""
-    schema_file = importlib.resources.files("modelpack.v1").joinpath(
-        "config-schema.json"
+    """Load and return the config JSON schema from the repo root."""
+    schema_path = (
+        Path(__file__).resolve().parent.parent.parent.parent
+        / "schema"
+        / "config-schema.json"
     )
-    with schema_file.open(encoding="utf-8") as f:
+    with schema_path.open(encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -51,4 +53,4 @@ def validate_config(data: dict | str) -> None:
 
     schema = _load_schema()
     format_checker = FormatChecker()
-    Draft202012Validator(schema, format_checker=format_checker).validate(data)
+    Draft4Validator(schema, format_checker=format_checker).validate(data)

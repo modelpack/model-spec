@@ -20,12 +20,12 @@ from datetime import datetime, timezone
 import pytest
 
 from modelpack.v1.config import (
+    Modality,
     Model,
     ModelCapabilities,
     ModelConfig,
     ModelDescriptor,
     ModelFS,
-    Modality,
 )
 
 

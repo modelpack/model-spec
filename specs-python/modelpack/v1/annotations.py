@@ -16,8 +16,8 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from datetime import datetime
+from dataclasses import dataclass, field
+from datetime import datetime, timezone
 
 # Annotation key for the file path of the layer.
 ANNOTATION_FILEPATH = "org.cncf.model.filepath"
@@ -27,6 +27,14 @@ ANNOTATION_FILE_METADATA = "org.cncf.model.file.metadata+json"
 
 # Annotation key for file media type untested flag of the layer.
 ANNOTATION_MEDIA_TYPE_UNTESTED = "org.cncf.model.file.mediatype.untested"
+
+
+def _format_datetime(dt: datetime) -> str:
+    """Format a datetime as RFC 3339 with 'Z' suffix for UTC, matching Go."""
+    s = dt.isoformat()
+    if s.endswith("+00:00"):
+        s = s[:-6] + "Z"
+    return s
 
 
 @dataclass
@@ -41,31 +49,33 @@ class FileMetadata:
     uid: int = 0
     gid: int = 0
     size: int = 0
-    mod_time: datetime | None = None
+    mod_time: datetime = field(
+        default_factory=lambda: datetime(1, 1, 1, tzinfo=timezone.utc)
+    )
     typeflag: int = 0
 
     def to_dict(self) -> dict:
-        """Serialize to a dict matching the JSON field names."""
-        d: dict = {
+        """Serialize to a dict matching the JSON field names.
+
+        All fields are always present, matching Go's FileMetadata
+        which has no omitempty tags.
+        """
+        return {
             "name": self.name,
             "mode": self.mode,
             "uid": self.uid,
             "gid": self.gid,
             "size": self.size,
+            "mtime": _format_datetime(self.mod_time),
             "typeflag": self.typeflag,
         }
-        if self.mod_time is not None:
-            d["mtime"] = self.mod_time.isoformat()
-        return d
 
     @classmethod
     def from_dict(cls, data: dict) -> FileMetadata:
         """Deserialize from a dict with JSON field names."""
         mod_time = None
         if "mtime" in data:
-            mod_time = datetime.fromisoformat(
-                data["mtime"].replace("Z", "+00:00")
-            )
+            mod_time = datetime.fromisoformat(data["mtime"].replace("Z", "+00:00"))
         return cls(
             name=data.get("name", ""),
             mode=data.get("mode", 0),

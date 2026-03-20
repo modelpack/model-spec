@@ -23,6 +23,14 @@ from enum import Enum
 from typing import Optional
 
 
+def _format_datetime(dt: datetime) -> str:
+    """Format a datetime as RFC 3339 with 'Z' suffix for UTC, matching Go."""
+    s = dt.isoformat()
+    if s.endswith("+00:00"):
+        s = s[:-6] + "Z"
+    return s
+
+
 class Modality(str, Enum):
     """Defines the input and output types of the model.
 
@@ -60,7 +68,7 @@ class ModelCapabilities:
         if self.output_types is not None:
             d["outputTypes"] = [m.value for m in self.output_types]
         if self.knowledge_cutoff is not None:
-            d["knowledgeCutoff"] = self.knowledge_cutoff.isoformat()
+            d["knowledgeCutoff"] = _format_datetime(self.knowledge_cutoff)
         if self.reasoning is not None:
             d["reasoning"] = self.reasoning
         if self.tool_usage is not None:
@@ -192,7 +200,7 @@ class ModelDescriptor:
         """Serialize to a dict matching the JSON schema field names."""
         d: dict = {}
         if self.created_at is not None:
-            d["createdAt"] = self.created_at.isoformat()
+            d["createdAt"] = _format_datetime(self.created_at)
         if self.authors is not None:
             d["authors"] = self.authors
         if self.family:
