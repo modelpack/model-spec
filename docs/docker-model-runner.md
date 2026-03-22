@@ -1,10 +1,10 @@
 # Using Docker Model Runner with ModelPack
 
-This guide shows you how to use [Docker Model Runner](https://docs.docker.com/desktop/features/model-runner/) to pull and run AI models packaged using the ModelPack specification.
+This guide shows you how to use [Docker Model Runner](https://docs.docker.com/desktop/features/model-runner/) to pull and run AI models packaged using the ModelPack specification. Note that runtime compatibility depends on the model format and inference engine combinations that Docker Model Runner supports (currently GGUF models).
 
 ## What is Docker Model Runner?
 
-Docker Model Runner is a built-in feature of Docker Desktop that enables pulling, managing, and running AI models directly from OCI registries. It natively supports the ModelPack specification format, allowing you to run ModelPack-packaged models without any additional tools.
+Docker Model Runner is a built-in feature of Docker Desktop that enables pulling, managing, and running AI models directly from OCI registries. Since [v1.0.19](https://github.com/docker/model-runner/releases/tag/v1.0.19), it can detect and convert ModelPack-formatted OCI artifacts, allowing you to use ModelPack-packaged models that are in a supported format (e.g., GGUF) without any additional tools.
 
 ## Prerequisites
 
@@ -36,9 +36,12 @@ docker model pull myregistry.com/mymodel:v1.0
 
 ## Run a Model
 
-Once pulled, you can run inference using the model:
+Once pulled, you can run inference using the model. The model must be pulled before running — `docker model run` does not pull automatically:
 
 ```bash
+# First pull the model (required before running)
+docker model pull myregistry.com/mymodel:v1.0
+
 # Run a model interactively
 docker model run myregistry.com/mymodel:v1.0
 
