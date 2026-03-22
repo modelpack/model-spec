@@ -12,21 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""ModelPack Python SDK - CNCF standard for packaging and distributing AI models."""
+"""ModelPack Python SDK - CNCF standard for packaging and distributing AI models.
+
+Types are auto-generated from schema/config-schema.json using datamodel-code-generator.
+Do not edit models.py manually — regenerate with: make generate-python-models
+"""
 
 from modelpack.v1.annotations import (
     ANNOTATION_FILE_METADATA,
     ANNOTATION_FILEPATH,
     ANNOTATION_MEDIA_TYPE_UNTESTED,
     FileMetadata,
-)
-from modelpack.v1.config import (
-    Modality,
-    Model,
-    ModelCapabilities,
-    ModelConfig,
-    ModelDescriptor,
-    ModelFS,
 )
 from modelpack.v1.mediatype import (
     ARTIFACT_TYPE_MODEL_MANIFEST,
@@ -52,6 +48,15 @@ from modelpack.v1.mediatype import (
     MEDIA_TYPE_MODEL_WEIGHT_RAW,
     MEDIA_TYPE_MODEL_WEIGHT_ZSTD,
 )
+from modelpack.v1.models import (
+    Language,
+    Modality,
+    Model,
+    ModelCapabilities,
+    ModelConfig,
+    ModelDescriptor,
+    ModelFS,
+)
 from modelpack.v1.validator import validate_config
 
 __all__ = [
@@ -61,6 +66,7 @@ __all__ = [
     "ModelDescriptor",
     "ModelFS",
     "Modality",
+    "Language",
     "FileMetadata",
     "ANNOTATION_FILEPATH",
     "ANNOTATION_FILE_METADATA",
