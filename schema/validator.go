@@ -129,5 +129,12 @@ func validateConfig(buf []byte) error {
 		return fmt.Errorf("missing modelfs.diffIds")
 	}
 
+	// Validate digest format for each diffId
+	for _, d := range model.ModelFS.DiffIDs {
+		if err := d.Validate(); err != nil {
+			return fmt.Errorf("invalid diffId %q: %w", d, err)
+		}
+	}
+
 	return nil
 }
