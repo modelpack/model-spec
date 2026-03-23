@@ -10,7 +10,7 @@ The current ModelPack specification supports declaring image modality via `capab
 
 Vision-language models follow a common pattern:
 
-```
+```text
 Input Image → Vision Encoder → Projector → Language Model → Text Output
                     ↓
            Visual token embeddings
