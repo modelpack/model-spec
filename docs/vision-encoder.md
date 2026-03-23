@@ -179,7 +179,7 @@ The **vision encoder** converts raw images into a sequence of visual tokens usin
 
 ## Example
 
-```json,title=Vision%20Encoder%20Config&mediatype=application/vnd.cncf.model.vision-encoder.v1+json
+```json
 {
   "type": "clip_vit",
   "hidden_size": 1024,
