@@ -462,6 +462,7 @@ class TestQwen2VL:
         assert tokens["image_token_id"] == 151655
         assert tokens["vision_start_token_id"] == 151652
         assert tokens["vision_end_token_id"] == 151653
+        assert tokens["vision_token_id"] == 151654
         assert tokens["video_token_id"] == 151656
 
     def test_mrope_position_embedding(self):
@@ -496,7 +497,7 @@ class TestLLaMA32Vision:
 
     def test_cross_attention_layers_count(self):
         spec = parse_hf_config(LLAMA_32_VISION_CONFIG)
-        assert spec["vision_encoder"]["num_cross_attention_layers"] == 8
+        assert spec["vision_encoder"]["projector"]["num_layers"] == 8
 
     def test_fusion_type(self):
         spec = parse_hf_config(LLAMA_32_VISION_CONFIG)

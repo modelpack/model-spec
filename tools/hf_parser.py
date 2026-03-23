@@ -402,6 +402,7 @@ def parse_vision_config(raw: dict) -> dict | None:
         "image_token_index": "special_tokens.image_token_id",
         "vision_start_token_id": "special_tokens.vision_start_token_id",
         "vision_end_token_id": "special_tokens.vision_end_token_id",
+        "vision_token_id": "special_tokens.vision_token_id",
         "video_token_id": "special_tokens.video_token_id",
     }
     for hf_key, mp_path in token_fields.items():
@@ -413,11 +414,11 @@ def parse_vision_config(raw: dict) -> dict | None:
     fusion = FUSION_TYPE_MAP.get(model_type, NEEDS_REVIEW)
     result["fusion_type"] = fusion
 
-    # Cross-attention layers (LLaMA-3.2 Vision)
+    # Cross-attention layers count into projector.num_layers (LLaMA-3.2 Vision)
     if model_type == "mllama":
         cross_attn_layers = raw.get("cross_attention_layers")
         if cross_attn_layers is not None:
-            result["num_cross_attention_layers"] = len(cross_attn_layers)
+            _set_nested(result, "projector.num_layers", len(cross_attn_layers))
 
     # Position embedding for vision encoder
     if model_type == "qwen2_vl":

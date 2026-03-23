@@ -92,7 +92,7 @@ The **vision encoder** converts raw images into a sequence of visual tokens usin
 
   - **num_layers** _integer_, OPTIONAL
 
-    The number of layers in the projector (for MLP-type projectors).
+    The number of layers in the projector (for MLP or cross-attention type projectors).
 
   - **activation** _string_, OPTIONAL
 
@@ -113,6 +113,10 @@ The **vision encoder** converts raw images into a sequence of visual tokens usin
   - **vision_end_token_id** _integer_, OPTIONAL
 
     The token ID marking the end of a vision region.
+
+  - **vision_token_id** _integer_, OPTIONAL
+
+    The token ID for a generic vision placeholder (used by models like Qwen2-VL).
 
   - **video_token_id** _integer_, OPTIONAL
 
@@ -151,10 +155,6 @@ The **vision encoder** converts raw images into a sequence of visual tokens usin
   | `"early"` | Visual tokens are concatenated with text tokens before the first transformer layer (e.g., Qwen2-VL) |
   | `"late"` | Visual tokens are injected after separate encoding (e.g., LLaVA) |
   | `"cross_attention"` | Dedicated cross-attention layers between vision and language (e.g., LLaMA-3.2 Vision) |
-
-- **num_cross_attention_layers** _integer_, OPTIONAL
-
-  The number of cross-attention layers for vision-language fusion. Only applicable when `fusion_type` is `"cross_attention"`.
 
 - **position_embedding** _object_, OPTIONAL
 

@@ -68,7 +68,7 @@
           },
           "num_layers": {
             "type": "integer",
-            "description": "Number of layers in the projector (for MLP projectors)"
+            "description": "Number of layers in the projector (for MLP or cross-attention projectors)"
           },
           "activation": {
             "type": "string",
@@ -92,6 +92,10 @@
           "vision_end_token_id": {
             "type": "integer",
             "description": "Token ID marking the end of a vision region"
+          },
+          "vision_token_id": {
+            "type": "integer",
+            "description": "Token ID for a generic vision placeholder (e.g., used by Qwen2-VL)"
           },
           "video_token_id": {
             "type": "integer",
@@ -130,10 +134,6 @@
         "type": "string",
         "enum": ["early", "late", "cross_attention"],
         "description": "How vision and language modalities are fused"
-      },
-      "num_cross_attention_layers": {
-        "type": "integer",
-        "description": "Number of cross-attention layers for vision-language fusion (for cross_attention fusion type)"
       },
       "position_embedding": {
         "type": "object",
