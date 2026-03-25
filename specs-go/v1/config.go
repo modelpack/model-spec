@@ -42,6 +42,24 @@ type ModelConfig struct {
 
 	// Special capabilities that the model supports
 	Capabilities *ModelCapabilities `json:"capabilities,omitempty"`
+
+	// Architecture-specific configuration parameters
+	ArchitectureConfig *ArchitectureConfig `json:"architecture_config,omitempty"`
+}
+
+// ArchitectureConfig defines architecture-specific parameters for the model.
+type ArchitectureConfig struct {
+	// Type specifies the model architecture type (e.g., "transformer").
+	Type string `json:"type"`
+
+	// NumLayers is the number of layers in the model.
+	NumLayers int `json:"numLayers"`
+
+	// HiddenSize is the dimensionality of the hidden representations.
+	HiddenSize int `json:"hiddenSize"`
+
+	// NumAttentionHeads is the number of attention heads.
+	NumAttentionHeads int `json:"numAttentionHeads"`
 }
 
 // ModelFS describes a layer content addresses
