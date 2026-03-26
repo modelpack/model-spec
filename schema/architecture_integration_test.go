@@ -17,6 +17,7 @@
 package schema_test
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"strings"
@@ -26,7 +27,6 @@ import (
 )
 
 // convertHFToArchConfig simulates HuggingFace config to architecture_config conversion.
-// This mirrors the logic in tools/hf_to_arch.py.
 func convertHFToArchConfig(hfConfig map[string]interface{}) (map[string]interface{}, error) {
 	mappings := map[string]string{
 		"numLayers":         "num_hidden_layers",
@@ -46,6 +46,9 @@ func convertHFToArchConfig(hfConfig map[string]interface{}) (map[string]interfac
 		numVal, ok := val.(float64)
 		if !ok {
 			return nil, fmt.Errorf("field %s must be a number", hfKey)
+		}
+		if numVal != float64(int(numVal)) {
+			return nil, fmt.Errorf("field %s must be an integer", hfKey)
 		}
 		if numVal < 1 {
 			return nil, fmt.Errorf("field %s must be >= 1", hfKey)
@@ -109,11 +112,11 @@ func TestArchitectureIntegrationValidConversion(t *testing.T) {
 
 	// Step 4: Validate complete Model with embedded architecture_config
 	// depends on architecture_config schema (PR-1)
-	err = schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(string(modelBytes)))
+	err = schema.ValidatorMediaTypeModelConfig.Validate(bytes.NewReader(modelBytes))
 	if err != nil {
 		// Expected to fail until PR-1 (architecture_config schema) is merged
 		t.Logf("Model validation with architecture_config failed as expected: %v", err)
-		
+
 		// Verify the failure is specifically about architecture_config not being allowed
 		if !strings.Contains(err.Error(), "architecture_config") {
 			t.Errorf("Expected validation to fail due to architecture_config field, but got: %v", err)
