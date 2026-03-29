@@ -37,16 +37,16 @@ const (
 	// MediaTypeModelWeightZstd is the media type used for zstd compressed model weights.
 	MediaTypeModelWeightZstd = "application/vnd.cncf.model.weight.v1.tar+zstd"
 
-	// MediaTypeModelWeightConfigRaw is the media type used for an unarchived, uncompressed model weights, including files like `tokenizer.json`, `config.json`, etc.
+	// MediaTypeModelWeightConfigRaw is the media type used for an unarchived, uncompressed configuration of the model weights, including files like `tokenizer.json`, etc.
 	MediaTypeModelWeightConfigRaw = "application/vnd.cncf.model.weight.config.v1.raw"
 
-	// MediaTypeModelWeightConfig specifies the media type for configuration of the model weights, including files like `tokenizer.json`, `config.json`, etc.
+	// MediaTypeModelWeightConfig specifies the media type for configuration of the model weights, including files like `tokenizer.json`, etc.
 	MediaTypeModelWeightConfig = "application/vnd.cncf.model.weight.config.v1.tar"
 
-	// MediaTypeModelWeightConfigGzip specifies the media type for gzipped configuration of the model weights, including files like `tokenizer.json`, `config.json`, etc.
+	// MediaTypeModelWeightConfigGzip specifies the media type for gzipped configuration of the model weights, including files like `tokenizer.json`, etc.
 	MediaTypeModelWeightConfigGzip = "application/vnd.cncf.model.weight.config.v1.tar+gzip"
 
-	// MediaTypeModelWeightConfigZstd specifies the media type for zstd compressed configuration of the model weights, including files like `tokenizer.json`, `config.json`, etc.
+	// MediaTypeModelWeightConfigZstd specifies the media type for zstd compressed configuration of the model weights, including files like `tokenizer.json`, etc.
 	MediaTypeModelWeightConfigZstd = "application/vnd.cncf.model.weight.config.v1.tar+zstd"
 
 	// MediaTypeModelDocRaw is the media type used for an unarchived, uncompressed model documentation, including documentation files like `README.md`, `LICENSE`, etc.
