@@ -40,6 +40,10 @@ type ModelConfig struct {
 	// The model quantization, such as awq, gptq, etc
 	Quantization string `json:"quantization,omitempty"`
 
+	// TransformerConfig contains Transformer-specific architectural parameters.
+	// Populated only when Architecture is "transformer".
+	TransformerConfig *TransformerConfig `json:"transformerConfig,omitempty"`
+
 	// Special capabilities that the model supports
 	Capabilities *ModelCapabilities `json:"capabilities,omitempty"`
 }
@@ -93,6 +97,57 @@ type ModelDescriptor struct {
 
 	// The human-readable description of the software packaged in the model
 	Description string `json:"description,omitempty"`
+}
+
+// AttentionType defines the attention mechanism used in a Transformer model.
+type AttentionType string
+
+const (
+	// MultiHeadAttention is the standard multi-head attention (MHA) from "Attention Is All You Need".
+	MultiHeadAttention AttentionType = "mha"
+
+	// GroupedQueryAttention uses fewer KV heads than query heads, reducing KV cache size (e.g. LLaMA 3, Mistral).
+	GroupedQueryAttention AttentionType = "gqa"
+
+	// MultiLatentAttention uses low-rank key-value compression to minimize KV cache (e.g. DeepSeek-V2).
+	MultiLatentAttention AttentionType = "mla"
+)
+
+// MLPType defines the feed-forward / MLP layer variant used in a Transformer model.
+type MLPType string
+
+const (
+	// DenseFF is a standard dense feed-forward layer.
+	DenseFF MLPType = "dense"
+
+	// MixtureOfExperts routes tokens to a subset of expert FFN layers (e.g. Mixtral, DeepSeek-V3).
+	MixtureOfExperts MLPType = "moe"
+)
+
+// TransformerConfig captures the key architectural parameters of a Transformer model.
+// It is only populated when ModelConfig.Architecture is "transformer".
+type TransformerConfig struct {
+	// AttentionType is the attention mechanism variant (mha, gqa, mla).
+	AttentionType AttentionType `json:"attentionType,omitempty"`
+
+	// MLPType is the feed-forward layer variant (dense, moe).
+	MLPType MLPType `json:"mlpType,omitempty"`
+
+	// NumLayers is the total number of transformer layers (blocks).
+	NumLayers *int `json:"numLayers,omitempty"`
+
+	// NumAttentionHeads is the number of query attention heads.
+	NumAttentionHeads *int `json:"numAttentionHeads,omitempty"`
+
+	// NumKVHeads is the number of key/value heads. For GQA this is less than NumAttentionHeads.
+	// Omitted or equal to NumAttentionHeads implies full MHA.
+	NumKVHeads *int `json:"numKVHeads,omitempty"`
+
+	// HiddenSize is the model's hidden dimension (d_model).
+	HiddenSize *int `json:"hiddenSize,omitempty"`
+
+	// IntermediateSize is the inner dimension of the feed-forward layer.
+	IntermediateSize *int `json:"intermediateSize,omitempty"`
 }
 
 // Modality defines the input and output types of the model
