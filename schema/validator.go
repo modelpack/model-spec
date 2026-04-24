@@ -58,6 +58,7 @@ func (v Validator) validateSchema(src io.Reader) error {
 	}
 
 	c := jsonschema.NewCompiler()
+	c.AssertFormat = true
 
 	// load the schema files from the embedded FS
 	dir, err := specFS.ReadDir(".")
