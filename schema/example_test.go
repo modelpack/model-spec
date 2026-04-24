@@ -72,7 +72,7 @@ func validate(t *testing.T, name string) {
 	}
 }
 
-// renderer allows one to incercept fenced blocks in markdown documents.
+// renderer allows one to intercept fenced blocks in markdown documents.
 type renderer struct {
 	blackfriday.Renderer
 	fn func(text []byte, lang string)
