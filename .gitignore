@@ -10,6 +10,13 @@
 
 # Dependency directories (remove the comment below to include it)
 vendor/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+.pytest_cache/
 .idea
 .vscode
 .cache
