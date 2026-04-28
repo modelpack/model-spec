@@ -589,3 +589,139 @@ func TestConfig(t *testing.T) {
 		}
 	}
 }
+
+func TestValidateConfigParsesModelNotModelConfig(t *testing.T) {
+	// This test verifies that validateConfig correctly parses the full Model structure,
+	// not just ModelConfig. Previously, validateConfig unmarshaled into ModelConfig,
+	// which always succeeded because all fields are optional.
+
+	// Test 1: Incomplete model with only config (should fail)
+	invalidJSON := `{
+		"config": {"paramSize": "8b"}
+	}`
+
+	err := schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(invalidJSON))
+	if err == nil {
+		t.Fatalf("expected validation to fail for incomplete model")
+	}
+
+	// Test 2: Config-only JSON (should fail)
+	configOnlyJSON := `{
+		"paramSize": "8b",
+		"architecture": "transformer"
+	}`
+
+	err = schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(configOnlyJSON))
+	if err == nil {
+		t.Fatalf("expected failure for config-only JSON without descriptor/modelfs, but got nil")
+	}
+
+	// Test 3: Valid full Model (should pass)
+	validJSON := `{
+		"descriptor": {"name": "test-model"},
+		"config": {"paramSize": "8b"},
+		"modelfs": {"type": "layers", "diffIds": ["sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"]}
+	}`
+
+	err = schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(validJSON))
+	if err != nil {
+		t.Fatalf("expected valid Model to pass, but got error: %v", err)
+	}
+}
+
+func TestValidateDigestFormat(t *testing.T) {
+	// Test that validateConfig rejects invalid OCI digest formats
+
+	// Test 1: Invalid digest format (no algorithm:hex format)
+	invalidDigestJSON := `{
+		"descriptor": {"name": "test"},
+		"config": {"paramSize": "8b"},
+		"modelfs": {
+			"type": "layers",
+			"diffIds": ["invalid-digest"]
+		}
+	}`
+
+	err := schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(invalidDigestJSON))
+	if err == nil {
+		t.Fatalf("expected failure for invalid digest format")
+	}
+
+	// Test 2: Invalid hex in digest
+	invalidHexJSON := `{
+		"descriptor": {"name": "test"},
+		"config": {"paramSize": "8b"},
+		"modelfs": {
+			"type": "layers",
+			"diffIds": ["sha256:xyz"]
+		}
+	}`
+
+	err = schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(invalidHexJSON))
+	if err == nil {
+		t.Fatalf("expected failure for invalid hex in digest")
+	}
+
+	// Test 3: Empty hash
+	emptyHashJSON := `{
+		"descriptor": {"name": "test"},
+		"config": {"paramSize": "8b"},
+		"modelfs": {
+			"type": "layers",
+			"diffIds": ["sha256:"]
+		}
+	}`
+
+	err = schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(emptyHashJSON))
+	if err == nil {
+		t.Fatalf("expected failure for empty hash in digest")
+	}
+
+	// Test 4: Multiple invalid digests
+	multipleInvalidJSON := `{
+		"descriptor": {"name": "test"},
+		"config": {"paramSize": "8b"},
+		"modelfs": {
+			"type": "layers",
+			"diffIds": ["invalid", "also-invalid"]
+		}
+	}`
+
+	err = schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(multipleInvalidJSON))
+	if err == nil {
+		t.Fatalf("expected failure for multiple invalid digests")
+	}
+
+	// Test 5: Valid digest (should pass)
+	validJSON := `{
+		"descriptor": {"name": "test"},
+		"config": {"paramSize": "8b"},
+		"modelfs": {
+			"type": "layers",
+			"diffIds": ["sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"]
+		}
+	}`
+
+	err = schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(validJSON))
+	if err != nil {
+		t.Fatalf("expected valid digest to pass, got: %v", err)
+	}
+
+	// Test 6: Multiple valid digests (should pass)
+	multipleValidJSON := `{
+		"descriptor": {"name": "test"},
+		"config": {"paramSize": "8b"},
+		"modelfs": {
+			"type": "layers",
+			"diffIds": [
+				"sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+				"sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+			]
+		}
+	}`
+
+	err = schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(multipleValidJSON))
+	if err != nil {
+		t.Fatalf("expected multiple valid digests to pass, got: %v", err)
+	}
+}
