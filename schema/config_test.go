@@ -589,3 +589,51 @@ func TestConfig(t *testing.T) {
 		}
 	}
 }
+
+func TestArchitectureConfigValid(t *testing.T) {
+	validJSON := `{
+		"descriptor": {"name": "test-model"},
+		"config": {
+			"paramSize": "8b",
+			"architecture_config": {
+				"type": "transformer",
+				"numLayers": 32,
+				"hiddenSize": 4096,
+				"numAttentionHeads": 32
+			}
+		},
+		"modelfs": {
+			"type": "layers",
+			"diffIds": ["sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"]
+		}
+	}`
+
+	err := schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(validJSON))
+	if err != nil {
+		t.Fatalf("expected valid architecture_config to pass, got error: %v", err)
+	}
+}
+
+func TestArchitectureConfigMissingRequiredField(t *testing.T) {
+	// Missing numLayers field
+	invalidJSON := `{
+		"descriptor": {"name": "test-model"},
+		"config": {
+			"paramSize": "8b",
+			"architecture_config": {
+				"type": "transformer",
+				"hiddenSize": 4096,
+				"numAttentionHeads": 32
+			}
+		},
+		"modelfs": {
+			"type": "layers",
+			"diffIds": ["sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"]
+		}
+	}`
+
+	err := schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(invalidJSON))
+	if err == nil {
+		t.Fatalf("expected architecture_config with missing numLayers to fail validation")
+	}
+}
