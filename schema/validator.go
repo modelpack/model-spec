@@ -115,11 +115,19 @@ var validateByMediaType = map[Validator]validateFunc{
 }
 
 func validateConfig(buf []byte) error {
-	mc := v1.ModelConfig{}
+	var model v1.Model
 
-	err := json.Unmarshal(buf, &mc)
+	err := json.Unmarshal(buf, &model)
 	if err != nil {
-		return fmt.Errorf("config format mismatch: %w", err)
+		return fmt.Errorf("invalid model structure: %w", err)
+	}
+
+	// Minimal structural validation for required fields
+	if model.Descriptor.Name == "" {
+		return fmt.Errorf("missing descriptor.name")
+	}
+	if len(model.ModelFS.DiffIDs) == 0 {
+		return fmt.Errorf("missing modelfs.diffIds")
 	}
 
 	return nil

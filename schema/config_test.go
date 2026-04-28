@@ -589,3 +589,42 @@ func TestConfig(t *testing.T) {
 		}
 	}
 }
+
+func TestValidateConfigParsesModelNotModelConfig(t *testing.T) {
+	// This test verifies that validateConfig correctly parses the full Model structure,
+	// not just ModelConfig. Previously, validateConfig unmarshaled into ModelConfig,
+	// which always succeeded because all fields are optional.
+
+	// Test 1: Incomplete model with only config (should fail)
+	invalidJSON := `{
+		"config": {"paramSize": "8b"}
+	}`
+
+	err := schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(invalidJSON))
+	if err == nil {
+		t.Fatalf("expected validation to fail for incomplete model")
+	}
+
+	// Test 2: Config-only JSON (should fail)
+	configOnlyJSON := `{
+		"paramSize": "8b",
+		"architecture": "transformer"
+	}`
+
+	err = schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(configOnlyJSON))
+	if err == nil {
+		t.Fatalf("expected failure for config-only JSON without descriptor/modelfs, but got nil")
+	}
+
+	// Test 3: Valid full Model (should pass)
+	validJSON := `{
+		"descriptor": {"name": "test-model"},
+		"config": {"paramSize": "8b"},
+		"modelfs": {"type": "layers", "diffIds": ["sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"]}
+	}`
+
+	err = schema.ValidatorMediaTypeModelConfig.Validate(strings.NewReader(validJSON))
+	if err != nil {
+		t.Fatalf("expected valid Model to pass, but got error: %v", err)
+	}
+}
