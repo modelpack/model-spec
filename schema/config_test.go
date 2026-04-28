@@ -580,6 +580,95 @@ func TestConfig(t *testing.T) {
 `,
 			fail: true,
 		},
+		// valid: minimal config with required fields only
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-3-8B-Instruct"
+  },
+  "config": {
+     "paramSize": "8b"
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
+  }
+}
+`,
+			fail: false,
+		},
+		// valid: full config with all optional fields populated
+		{
+			config: `
+{
+  "descriptor": {
+    "createdAt": "2025-01-01T00:00:00Z",
+    "authors": ["xyz@xyz.com"],
+    "vendor": "XYZ Corp.",
+    "family": "xyz3",
+    "name": "xyz-3-8B-Instruct",
+    "version": "3.1",
+    "title": "XYZ 3 8B Instruct",
+    "description": "xyz is a large language model.",
+    "docURL": "https://www.xyz.com/get-started/",
+    "sourceURL": "https://github.com/xyz/xyz3",
+    "datasetsURL": ["https://www.xyz.com/datasets/"],
+    "revision": "1234567890",
+    "licenses": ["Apache-2.0"]
+  },
+  "config": {
+    "architecture": "transformer",
+    "format": "safetensors",
+    "paramSize": "8b",
+    "precision": "float16",
+    "quantization": "gptq",
+    "capabilities": {
+      "inputTypes": ["text"],
+      "outputTypes": ["text"],
+      "knowledgeCutoff": "2024-05-21T00:00:00Z",
+      "reasoning": true,
+      "toolUsage": false
+    }
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+      "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "sha256:abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890"
+    ]
+  }
+}
+`,
+			fail: false,
+		},
+		// valid: multimodal model with image input and output
+		{
+			config: `
+{
+  "descriptor": {
+    "name": "xyz-vl-7B"
+  },
+  "config": {
+    "architecture": "transformer",
+    "paramSize": "7b",
+    "capabilities": {
+      "inputTypes": ["text", "image"],
+      "outputTypes": ["text", "image", "embedding"]
+    }
+  },
+  "modelfs": {
+    "type": "layers",
+    "diffIds": [
+       "sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+    ]
+  }
+}
+`,
+			fail: false,
+		},
 	} {
 		r := strings.NewReader(tt.config)
 		err := schema.ValidatorMediaTypeModelConfig.Validate(r)
