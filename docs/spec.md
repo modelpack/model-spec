@@ -4,6 +4,13 @@ The specification defines an open standard for packaging and distribution of Art
 
 The goal of this specification is to outline a blueprint and enable the creation of interoperable solutions for packaging and retrieving AI/ML models by leveraging the existing OCI ecosystem, thereby facilitating efficient model management, deployment and serving in cloud-native environments.
 
+## Normative Language
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+"SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+"OPTIONAL" in this document are to be interpreted as described in
+RFC 2119 and RFC 8174 when, and only when, they appear in all capitals.
+
 ## Use Cases
 
 - An OCI Registry can store and manage AI/ML model artifacts, making model versions, metadata, and parameters both retrievable and easily displayed.
@@ -178,6 +185,8 @@ Once the model artifact is stored in an OCI registry, the container runtime (e.g
 
 [image-spec]: https://github.com/opencontainers/image-spec/blob/main/spec.md#image-format-specification
 [rfc1952_2]: https://tools.ietf.org/html/rfc1952
+[rfc2119]: https://www.rfc-editor.org/rfc/rfc2119
+[rfc8174]: https://www.rfc-editor.org/rfc/rfc8174
 [tar-archive]: https://en.wikipedia.org/wiki/Tar_(computing)
 [image-manifest]: https://github.com/opencontainers/image-spec/blob/main/manifest.md
 [rfc8878]: https://www.rfc-editor.org/rfc/rfc8878
