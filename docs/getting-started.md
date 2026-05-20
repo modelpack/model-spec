@@ -35,6 +35,7 @@ This section lists the core infrastructure components that ModelPack is working 
 - **[modctl](https://github.com/modelpack/modctl)**: CLI tool for building, pushing, pulling, and managing OCI model artifacts
 - **[KitOps](https://kitops.ml/)**: ModelKit packaging and deployment platform that supports the ModelPack specification
 - **[AIKit](https://kaito-project.github.io/aikit/docs/packaging)**: Package AI models as OCI artifacts from local, HTTP, or Hugging Face sources with extensible formats, including ModelPack specification
+- **[Docker Model Runner](https://docs.docker.com/desktop/features/model-runner/)**: Pull and run ModelPack models directly from OCI registries using Docker Desktop
 
 ### Kubernetes Integration
 
@@ -65,6 +66,7 @@ The ModelPack specification can be used with different tools depending on your n
 - **[modctl](./modctl.md)**: CLI tool for building, pushing, pulling, and managing OCI model artifacts. Great for command-line workflows and CI/CD pipelines.
 - **[AIKit](./aikit.md)**: Package AI models as OCI artifacts from local, HTTP, or Hugging Face sources with extensible formats.
 - **[KitOps](https://kitops.ml/)**: ModelKit packaging and deployment platform that supports the ModelPack specification.
+- **[Docker Model Runner](./docker-model-runner.md)**: Pull and run ModelPack models directly from OCI registries using Docker Desktop.
 
 ### Install Model CSI Driver
 
@@ -100,7 +102,7 @@ This example shows how to mount a model artifact directly into a Kubernetes pod 
 
 ## Next Steps
 
-1. **Get hands-on experience**: Follow the step-by-step guides for [modctl](./modctl.md) or [AIKit](./aikit.md)
+1. **Get hands-on experience**: Follow the step-by-step guides for [modctl](./modctl.md), [AIKit](./aikit.md), or [Docker Model Runner](./docker-model-runner.md)
 2. **Explore the [full ModelPack specification](./spec.md)** for technical implementation details
 3. **Join the community** on [CNCF Slack #modelpack](https://cloud-native.slack.com/archives/C07T0V480LF)
 4. **Contribute** to the ModelPack project - see our [contributing guidelines](../CONTRIBUTING.md)
@@ -114,5 +116,6 @@ This example shows how to mount a model artifact directly into a Kubernetes pod 
 - [KitOps](https://kitops.ml/)
 - [Hugging Face](https://huggingface.co/)
 - [AIKit](https://github.com/kaito-project/aikit)
+- [Docker Model Runner](https://docs.docker.com/desktop/features/model-runner/)
 
 The ModelPack specification represents the next evolution in infrastructure standardization, bringing the benefits of containerization to AI model management. Start with the basics, explore the ecosystem, and join our growing community of contributors and users building the future of cloud-native AI.
