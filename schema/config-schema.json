@@ -41,8 +41,34 @@
           },
           "capabilities": {
             "$ref": "#/$defs/ModelCapabilities"
+          },
+          "architecture_config": {
+            "$ref": "#/$defs/ArchitectureConfig"
           }
         },
+        "additionalProperties": false
+      },
+      "ArchitectureConfig": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["transformer"]
+          },
+          "numLayers": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "hiddenSize": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "numAttentionHeads": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": ["type", "numLayers", "hiddenSize", "numAttentionHeads"],
         "additionalProperties": false
       },
       "ModelDescriptor": {
