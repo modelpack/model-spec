@@ -1,0 +1,167 @@
+{
+    "description": "Vision Encoder Architecture Schema for Multimodal Models",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$id": "https://github.com/modelpack/model-spec/vision-encoder",
+    "type": "object",
+    "properties": {
+      "type": {
+        "type": "string",
+        "enum": ["vit", "clip_vit", "other"],
+        "description": "The vision encoder architecture type"
+      },
+      "hidden_size": {
+        "type": "integer",
+        "description": "Hidden size / embedding dimension of the vision encoder"
+      },
+      "patch_size": {
+        "type": "integer",
+        "description": "Spatial patch size in pixels (e.g., 14 means 14x14 patches)"
+      },
+      "image_size": {
+        "type": "integer",
+        "description": "Default input image resolution in pixels"
+      },
+      "num_layers": {
+        "type": "integer",
+        "description": "Number of transformer layers in the vision encoder"
+      },
+      "num_attention_heads": {
+        "type": "integer",
+        "description": "Number of attention heads in the vision encoder"
+      },
+      "intermediate_size": {
+        "type": "integer",
+        "description": "FFN intermediate size in the vision encoder"
+      },
+      "in_channels": {
+        "type": "integer",
+        "description": "Number of input image channels (3 for RGB)",
+        "default": 3
+      },
+      "activation": {
+        "type": "string",
+        "description": "Activation function used in the vision encoder (e.g., quick_gelu, gelu, silu)"
+      },
+      "norm": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["layernorm", "rmsnorm"],
+            "description": "Normalization type in the vision encoder"
+          },
+          "epsilon": {
+            "type": "number",
+            "description": "Epsilon value for normalization"
+          }
+        },
+        "additionalProperties": false
+      },
+      "projector": {
+        "type": "object",
+        "description": "Multimodal projector that maps vision embeddings to language model space",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["mlp", "linear", "cross_attention", "perceiver", "other"],
+            "description": "Projector architecture type"
+          },
+          "num_layers": {
+            "type": "integer",
+            "description": "Number of layers in the projector (for MLP or cross-attention projectors)"
+          },
+          "activation": {
+            "type": "string",
+            "description": "Activation function in the projector (e.g., gelu)"
+          }
+        },
+        "additionalProperties": false
+      },
+      "special_tokens": {
+        "type": "object",
+        "description": "Special token IDs for image/video in the tokenizer",
+        "properties": {
+          "image_token_id": {
+            "type": "integer",
+            "description": "Token ID used as a placeholder for image input"
+          },
+          "vision_start_token_id": {
+            "type": "integer",
+            "description": "Token ID marking the start of a vision region"
+          },
+          "vision_end_token_id": {
+            "type": "integer",
+            "description": "Token ID marking the end of a vision region"
+          },
+          "vision_token_id": {
+            "type": "integer",
+            "description": "Token ID for a generic vision placeholder (e.g., used by Qwen2-VL)"
+          },
+          "video_token_id": {
+            "type": "integer",
+            "description": "Token ID for video frame placeholder"
+          }
+        },
+        "additionalProperties": false
+      },
+      "dynamic_resolution": {
+        "type": "object",
+        "description": "Dynamic image resolution support (e.g., Qwen2-VL native dynamic resolution)",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "min_pixels": {
+            "type": "integer",
+            "description": "Minimum number of visual tokens"
+          },
+          "max_pixels": {
+            "type": "integer",
+            "description": "Maximum number of visual tokens"
+          },
+          "spatial_merge_size": {
+            "type": "integer",
+            "description": "Spatial merging stride for reducing token count"
+          }
+        },
+        "additionalProperties": false
+      },
+      "temporal_patch_size": {
+        "type": "integer",
+        "description": "Temporal patch size for video understanding (number of frames per patch)"
+      },
+      "fusion_type": {
+        "type": "string",
+        "enum": ["early", "late", "cross_attention"],
+        "description": "How vision and language modalities are fused"
+      },
+      "position_embedding": {
+        "type": "object",
+        "description": "Position embedding configuration for the vision encoder",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["learned", "rope", "mrope", "sinusoidal"],
+            "description": "Type of position embedding"
+          },
+          "mrope_sections": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "Per-modality RoPE dimension sections (for mrope type)"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "type",
+      "hidden_size",
+      "patch_size",
+      "image_size",
+      "num_layers",
+      "num_attention_heads"
+    ],
+    "additionalProperties": false
+}
