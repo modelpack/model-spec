@@ -45,3 +45,29 @@ jobs:
 
       - name: Run tests
         run: make test
+
+  python-api-check:
+    name: Python API check
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+        with:
+          python-version: "3.10"
+
+      - name: Install model generator
+        run: python -m pip install datamodel-code-generator==0.55.0
+
+      - name: Regenerate Python API
+        run: make generate-python-api
+
+      - name: Verify generated Python API is up to date
+        run: |
+          if ! git --no-pager diff --exit-code; then
+            echo "::error::Generated artifacts are out of date. Run 'make generate-python-api' and commit the changes."
+            exit 1
+          fi
