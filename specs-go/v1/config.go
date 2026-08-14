@@ -44,7 +44,7 @@ type ModelConfig struct {
 	Capabilities *ModelCapabilities `json:"capabilities,omitempty"`
 }
 
-// ModelFS describes a layer content addresses
+// ModelFS describes the layer content addresses of a model
 type ModelFS struct {
 	// Type is the type of the rootfs. MUST be set to "layers".
 	Type string `json:"type"`
@@ -163,7 +163,7 @@ type Model struct {
 	// The model descriptor
 	Descriptor ModelDescriptor `json:"descriptor"`
 
-	// The model describes a layer content addresses
+	// ModelFS describes the layer content addresses of the model
 	ModelFS ModelFS `json:"modelfs"`
 
 	// Config defines the execution parameters which should be used as a base when running a model using an inference engine.

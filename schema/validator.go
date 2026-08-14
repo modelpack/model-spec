@@ -34,7 +34,7 @@ func (v Validator) Validate(src io.Reader) error {
 	// run the media type specific validation
 	if fn, ok := validateByMediaType[v]; ok {
 		if fn == nil {
-			return fmt.Errorf("internal error: mapValidate is nil for %s", string(v))
+			return fmt.Errorf("internal error: validateByMediaType entry is nil for %s", string(v))
 		}
 		// buffer the src so the media type validation and the schema validation can both read it
 		buf, err := io.ReadAll(src)

@@ -5,7 +5,7 @@
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/10919/badge)](https://www.bestpractices.dev/projects/10919)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmodelpack%2Fmodel-spec.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmodelpack%2Fmodel-spec?ref=badge_shield)
 
-The Cloud Native Computing Foundation's (CNCF) ModelPack project is a vendor-neutral, open source specification standard to package, distribute and run AI models in a cloud native environments. It's goal is to enable the creation of standard-compliant implementations that would move AI/ML project artifacts out of vendor-controlled, proprietary formats and into a standardized and interchangeable format that is compatible with the cloud-native ecosystem.
+The Cloud Native Computing Foundation's (CNCF) ModelPack project is a vendor-neutral, open source specification standard to package, distribute and run AI models in cloud native environments. Its goal is to enable the creation of standard-compliant implementations that would move AI/ML project artifacts out of vendor-controlled, proprietary formats and into a standardized and interchangeable format that is compatible with the cloud-native ecosystem.
 
 ## Rationale
 

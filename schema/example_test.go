@@ -57,7 +57,7 @@ func validate(t *testing.T, name string) {
 
 		if example.Err != nil {
 			printFields(t, "error", example.Mediatype, example.Title, example.Err)
-			t.Error(err)
+			t.Error(example.Err)
 			continue
 		}
 
