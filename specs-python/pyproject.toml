@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "modelpack"
+version = "0.1.0"
+description = "Python SDK for the CNCF ModelPack specification"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+dependencies = [
+    "pydantic>=2",
+    "jsonschema[format]>=4.20.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.4.0",
+    "datamodel-code-generator>=0.25.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["modelpack*"]
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
