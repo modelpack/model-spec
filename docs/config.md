@@ -131,6 +131,49 @@ The following terms are used in this section:
 
     Quantization technique applied to the model, such as "awq", or "gptq".
 
+  - **transformerConfig** _object_, OPTIONAL
+
+    Transformer-specific architectural parameters. Should only be populated when `architecture` is `"transformer"`.
+
+    - **attentionType** _string_, OPTIONAL
+
+      The attention mechanism variant. Supported values:
+
+      | Value | Description |
+      |-------|-------------|
+      | `"mha"` | Multi-Head Attention — standard attention with one KV head per query head |
+      | `"gqa"` | Grouped-Query Attention — fewer KV heads than query heads, reducing KV cache size (e.g. LLaMA 3, Mistral) |
+      | `"mla"` | Multi-Latent Attention — low-rank KV compression for minimal KV cache (e.g. DeepSeek-V2) |
+
+    - **mlpType** _string_, OPTIONAL
+
+      The feed-forward / MLP layer variant. Supported values:
+
+      | Value | Description |
+      |-------|-------------|
+      | `"dense"` | Standard dense feed-forward layer |
+      | `"moe"` | Mixture-of-Experts — tokens are routed to a subset of expert FFN layers (e.g. Mixtral, DeepSeek-V3) |
+
+    - **numLayers** _integer_, OPTIONAL
+
+      Total number of transformer layers (blocks).
+
+    - **numAttentionHeads** _integer_, OPTIONAL
+
+      Number of query attention heads.
+
+    - **numKVHeads** _integer_, OPTIONAL
+
+      Number of key/value heads. For GQA this is smaller than `numAttentionHeads`. Omitting this field or setting it equal to `numAttentionHeads` implies standard MHA.
+
+    - **hiddenSize** _integer_, OPTIONAL
+
+      The model's hidden dimension size (`d_model`).
+
+    - **intermediateSize** _integer_, OPTIONAL
+
+      The inner dimension of the feed-forward layer.
+
   - **capabilities** _object_, OPTIONAL
 
     Special capabilities that the model supports, such as reasoning, toolusage, etc.
@@ -208,6 +251,15 @@ Here is an example model artifact configuration JSON document:
     "paramSize": "8b",
     "precision": "float16",
     "quantization": "gptq",
+    "transformerConfig": {
+      "attentionType": "gqa",
+      "mlpType": "dense",
+      "numLayers": 32,
+      "numAttentionHeads": 32,
+      "numKVHeads": 8,
+      "hiddenSize": 4096,
+      "intermediateSize": 14336
+    },
     "capabilities": {
       "inputTypes": [
         "text"

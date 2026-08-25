@@ -39,8 +39,45 @@
           "quantization": {
             "type": "string"
           },
+          "transformerConfig": {
+            "$ref": "#/$defs/TransformerConfig"
+          },
           "capabilities": {
             "$ref": "#/$defs/ModelCapabilities"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransformerConfig": {
+        "type": "object",
+        "properties": {
+          "attentionType": {
+            "type": "string",
+            "enum": ["mha", "gqa", "mla"]
+          },
+          "mlpType": {
+            "type": "string",
+            "enum": ["dense", "moe"]
+          },
+          "numLayers": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "numAttentionHeads": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "numKVHeads": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "hiddenSize": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "intermediateSize": {
+            "type": "integer",
+            "minimum": 1
           }
         },
         "additionalProperties": false
