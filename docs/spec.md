@@ -172,7 +172,7 @@ The generated artifact can then be pushed to OCI registries (e.g., Harbor, Docke
 
 ### PULL & SERVE
 
-Once the model artifact is stored in an OCI registry, the container runtime (e.g., containerd, CRI-O) can pull it from the OCI registry and mount it as a read-only volume during the model serving process, if required.
+Once the model artifact is stored in an OCI registry, a supporting container runtime or the Model CSI Driver can pull it from the OCI registry and mount it as a read-only volume during the model serving process, if required. See [Runtime Compatibility](./runtime-compatibility.md) for current runtime support.
 
 ![pull-serve](./img/pull-and-serve.png)
 

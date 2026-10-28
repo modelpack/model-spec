@@ -40,7 +40,7 @@ This section lists the core infrastructure components that ModelPack is working 
 
 - **[Model CSI Driver](https://github.com/modelpack/model-csi-driver)**: Kubernetes CSI driver for mounting model artifacts as persistent volumes
 - **[OCI Volume Sources](https://kubernetes.io/blog/2024/08/16/kubernetes-1-31-image-volume-source/)**: Mount model artifacts directly as volumes in Kubernetes pods without init containers
-- **[CRI-O](https://cri-o.io/)**: Container runtime that supports OCI artifacts, enabling seamless model deployment in Kubernetes environments
+- **[CRI-O](https://cri-o.io/)**: Container runtime that supports OCI artifacts, enabling seamless model deployment in Kubernetes environments. Runtime support varies; see [Runtime Compatibility](./runtime-compatibility.md) for which runtimes support ModelPack artifact mounts.
 
 ## Key Benefits
 
@@ -98,12 +98,15 @@ spec:
 
 This example shows how to mount a model artifact directly into a Kubernetes pod using the model CSI driver. The contents of the model are available within the /model directory within the running pod.
 
+The CSI driver works on any container runtime; for native image volumes, see [Runtime Compatibility](./runtime-compatibility.md).
+
 ## Next Steps
 
 1. **Get hands-on experience**: Follow the step-by-step guides for [modctl](./modctl.md) or [AIKit](./aikit.md)
 2. **Explore the [full ModelPack specification](./spec.md)** for technical implementation details
 3. **Join the community** on [CNCF Slack #modelpack](https://cloud-native.slack.com/archives/C07T0V480LF)
 4. **Contribute** to the ModelPack project - see our [contributing guidelines](../CONTRIBUTING.md)
+5. **Check [Runtime Compatibility](./runtime-compatibility.md)** for current runtime support
 
 ## Additional Resources
 
