@@ -111,7 +111,8 @@ func (v Validator) validateSchema(src io.Reader) error {
 type validateFunc func([]byte) error
 
 var validateByMediaType = map[Validator]validateFunc{
-	ValidatorMediaTypeModelConfig: validateConfig,
+	ValidatorMediaTypeModelConfig:      validateConfig,
+	ValidatorMediaTypeModelStateConfig: validateState,
 }
 
 func validateConfig(buf []byte) error {
@@ -120,6 +121,17 @@ func validateConfig(buf []byte) error {
 	err := json.Unmarshal(buf, &model)
 	if err != nil {
 		return fmt.Errorf("config format mismatch: %w", err)
+	}
+
+	return nil
+}
+
+func validateState(buf []byte) error {
+	state := v1.State{}
+
+	err := json.Unmarshal(buf, &state)
+	if err != nil {
+		return fmt.Errorf("state config format mismatch: %w", err)
 	}
 
 	return nil

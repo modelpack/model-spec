@@ -38,6 +38,10 @@ func TestValidateConfigExample(t *testing.T) {
 	validate(t, "../docs/config.md")
 }
 
+func TestValidateStateExample(t *testing.T) {
+	validate(t, "../docs/state.md")
+}
+
 func validate(t *testing.T, name string) {
 	m, err := os.Open(name)
 	if err != nil {
