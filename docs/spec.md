@@ -123,6 +123,10 @@ The image manifest of model artifacts follows the [OCI Image Manifest Specificat
 }
 ```
 
+### Model State Artifacts
+
+A [model state artifact](./state.md) packages runtime state, such as a prompt cache or saved conversation. Its manifest's `subject` field references the model artifact it was built from.
+
 ## Guidance on Layers
 
 This section describes how to serialize AI/ML artifacts into a blob called a layer.
