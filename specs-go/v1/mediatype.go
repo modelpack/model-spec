@@ -19,6 +19,9 @@ package v1
 const (
 	// ArtifactTypeModelManifest specifies the artifact type for a model manifest.
 	ArtifactTypeModelManifest = "application/vnd.cncf.model.manifest.v1+json"
+
+	// ArtifactTypeModelStateManifest specifies the artifact type for a model state manifest.
+	ArtifactTypeModelStateManifest = "application/vnd.cncf.model.state.manifest.v1+json"
 )
 
 const (
@@ -84,4 +87,19 @@ const (
 
 	// MediaTypeModelDatasetZstd specifies the media type for zstd compressed model datasets, including datasets that may be needed throughout the lifecycle of AI/ML models.
 	MediaTypeModelDatasetZstd = "application/vnd.cncf.model.dataset.v1.tar+zstd"
+
+	// MediaTypeModelStateConfig specifies the media type for a model state configuration.
+	MediaTypeModelStateConfig = "application/vnd.cncf.model.state.config.v1+json"
+
+	// MediaTypeModelStateRaw is the media type used for an unarchived, uncompressed model state.
+	MediaTypeModelStateRaw = "application/vnd.cncf.model.state.v1.raw"
+
+	// MediaTypeModelState is the media type used for model state, such as a prompt cache or a saved conversation.
+	MediaTypeModelState = "application/vnd.cncf.model.state.v1.tar"
+
+	// MediaTypeModelStateGzip is the media type used for gzipped model state.
+	MediaTypeModelStateGzip = "application/vnd.cncf.model.state.v1.tar+gzip"
+
+	// MediaTypeModelStateZstd is the media type used for zstd compressed model state.
+	MediaTypeModelStateZstd = "application/vnd.cncf.model.state.v1.tar+zstd"
 )
