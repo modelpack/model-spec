@@ -35,6 +35,7 @@ This section lists the core infrastructure components that ModelPack is working 
 - **[modctl](https://github.com/modelpack/modctl)**: CLI tool for building, pushing, pulling, and managing OCI model artifacts
 - **[KitOps](https://kitops.ml/)**: ModelKit packaging and deployment platform that supports the ModelPack specification
 - **[AIKit](https://kaito-project.github.io/aikit/docs/packaging)**: Package AI models as OCI artifacts from local, HTTP, or Hugging Face sources with extensible formats, including ModelPack specification
+- **[llmman](https://github.com/llmmanorg/llmman)**: Build, push, pull, and run ModelPack artifacts locally, with Ollama, OpenAI, and Anthropic compatible APIs
 
 ### Kubernetes Integration
 
