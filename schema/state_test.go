@@ -38,6 +38,11 @@ func TestState(t *testing.T) {
 			state: `{"format": "vllm", "tokens": [1, 887, 526]}`,
 			fail:  false,
 		},
+		// valid: integral token IDs written with a fraction or an exponent
+		{
+			state: `{"format": "vllm", "tokens": [1.0, 1e0, 2.5e1]}`,
+			fail:  false,
+		},
 		// expected failure: state is null
 		{
 			state: `null`,
