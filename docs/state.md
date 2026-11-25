@@ -15,7 +15,7 @@ A runtime that loads a state SHOULD produce the same output as it would by proce
 
 A state MUST NOT be loaded for a model other than the one its `subject` references. A runtime MUST NOT load a state whose `format` it does not support.
 
-A runtime cannot check that a state's layers match its `tokens` without processing the tokens, which is the work the state saves. Runtimes SHOULD load only states they trust, for example states with a verified signature or states referenced by digest, and SHOULD NOT load a state only because it is listed as a referrer of the model.
+A runtime cannot check that a state's layers match its `tokens` without processing the tokens, which is the work the state saves. Runtimes SHOULD load only states they trust, for example a state pinned by a digest obtained through a trusted channel, or one whose signature was verified against an authorized producer, and SHOULD NOT load a state only because it is listed as a referrer of the model.
 
 ## Image Manifest
 
