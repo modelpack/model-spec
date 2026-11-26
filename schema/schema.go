@@ -25,7 +25,8 @@ import (
 
 // Media types for the model-spec related formats
 const (
-	ValidatorMediaTypeModelConfig Validator = v1.MediaTypeModelConfig
+	ValidatorMediaTypeModelConfig      Validator = v1.MediaTypeModelConfig
+	ValidatorMediaTypeModelStateConfig Validator = v1.MediaTypeModelStateConfig
 )
 
 var (
@@ -35,13 +36,17 @@ var (
 
 	// specs maps model-spec schema media types to schema files.
 	specs = map[Validator]string{
-		ValidatorMediaTypeModelConfig: "config-schema.json",
+		ValidatorMediaTypeModelConfig:      "config-schema.json",
+		ValidatorMediaTypeModelStateConfig: "state-schema.json",
 	}
 
 	// specURLs lists the various URLs a given spec may be known by.
 	specURLs = map[string][]string{
 		"config-schema.json": {
 			"https://github.com/modelpack/model-spec/config",
+		},
+		"state-schema.json": {
+			"https://github.com/modelpack/model-spec/state",
 		},
 	}
 )

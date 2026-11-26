@@ -1,0 +1,27 @@
+{
+    "description": "Model State Artifact Configuration Schema",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/modelpack/model-spec/state",
+    "type": "object",
+    "properties": {
+      "format": {
+        "type": "string",
+        "minLength": 1
+      },
+      "tokens": {
+        "type": "array",
+        "items": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "precision": {
+        "type": "string"
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "format",
+      "tokens"
+    ]
+}

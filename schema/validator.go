@@ -21,6 +21,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"math/big"
 
 	v1 "github.com/modelpack/model-spec/specs-go/v1"
 	"github.com/santhosh-tekuri/jsonschema/v5"
@@ -111,7 +112,8 @@ func (v Validator) validateSchema(src io.Reader) error {
 type validateFunc func([]byte) error
 
 var validateByMediaType = map[Validator]validateFunc{
-	ValidatorMediaTypeModelConfig: validateConfig,
+	ValidatorMediaTypeModelConfig:      validateConfig,
+	ValidatorMediaTypeModelStateConfig: validateState,
 }
 
 func validateConfig(buf []byte) error {
@@ -120,6 +122,26 @@ func validateConfig(buf []byte) error {
 	err := json.Unmarshal(buf, &model)
 	if err != nil {
 		return fmt.Errorf("config format mismatch: %w", err)
+	}
+
+	return nil
+}
+
+func validateState(buf []byte) error {
+	var state struct {
+		Tokens []json.Number `json:"tokens"`
+	}
+
+	err := json.Unmarshal(buf, &state)
+	if err != nil {
+		return fmt.Errorf("state config format mismatch: %w", err)
+	}
+
+	// The schema check decodes numbers as float64, which rounds 1.0000000000000001 to 1.
+	for _, token := range state.Tokens {
+		if r, ok := new(big.Rat).SetString(token.String()); !ok || !r.IsInt() {
+			return fmt.Errorf("state config format mismatch: token ID %q is not an integer", token)
+		}
 	}
 
 	return nil
